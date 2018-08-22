@@ -1,5 +1,6 @@
 package com.pos.sales;
 
-public class seller {
+public class Seller {
 
+	    
 }
