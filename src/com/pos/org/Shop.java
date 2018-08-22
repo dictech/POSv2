@@ -24,6 +24,12 @@ public class Shop {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	public ArrayList<Seller> getSellers() {
+		return sellers;
+	}
+	public void setSellers(ArrayList<Seller> sellers) {
+		this.sellers = sellers;
+	}
 	
 	
 }
