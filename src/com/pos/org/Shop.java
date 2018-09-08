@@ -1,9 +1,13 @@
 package com.pos.org;
 
+import java.util.ArrayList;
+
+import com.pos.sales.Seller;
+
 public class Shop {
 	private String name;
 	private String location;
-	//private ArrayList<Sellers> sellers;  code this when its ready
+	private ArrayList<Seller> sellers;
 	
 	public void open() {}
 	public void close() {}
@@ -19,6 +23,12 @@ public class Shop {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public ArrayList<Seller> getSellers() {
+		return sellers;
+	}
+	public void setSellers(ArrayList<Seller> sellers) {
+		this.sellers = sellers;
 	}
 	
 	
