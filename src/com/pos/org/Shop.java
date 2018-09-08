@@ -2,16 +2,22 @@ package com.pos.org;
 
 import java.util.ArrayList;
 
-import com.pos.sales.Seller;
+import com.pos.account.Attendant;
 
 public class Shop {
 	private String name;
 	private String location;
-	private ArrayList<Seller> sellers;
+	private ArrayList<Attendant> shopAttendant;
 	
 	public void open() {}
 	public void close() {}
 	
+	public ArrayList<Attendant> getShopAttendant() {
+		return shopAttendant;
+	}
+	public void setShopAttendant(ArrayList<Attendant> shopAttendant) {
+		this.shopAttendant = shopAttendant;
+	}
 	public String getName() {
 		return name;
 	}
@@ -24,12 +30,7 @@ public class Shop {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public ArrayList<Seller> getSellers() {
-		return sellers;
-	}
-	public void setSellers(ArrayList<Seller> sellers) {
-		this.sellers = sellers;
-	}
+	
 	
 	
 }
