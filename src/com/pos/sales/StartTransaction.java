@@ -1,3 +1,9 @@
 package com.pos.sales;
 
-public class StartTransaction {}
+import com.pos.account.Attendant;
+
+public class StartTransaction {
+	public static void main(String args[]) {
+
+	}
+}

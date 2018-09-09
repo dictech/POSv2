@@ -1,87 +1,185 @@
 package com.pos.account;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.pos.database.Database;
 
 public class Attendant {
 	
-	 private int attdtId;
-	 private String attdtfName;
-	 private String attdtMName;
-	 private String attdtSurname;
-	 private String attdtGender;
-	 private Date attdtDob;
-	 private String attdtAddress; 
-	 private String attdtPhoneNo; 
-	 private String attdtEmail; 
-	 private Date attdtDtEmp; 
-	 private String attdtPos;
+	 private int 	id;
+	 private String fName;
+	 private String mName;
+	 private String surname;
+	 private String gender;
+	 private Date   dob;
+	 private String address; 
+	 private String phoneNo; 
+	 private String email; 
+	 private Date   doe; 
+	 private String position;
 	 
-	public int getAttdtId() {
-		return attdtId;
+	
+	 public static void manageAttendant(Attendant attendant, String action) {
+			if(action.equalsIgnoreCase("C")) {
+				createNewAttendant(attendant);
+				return;
+			}
+			
+			if(action.equalsIgnoreCase("R")) {
+				readAllAttendants();
+				return;
+			}
+			
+			if(action.equalsIgnoreCase("U")) { 
+				updateAttendant(attendant);
+				return;
+			}
+			
+			if(action.equalsIgnoreCase("D")) {
+				deleteAttendant(attendant);
+				return;
+			}
+		 }
+	 private static void createNewAttendant(Attendant attendant) {
+			boolean isCreated;
+			
+			//get database connection
+			Connection dbConnection =  Database.getDatabaseConnection();
+			//set SQL query
+			String sqlQuery = "insert into "
+						      + "attendant(attdt_id,attdt_first_name,attdt_mid_name,"
+						      			  +"attdt_surname,attdt_gender,attdt_dob,"
+						      			  +"attdt_address,attdt_phone_no,attdt_email,"
+						      			  +"attdt_dt_emp,attdt_position)"
+							  + "values(?,?,?,?,?,?,?,?,?,?,?)";
+			//execute SQL query
+			try {
+				PreparedStatement stmt = dbConnection.prepareStatement(sqlQuery);
+				stmt.setInt(1, attendant.getId());
+				stmt.setString(2, attendant.getfName());
+				stmt.setString(3, attendant.getmName());
+				stmt.setString(4, attendant.getSurname());
+				stmt.setString(5, attendant.getGender());
+				stmt.setDate(6,(java.sql.Date) attendant.getDob());
+				stmt.setString(7, attendant.getAddress());
+				stmt.setString(8, attendant.getPhoneNo());
+				stmt.setString(9, attendant.getEmail());
+				stmt.setDate(10,(java.sql.Date) attendant.getDoe());
+				stmt.setString(11,attendant.getPosition());
+				
+				isCreated = stmt.execute();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+     private static void readAllAttendants() {
+    	 List<Attendant> listOfAttendants =  new ArrayList<Attendant>();
+    	 Connection conn = Database.getDatabaseConnection();
+    	 try {
+    		ResultSet records = conn.createStatement().executeQuery("select * from attendant");
+    		while(records.next()) {
+    			Attendant attendant = new Attendant();
+    			attendant.setId(records.getInt(1));
+    			attendant.setfName(records.getString(2));
+    			attendant.setmName(records.getString(3));
+    			attendant.setSurname(records.getString(4));
+    			attendant.setGender(records.getString(5));
+    			attendant.setDob(records.getDate(6));
+    			attendant.setAddress(records.getString(7));
+    			attendant.setPhoneNo(records.getString(8));
+    			attendant.setEmail(records.getString(9));
+    			attendant.setDoe(records.getDate(10));
+    			attendant.setPosition(records.getString(11));
+    			listOfAttendants.add(attendant);
+    		}
+    		
+    		listOfAttendants.forEach((attd)-> System.out.println(attd.getfName() + " " + attd.getSurname()));
+    		
+    	 }catch(Exception e) {
+    		 e.printStackTrace();
+    	 }
+     }
+	 private static void updateAttendant(Attendant attendant) {
+		// TODO Auto-generated method stub
+		
 	}
-	public void setAttdtId(int attdtId) {
-		this.attdtId = attdtId;
+	 private static void deleteAttendant(Attendant attendant) {
+			
+		}
+		
+	public int getId() {
+		return id;
 	}
-	public String getAttdtfName() {
-		return attdtfName;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setAttdtfName(String attdtfName) {
-		this.attdtfName = attdtfName;
+	public String getfName() {
+		return fName;
 	}
-	public String getAttdtMName() {
-		return attdtMName;
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
-	public void setAttdtMName(String attdtMName) {
-		this.attdtMName = attdtMName;
+	public String getmName() {
+		return mName;
 	}
-	public String getAttdtSurname() {
-		return attdtSurname;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
-	public void setAttdtSurname(String attdtSurname) {
-		this.attdtSurname = attdtSurname;
+	public String getSurname() {
+		return surname;
 	}
-	public String getAttdtGender() {
-		return attdtGender;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
-	public void setAttdtGender(String attdtGender) {
-		this.attdtGender = attdtGender;
+	public String getGender() {
+		return gender;
 	}
-	public Date getAttdtDob() {
-		return attdtDob;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-	public void setAttdtDob(Date attdtDob) {
-		this.attdtDob = attdtDob;
+	public Date getDob() {
+		return dob;
 	}
-	public String getAttdtAddress() {
-		return attdtAddress;
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
-	public void setAttdtAddress(String attdtAddress) {
-		this.attdtAddress = attdtAddress;
+	public String getAddress() {
+		return address;
 	}
-	public String getAttdtPhoneNo() {
-		return attdtPhoneNo;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public void setAttdtPhoneNo(String attdtPhoneNo) {
-		this.attdtPhoneNo = attdtPhoneNo;
+	public String getPhoneNo() {
+		return phoneNo;
 	}
-	public String getAttdtEmail() {
-		return attdtEmail;
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
-	public void setAttdtEmail(String attdtEmail) {
-		this.attdtEmail = attdtEmail;
+	public String getEmail() {
+		return email;
 	}
-	public Date getAttdtDtEmp() {
-		return attdtDtEmp;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public void setAttdtDtEmp(Date attdtDtEmp) {
-		this.attdtDtEmp = attdtDtEmp;
+	public Date getDoe() {
+		return doe;
 	}
-	public String getAttdtPos() {
-		return attdtPos;
+	public void setDoe(Date doe) {
+		this.doe = doe;
 	}
-	public void setAttdtPos(String attdtPos) {
-		this.attdtPos = attdtPos;
+	public String getPosition() {
+		return position;
 	}
-	 
-	 
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
 }
+
+	
