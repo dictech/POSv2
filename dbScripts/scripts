@@ -1,0 +1,10 @@
+//Add all scripts here
+use posv2;
+create table branch
+(
+   branchID int primary key auto_increment,
+   banchName varchar(50),
+   branchAddress varchar(60),
+   branchState varchar(50),
+   branchLGA varchar(50)
+);
