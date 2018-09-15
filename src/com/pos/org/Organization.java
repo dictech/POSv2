@@ -1,6 +1,7 @@
 package com.pos.org;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Organization{
 	private BigDecimal org_id;
@@ -9,7 +10,10 @@ public class Organization{
 	private String     org_phone;
 	private String     org_email;
 	private String     org_logo;
+	private List<Shop> org_shops;
 	
+	
+
 	public BigDecimal getOrg_id() {
 		return org_id;
 	}
@@ -47,5 +51,10 @@ public class Organization{
 		this.org_logo = org_logo;
 	}
 	
-	
+	public List<Shop> getOrg_shops() {
+		return org_shops;
+	}
+	public void setOrg_shops(List<Shop> org_shops) {
+		this.org_shops = org_shops;
+	}
 }
