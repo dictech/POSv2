@@ -10,7 +10,7 @@ public class Database {
 	
 	static String dbUrl = "jdbc:mysql://localhost:3306/posv2";
 	static String dbUsername = "root";
-	static String dbPassword = "Manchester81#";
+	static String dbPassword = "esthermylove";
 	static Connection conn = null;
 	
 	public static Connection getDatabaseConnection() {
@@ -20,6 +20,7 @@ public class Database {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
+		
 		return conn;
 	}
 }
