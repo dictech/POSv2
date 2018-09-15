@@ -8,3 +8,14 @@ create table branch
    branchState varchar(50),
    branchLGA varchar(50)
 );
+
+
+use posv2;
+CREATE TABLE `posv2`.`organization` (
+  `org_id` INT NOT NULL AUTO_INCREMENT,
+  `org_name` VARCHAR(45) NOT NULL,
+  `org_addrs` VARCHAR(45) NOT NULL,
+  `org_phone` VARCHAR(45) NOT NULL,
+  `org_email` VARCHAR(45) NOT NULL,
+  `org_logo` VARCHAR(45) NULL,
+  PRIMARY KEY (`org_id`));
