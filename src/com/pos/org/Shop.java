@@ -59,5 +59,5 @@ public class Shop {
 	public void setShopAttendant(ArrayList<Attendant> shopAttendant) {
 		this.shopAttendant = shopAttendant;
 	}
-		
+	
 }

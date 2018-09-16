@@ -1,0 +1,54 @@
+ALTER TABLE `posv2`.`product` 
+DROP COLUMN `item_inv_id`,
+CHANGE COLUMN `item_category` `pro_cat_id` VARCHAR(45) NOT NULL AFTER `pro_name`,
+CHANGE COLUMN `item_id` `pro_id` INT(11) NOT NULL AUTO_INCREMENT ,
+CHANGE COLUMN `item_name` `pro_name` VARCHAR(45) NOT NULL ,
+CHANGE COLUMN `item_desc` `pro_desc` VARCHAR(45) NOT NULL ,
+CHANGE COLUMN `item_cost` `pro_cost` INT(11) NOT NULL ,
+CHANGE COLUMN `itemcol` `pro_price` VARCHAR(45) NOT NULL ,
+DROP INDEX `item_inv_id_fk_idx` ;
+;
+
+
+CREATE TABLE `posv2`.`product_category` (
+  `cat_id` INT NOT NULL AUTO_INCREMENT,
+  `cat_name` VARCHAR(45) NOT NULL,
+  `cat_desc` VARCHAR(45) NULL,
+  PRIMARY KEY (`cat_id`));
+  
+  
+  CREATE TABLE `posv2`.`inventory` (
+  `inv_id` INT NOT NULL AUTO_INCREMENT,
+  `inv_pro_id` INT NOT NULL,
+  `inv_desc` VARCHAR(45) NOT NULL,
+  `inv_no_of_units` INT NOT NULL,
+  `inv_qty_per_unit` INT NOT NULL,
+  `inv_total_qty` INT NOT NULL,
+  `inv_total_ordered` INT NOT NULL,
+  `inv_reorder_lvl` INT NOT NULL,
+  PRIMARY KEY (`inv_id`));
+  
+  
+  ALTER TABLE `posv2`.`product` 
+CHANGE COLUMN `pro_cat_id` `pro_cat_id` INT NOT NULL ;
+
+ALTER TABLE `posv2`.`product` 
+ADD INDEX `pro_cat_id_fk_idx` (`pro_cat_id` ASC) VISIBLE;
+;
+ALTER TABLE `posv2`.`product` 
+ADD CONSTRAINT `pro_cat_id_fk`
+  FOREIGN KEY (`pro_cat_id`)
+  REFERENCES `posv2`.`product_category` (`cat_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+ALTER TABLE `posv2`.`inventory` 
+ADD INDEX `inv_pro_id_fk_idx` (`inv_pro_id` ASC) VISIBLE;
+;
+ALTER TABLE `posv2`.`inventory` 
+ADD CONSTRAINT `inv_pro_id_fk`
+  FOREIGN KEY (`inv_pro_id`)
+  REFERENCES `posv2`.`product` (`pro_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

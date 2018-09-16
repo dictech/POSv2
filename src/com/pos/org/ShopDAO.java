@@ -1,5 +1,6 @@
 package com.pos.org;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import com.pos.database.Database;
 public class ShopDAO {
 	
 	public static void createShop(Shop shop) {
-		String sql = "INSERT INTO shop VALUES(?,?,?)";
+		String sql = "INSERT INTO shop VALUES(?,?,?,?,?,?)";
 		
 		try {
 			Connection cxtn = Database.getDatabaseConnection();
@@ -20,6 +21,9 @@ public class ShopDAO {
 			stmt.setBigDecimal(1, shop.getShopId());
 			stmt.setString(2, shop.getShopName());
 			stmt.setString(3, shop.getShopLocation());
+			stmt.setString(4, shop.getShopBranch());
+			stmt.setString(5, shop.getShopRCNo());
+			stmt.setString(6, shop.getShopMgr());
 			stmt.execute();
 			stmt.close();
 			cxtn.close();
@@ -28,7 +32,7 @@ public class ShopDAO {
 		}
 	}
 	
-	public static List<Shop> getShops() {
+	public static List<Shop> getAllShops() {
 		List<Shop> listOfShops = new ArrayList<Shop>();
 		String sql =  "SELECT * FROM shop";
 		
@@ -64,12 +68,12 @@ public class ShopDAO {
 	}
 	
 	public static void updateShop(Shop shop) {
-		String sql = "UPATE shop"
-					+"SET   shop_name = ?,"
-					+"      shop_location = ?,"
-					+"      shop_branch   = ?,"
-					+"      shop_rc_no    = ?,"
-					+"      shop_owner    = ?"
+		String sql = "UPDATE shop "
+					+"SET   shop_name = ?, "
+					+"      shop_location = ?, "
+					+"      shop_branch   = ?, "
+					+"      shop_rc_no    = ?, "
+					+"      shop_owner    = ? "
 					+"WHERE shop_id       = ?";
 		
 		try {
@@ -90,8 +94,36 @@ public class ShopDAO {
 		}
 	}
 	
+	public Shop getShop(BigDecimal id) {
+		Shop shop = new Shop();
+		String sql = "SELECT * "
+				   + "FROM shop "
+				   + "WHERE shop_id = ?";
+		try {
+			Connection cxtn = Database.getDatabaseConnection();
+			PreparedStatement stmt = cxtn.prepareStatement(sql);
+			
+			stmt.setBigDecimal(1, id);
+			ResultSet row = stmt.executeQuery();
+			
+			if(row.next()) {
+				shop.setShopId(row.getBigDecimal(1));
+				shop.setShopName(row.getString(2));
+				shop.setShopLocation(row.getString(3));
+				shop.setShopBranch(row.getString(4));
+				shop.setShopRCNo(row.getString(5));
+				shop.setShopMgr(row.getString(6));
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return shop;
+	}
+	
 	public static void deleteShop(Shop shop) {
-		String sql = "DELETE FROM shop"
+		String sql = "DELETE FROM shop "
 				    +"WHERE  shop_id = ?";
 		
 		try {
