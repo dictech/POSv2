@@ -11,7 +11,7 @@ import com.pos.database.Database;
 public class OrganizationDAO {
 	
 	
-	public void createOrg(Organization org){
+	public static void createOrg(Organization org){
 		String sql = "insert into organization values(?,?,?,?,?,?)";
 		try {
 			Connection cxtn=  Database.getDatabaseConnection();
@@ -32,7 +32,7 @@ public class OrganizationDAO {
 		}
 	}
 	
-	public List<Organization> getOrg(){
+	public static List<Organization> getOrg(){
 		String sql="select * from organization";
 		List<Organization> listOfOrgs =  new ArrayList<Organization>();
 		
@@ -55,10 +55,18 @@ public class OrganizationDAO {
 			e.printStackTrace();
 		}
 		
+		listOfOrgs.forEach((org)->{
+			       System.out.println(org.getOrg_name());
+			       System.out.println(org.getOrg_addrs());
+			       System.out.println(org.getOrg_phone());
+			       System.out.println(org.getOrg_email());
+			       System.out.println(org.getOrg_logo());
+		});
+		
 		return listOfOrgs;
 	}
 	
-	public void updateOrg(Organization org) {
+	public static void updateOrg(Organization org) {
 		String sql = "UPDATE organization "
 				   + "SET    org_name  = ?,"
 				   + "       org_addrs = ?,"
@@ -68,6 +76,8 @@ public class OrganizationDAO {
 				   + "WHERE  org_id    = ?";
 		
 		try {
+			System.out.println("Updating ..." + org.getOrg_id() + " with " + org.getOrg_name());
+
 			Connection cxtn = Database.getDatabaseConnection();
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
 			
@@ -77,6 +87,7 @@ public class OrganizationDAO {
 			stmt.setString(4,org.getOrg_email());
 			stmt.setString(5,org.getOrg_logo());
 			stmt.setBigDecimal(6, org.getOrg_id());
+			stmt.executeUpdate();
 			stmt.close();
 			cxtn.close();
 			
@@ -85,8 +96,8 @@ public class OrganizationDAO {
 		}
 	}
 	
-	public void deleteOrg(Organization org) {
-		String sql = "DELETE organization "
+	public static void deleteOrg(Organization org) {
+		String sql = "DELETE FROM organization "
 				   + "WHERE  org_id    = ?";
 		
 		try {
@@ -94,11 +105,41 @@ public class OrganizationDAO {
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
 			
 			stmt.setBigDecimal(1, org.getOrg_id());
+			stmt.execute();
 			stmt.close();
 			cxtn.close();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-	}	
+	}
+	
+	public static List<Shop> getShops(){
+		List<Shop> listOfShops =  new ArrayList<Shop>();
+		String sql = "SELECT * FROM shop";
+		
+		try {
+			Connection cxtn = Database.getDatabaseConnection();
+			ResultSet rows = cxtn.createStatement().executeQuery(sql);
+			
+			while(rows.next()) {
+				Shop shop =  new Shop();
+				shop.setShopId(rows.getBigDecimal(1));
+				shop.setShopName(rows.getString(2));
+				shop.setShopLocation(rows.getString(3));
+				
+				listOfShops.add(shop);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		listOfShops.forEach((shop)->{
+			System.out.println(shop.getShopId());
+			System.out.println(shop.getShopName());
+			System.out.println(shop.getShopLocation());
+		});
+		
+		return listOfShops;
+	}
 }
