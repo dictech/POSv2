@@ -3,8 +3,19 @@ package com.pos.inventory;
 import java.math.BigDecimal;
 
 public class ShopItem {
-	private String type,name,description;
+	private BigDecimal id;
+	private String name;
+	private String type;
+
+	private String description;
 	private BigDecimal price;
+	
+	public BigDecimal getId() {
+		return id;
+	}
+	public void setId(BigDecimal id) {
+		this.id = id;
+	}
 	
 	public String getType() {
 		return type;

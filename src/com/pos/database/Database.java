@@ -7,7 +7,7 @@ public class Database {
 	
 	static String dbUrl = "jdbc:mysql://localhost:3306/posv2";
 	static String dbUsername = "root";
-	static String dbPassword = "esthermylove";
+	static String dbPassword = "Manchester81#";
 	static Connection conn = null;
 	
 	public static Connection getDatabaseConnection() {
