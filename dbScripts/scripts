@@ -19,3 +19,26 @@ CREATE TABLE `posv2`.`organization` (
   `org_email` VARCHAR(45) NOT NULL,
   `org_logo` VARCHAR(45) NULL,
   PRIMARY KEY (`org_id`));
+
+
+// attendance table has been modified we added first name and last name.
+
+  select * from attendance;
+  drop table attendance;
+ 
+  
+  CREATE TABLE `posv2`.`attendance` (
+  `attdnc_id` INT NOT NULL,
+  `attdnc_attdnt_id` INT NOT NULL,
+  `attdnc_first_name` VARCHAR(45) NULL,
+  `attdnc_last_name` VARCHAR(45) NULL,
+  `attdnc_signin_time` VARCHAR(45) NULL,
+  `attdnc_signout_time` VARCHAR(45) NULL,
+  `attdnc_date` VARCHAR(45) NULL,
+  INDEX `attndce_attdnt_fk_idx` (`attdnc_attdnt_id` ASC) VISIBLE,
+  CONSTRAINT `attndce_attdnt_fk`
+    FOREIGN KEY (`attdnc_attdnt_id`)
+    REFERENCES `posv2`.`attendant` (`attdt_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+  

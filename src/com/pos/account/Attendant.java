@@ -78,6 +78,7 @@ public class Attendant {
 				e.printStackTrace();
 			}
 		}
+	 
      private static void readAllAttendants() {
     	 List<Attendant> listOfAttendants =  new ArrayList<Attendant>();
     	 Connection conn = Database.getDatabaseConnection();

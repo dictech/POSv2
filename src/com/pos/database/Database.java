@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class Database {
 	
-	static String dbUrl = "jdbc:mysql://localhost:3306/posv2";
-	static String dbUsername = "root";
-	static String dbPassword = "Manchester81#";
+	static String dbUrl = "jdbc:mysql://127.0.0.1:3306/posv2";
+	static String dbUsername = "Andy";
+	static String dbPassword = "Andy";
 	static Connection conn = null;
 	
 	public static Connection getDatabaseConnection() {
