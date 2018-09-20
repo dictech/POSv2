@@ -5,6 +5,7 @@ import java.util.Date;
 public class Attendance {
 
 	       // An activity that records all the daily attendance of an attendant.
+	private int attenc_ID;
 	private int attenc_attendt_Id;
 	private String attendcFirstName;
 	private String attendcLastName;
@@ -110,6 +111,22 @@ public Attendance() {
 
 	public void setAttenc_attendt_Id(int attenc_attendt_Id) {
 		this.attenc_attendt_Id = attenc_attendt_Id;
+	}
+
+
+
+
+
+	public int getAttenc_ID() {
+		return attenc_ID;
+	}
+
+
+
+
+
+	public void setAttenc_ID(int attenc_ID) {
+		this.attenc_ID = attenc_ID;
 	}
 	
 	

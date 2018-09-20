@@ -6,6 +6,8 @@ import java.util.Scanner;
 import com.pos.account.Attendance;
 import com.pos.account.AttendanceDAO;
 import com.pos.account.Attendant;
+import com.pos.account.SystemAccount;
+import com.pos.account.SystemAccountDAO;
 import com.pos.org.Branch;
 import com.pos.org.BranchDAO;
 
@@ -13,8 +15,11 @@ public class StartTransaction {
 	
 	public static void main(String args[]) {
    
-		Attendance john = new Attendance();
-		Attendant info = new Attendant();
+	
+	 SystemAccountDAO.logInSystemAccount(1);
+	  
+		
+	/*	Attendant info = new Attendant();
 	
 		     System.out.println("PLease wait..... loging you in");
 		      System.out.println("verification successfull !");
@@ -38,7 +43,7 @@ public class StartTransaction {
 		            		System.out.print("you have been added to the Attendance list ! Date is : "+ john.getLastSeen());
 		            		
 		                }
-		                
+		                */
 		                
 		
 		  
