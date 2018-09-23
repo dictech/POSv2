@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,6 +75,8 @@ public class Attendant {
 				stmt.setString(11,attendant.getPosition());
 				
 				isCreated = stmt.execute();
+				  
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -106,6 +109,8 @@ public class Attendant {
     		 e.printStackTrace();
     	 }
      }
+     
+     
 	 private static void updateAttendant(Attendant attendant) {
 		// TODO Auto-generated method stub
 		
@@ -113,7 +118,17 @@ public class Attendant {
 	 private static void deleteAttendant(Attendant attendant) {
 			
 		}
-		
+	
+
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	public int getId() {
 		return id;
 	}

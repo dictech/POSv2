@@ -52,3 +52,25 @@ ADD CONSTRAINT `inv_pro_id_fk`
   REFERENCES `posv2`.`product` (`pro_id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+
+  use posv2;
+drop table attendance;
+  
+  CREATE TABLE `posv2`.`attendance` (
+  `attdnc_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `attdnc_attdnt_id` INT NOT NULL,
+  `attdnc_first_name` VARCHAR(45) NULL,
+  `attdnc_last_name` VARCHAR(45) NULL,
+  `attdnc_signin_time` VARCHAR(45) NULL,
+  `attdnc_signout_time` VARCHAR(45) NULL,
+  `has_loged_in` TINYINT,
+  `has_loged_out` TINYINT,
+  `attdnc_date` VARCHAR(45) NULL,
+  INDEX `attndce_attdnt_fk_idx` (`attdnc_attdnt_id` ASC) VISIBLE,
+  CONSTRAINT `attndce_attdnt_fk`
+    FOREIGN KEY (`attdnc_attdnt_id`)
+    REFERENCES `posv2`.`attendant` (`attdt_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+    select * from posv2.attendance;

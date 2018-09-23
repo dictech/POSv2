@@ -104,11 +104,7 @@ public class BranchDAO {
 	    	    myConnect = Database.getDatabaseConnection();
 	    	     prepareStatement = myConnect.prepareStatement(sql);
 	    	      prepareStatement.setInt(1, id);
-	    	       int rowAffected = prepareStatement.executeUpdate();
-	    	        
-	    	        if(rowAffected == 0) {
-	    	        	   System.out.println("no records found for this id : "+id);
-	    	        }else {System.out.println("Delete successfull ! \n records affected : "+rowAffected);}
+	    	       prepareStatement.executeUpdate();
 	    	         prepareStatement.close();
 	    	           myConnect.close();
 	    	
