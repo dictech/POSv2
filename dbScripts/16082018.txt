@@ -53,6 +53,7 @@ ADD CONSTRAINT `inv_pro_id_fk`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
+
   use posv2;
 drop table attendance;
   
@@ -74,3 +75,24 @@ drop table attendance;
     ON UPDATE NO ACTION);
     
     select * from posv2.attendance;
+
+  
+  ALTER TABLE `posv2`.`order` 
+CHANGE COLUMN `order_total_cost` `order_price` INT(11) NOT NULL ;
+
+ALTER TABLE `posv2`.`payment` 
+CHANGE COLUMN `pay_cost` `pay_price` INT(11) NOT NULL ;
+
+ALTER TABLE `posv2`.`payment` 
+CHANGE COLUMN `pay_amount` `pay_amt_paid` INT(11) NOT NULL ;
+
+
+ALTER TABLE `posv2`.`purchases` 
+DROP FOREIGN KEY `pur_item_fk`;
+ALTER TABLE `posv2`.`purchases` 
+CHANGE COLUMN `pur_item_id` `pur_pro_id` INT(11) NOT NULL ;
+ALTER TABLE `posv2`.`purchases` 
+ADD CONSTRAINT `pur_item_fk`
+  FOREIGN KEY (`pur_pro_id`)
+  REFERENCES `posv2`.`product` (`pro_id`);
+
