@@ -5,17 +5,19 @@ import java.util.Date;
 public class SystemAccount {
 
 	 private int accountID;
-	 private String fName;
-	 private String mName;
-	 private String lastName;
-	 private Date dateCreated;
+	 private int actAttendantID;
+	 private String userName;
+	 private String password;
 	
 	
 	 
 	public SystemAccount() {
-		
-		
+	
 	}
+	
+	
+	
+	
 
 
 
@@ -31,53 +33,42 @@ public class SystemAccount {
 
 
 
-	public String getfName() {
-		return fName;
+	public int getActAttendantID() {
+		return actAttendantID;
 	}
 
 
 
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setActAttendantID(int actAttendantID) {
+		this.actAttendantID = actAttendantID;
 	}
 
 
 
-	public String getmName() {
-		return mName;
+	public String getUserName() {
+		return userName;
 	}
 
 
 
-	public void setmName(String mName) {
-		this.mName = mName;
-	}
-
-
-	
-
-	public String getLastName() {
-		return lastName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public String getPassword() {
+		return password;
 	}
 
 
 
-	public Date getDateCreated() {
-		return dateCreated;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-	
 	
 
 	

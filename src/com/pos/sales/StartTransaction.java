@@ -1,5 +1,7 @@
 package com.pos.sales;
 
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -15,39 +17,46 @@ public class StartTransaction {
 	
 	public static void main(String args[]) {
    
+	   Attendance attendance = new Attendance();
+	      Attendant attendant = new Attendant();
+           
+	        attendant.setfName("john");
+	         attendant.setmName("jackson");
+	          attendant.setSurname("crazy code");
+	           attendant.setAddress("ikotun");
+	            attendant.setDob(new Date());
+	             attendant.setDoe(new Date());
+	              attendant.setEmail("jakson87676@gmail.com");
+	               attendant.setGender("male");
+	                attendant.setPhoneNo("0906679733");
+	                 Attendant.manageAttendant(attendant, action);
+	              
 	
-	 SystemAccountDAO.logInSystemAccount(1);
-	  
-		
-	/*	Attendant info = new Attendant();
-	
-		     System.out.println("PLease wait..... loging you in");
-		      System.out.println("verification successfull !");
-		         john.setAttenc_attendt_Id(1);
-		         john.setAttendcFirstName("Rose");
-		          john.setAttendcLastName("Essien");
-		           john.setHasSignedIn(true);
-		            john.setLastSeen(john.getLastSeen());
-		              AttendanceDAO.createAttendance(john);
-		               info.getGender();
-		                if(info.getGender() == "F") {
-		              
-		                	System.out.print("Welcome MRS "+john.getAttendcLastName().toUpperCase());
-		            		System.out.print("you have been added to the Attendance list ! Date is : "+ john.getLastSeen());
-		            		
-		                	
-		                }else {
-		                	
-
-		                	System.out.println("Welcome MR "+john.getAttendcLastName().toUpperCase());
-		            		System.out.print("you have been added to the Attendance list ! Date is : "+ john.getLastSeen());
-		            		
-		                }
-		                */
-		                
-		
-		  
-		
+	          
+	     AttendanceDAO.viewAllAttendance(attendance);
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
+	           
 		
 	}
 }
