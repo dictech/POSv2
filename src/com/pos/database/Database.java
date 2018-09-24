@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 public class Database {
 	
 	static String dbUrl = "jdbc:mysql://127.0.0.1:3306/posv2";
-	static String dbUsername = "Andy";
-	static String dbPassword = "Andy";
+	static String dbUsername = "";
+	static String dbPassword = "";
 	static Connection conn = null;
+	static PreparedStatement stmt;
 	
 	public static Connection getDatabaseConnection() {
 				
@@ -23,17 +24,39 @@ public class Database {
 		return conn;
 	}
 	
+	public static PreparedStatement getConnectedPreparedStatement(String sql) {
+		
+		try {
+		    conn = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
+			stmt = conn.prepareStatement(sql);
+
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		return stmt;
+	}
+	
 	public static void deleteFromTable(String sql, BigDecimal id) {
 		
 		try {
-			Connection cxtn =  Database.getDatabaseConnection();
-		    PreparedStatement stmt = cxtn.prepareStatement(sql);
+			conn =  Database.getDatabaseConnection();
+		    PreparedStatement stmt = conn.prepareStatement(sql);
 		    
 		    stmt.setBigDecimal(1,id);
 		    stmt.execute();
 		    stmt.close();
-		    cxtn.close();
+		    conn.close();
 		    
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void closeDatabaseConnection() {
+		try {
+			stmt.close();
+			conn.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
