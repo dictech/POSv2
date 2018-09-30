@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pos.account.AttendantDAO;
-
+import com.pos.account.model.AttendantDAO;
 import com.pos.database.Database;
 
 public class paymentDAO {

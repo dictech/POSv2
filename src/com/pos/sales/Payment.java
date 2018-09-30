@@ -3,7 +3,7 @@ package com.pos.sales;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-import com.pos.account.Attendant;
+import com.pos.account.model.Attendant;
 
 public class Payment {
 	private BigDecimal id;

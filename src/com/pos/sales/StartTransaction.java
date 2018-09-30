@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.pos.account.Attendance;
-import com.pos.account.AttendanceDAO;
-import com.pos.account.Attendant;
-import com.pos.account.SystemAccount;
-import com.pos.account.SystemAccountDAO;
+import com.pos.account.model.Attendance;
+import com.pos.account.model.AttendanceDAO;
+import com.pos.account.model.Attendant;
+import com.pos.account.model.SystemAccount;
+import com.pos.account.model.SystemAccountDAO;
 import com.pos.org.Branch;
 import com.pos.org.BranchDAO;
 

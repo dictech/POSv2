@@ -3,7 +3,7 @@ package com.pos.org;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import com.pos.account.Attendant;
+import com.pos.account.model.Attendant;
 
 public class Shop {
 	private BigDecimal shopId;
