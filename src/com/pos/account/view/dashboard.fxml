@@ -1,8 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.Controller.DashboardCtrl">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="-2.0" prefHeight="802.0" prefWidth="298.0" styleClass="sidebar" stylesheets="@style.css">
+         <children>
+            <Label prefHeight="153.0" prefWidth="298.0" text="Admin Panel" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="34.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="50.0" prefWidth="298.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <FontAwesomeIcon iconName="HOME" size="4em" wrappingWidth="23.142857551574707">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Home">
+                     <HBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="163.0" prefHeight="50.0" prefWidth="298.0">
+               <children>
+                  <FontAwesomeIcon iconName="HOME" size="4em" wrappingWidth="23.142857551574707">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Sales">
+                     <HBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="163.0" prefHeight="50.0" prefWidth="298.0">
+               <children>
+                  <FontAwesomeIcon iconName="HOME" size="4em" wrappingWidth="23.142857551574707">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Store">
+                     <HBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="287.0" prefHeight="50.0" prefWidth="298.0">
+               <children>
+                  <FontAwesomeIcon iconName="HOME" size="4em" wrappingWidth="23.142857551574707">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Account">
+                     <HBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="349.0" prefHeight="50.0" prefWidth="298.0">
+               <children>
+                  <FontAwesomeIcon iconName="HOME" size="4em" wrappingWidth="23.142857551574707">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Organization">
+                     <HBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="297.0" layoutY="-2.0" prefHeight="804.0" prefWidth="983.0" styleClass="parent" stylesheets="@style.css" />
+   </children>
 </AnchorPane>
-
