@@ -2,6 +2,7 @@ package com.pos.sales;
 
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class StartTransaction {
 	         attendant.setmName("jackson");
 	          attendant.setSurname("crazy code");
 	           attendant.setAddress("ikotun");
-	            attendant.setDob(new Date());
+	            attendant.setDob(LocalDateTime.now());
 	             attendant.setDoe(new Date());
 	              attendant.setEmail("jakson87676@gmail.com");
 	               attendant.setGender("male");
