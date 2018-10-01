@@ -1,6 +1,7 @@
 package com.pos.account.model;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Attendant {
@@ -10,12 +11,16 @@ public class Attendant {
 	 private String mName;
 	 private String surname;
 	 private String gender;
-	 private LocalDate   dob;
+	 private Date   dob;
 	 private String address; 
 	 private String phoneNo; 
 	 private String email; 
-	 private LocalDate   doe; 
-	 private String position;
+	 private Date   doe; 
+	 
+	 public Date getDoe() {
+		return doe;
+	}
+	private String position;
 	 
 	
 		
@@ -49,11 +54,15 @@ public class Attendant {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public LocalDate getDob() {
+	
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(LocalDate dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+	public void setDoe(Date doe) {
+		this.doe = doe;
 	}
 	public String getAddress() {
 		return address;
@@ -73,12 +82,7 @@ public class Attendant {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public LocalDate getDoe() {
-		return doe;
-	}
-	public void setDoe(LocalDate doe) {
-		this.doe = doe;
-	}
+	
 	public String getPosition() {
 		return position;
 	}

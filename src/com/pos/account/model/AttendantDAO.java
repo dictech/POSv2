@@ -40,6 +40,11 @@ public class AttendantDAO {
 			stmt.setString(11,attendant.getPosition());
 			
 			stmt.execute();
+			stmt.close();
+			SystemAccountDAO.fillAccountDetails();
+			dbConnection.close();
+			
+			             
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -57,11 +62,11 @@ public class AttendantDAO {
 			attendant.setmName(records.getString(3));
 			attendant.setSurname(records.getString(4));
 			attendant.setGender(records.getString(5));
-			attendant.setDob((LocalDate)records.getObject(6));
+			attendant.setDob(records.getDate(6));
 			attendant.setAddress(records.getString(7));
 			attendant.setPhoneNo(records.getString(8));
 			attendant.setEmail(records.getString(9));
-			attendant.setDoe((LocalDate)records.getObject(10));
+			attendant.setDoe(records.getDate(10));
 			attendant.setPosition(records.getString(11));
 			listOfAttendants.add(attendant);
 		}
@@ -81,20 +86,22 @@ public class AttendantDAO {
 	 Connection conn = Database.getDatabaseConnection();
 	 
 	 try {
-		ResultSet record = conn
-							.createStatement()
-							.executeQuery("select * from attendant where id = ?");
+		
+		PreparedStatement stmt = conn
+									.prepareStatement("select * from attendant where attdt_id = ?");
+		stmt.setBigDecimal(1, id);
+		ResultSet record = stmt.executeQuery();
 		if(record.next()) {
 			attendant.setId(record.getBigDecimal(1));
 			attendant.setfName(record.getString(2));
 			attendant.setmName(record.getString(3));
 			attendant.setSurname(record.getString(4));
 			attendant.setGender(record.getString(5));
-			attendant.setDob((LocalDate)record.getObject(6));
+			attendant.setDob(record.getDate(6));
 			attendant.setAddress(record.getString(7));
 			attendant.setPhoneNo(record.getString(8));
 			attendant.setEmail(record.getString(9));
-			attendant.setDoe((LocalDate)record.getObject(10));
+			attendant.setDoe(record.getDate(10));
 			attendant.setPosition(record.getString(11));
 		}
 		

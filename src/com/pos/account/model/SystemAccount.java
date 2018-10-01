@@ -1,11 +1,11 @@
 package com.pos.account.model;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
 public class SystemAccount {
 
-	 private int accountID;
-	 private int actAttendantID;
+	 private BigDecimal accountID;
+	 private BigDecimal actAttendantID;
 	 private String userName;
 	 private String password;
 	
@@ -15,33 +15,34 @@ public class SystemAccount {
 	
 	}
 	
-	
-	
-	
 
 
 
-	public int getAccountID() {
+	public BigDecimal getAccountID() {
 		return accountID;
 	}
 
 
 
-	public void setAccountID(int accountID) {
+
+	public void setAccountID(BigDecimal accountID) {
 		this.accountID = accountID;
 	}
 
 
 
-	public int getActAttendantID() {
+
+	public BigDecimal getActAttendantID() {
 		return actAttendantID;
 	}
 
 
 
-	public void setActAttendantID(int actAttendantID) {
+
+	public void setActAttendantID(BigDecimal actAttendantID) {
 		this.actAttendantID = actAttendantID;
 	}
+
 
 
 

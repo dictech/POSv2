@@ -1,20 +1,24 @@
 package com.pos.account.model;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+
 
 public class Attendance {
 
 	       // An activity that records all the daily attendance of an attendant.
-	private int attenc_ID;
+	private BigDecimal attenc_ID;
 	 private BigDecimal attenc_attendt_Id;
 	  private String attendcFirstName;
 	   private String attendcLastName;
-	    private boolean HasSignedIn;
-	     private boolean hasSignedOut;
-	   private String signOutTime;
-	 private String signInTime;
+	   private Time signOutTime;
+	 private Time signInTime;
 	private Date date;
 	
 	
@@ -62,22 +66,6 @@ public Attendance() {
 
 
 
-	public int getAttenc_ID() {
-		return attenc_ID;
-	}
-
-
-
-
-
-	public void setAttenc_ID(int attenc_ID) {
-		this.attenc_ID = attenc_ID;
-	}
-
-
-	
-
-
 
 
 	public Date getDate() {
@@ -92,60 +80,45 @@ public Attendance() {
 
 
 
-	public boolean isHasSignedIn() {
-		return HasSignedIn;
+	
+
+
+	public BigDecimal getAttenc_ID() {
+		return attenc_ID;
 	}
 
 
 
-	public void setHasSignedIn(boolean hasSignedIn) {
-		HasSignedIn = hasSignedIn;
+	public void setAttenc_ID(BigDecimal attenc_ID) {
+		this.attenc_ID = attenc_ID;
 	}
 
 
 
-	public boolean isHasSignedOut() {
-		return hasSignedOut;
-	}
-
-
-
-	public void setHasSignedOut(boolean hasSignedOut) {
-		this.hasSignedOut = hasSignedOut;
-	}
-
-
-
-	public String getSignOutTime() {
+	public Time getSignOutTime() {
 		return signOutTime;
 	}
 
 
 
-	public void setSignOutTime(String signOutTime) {
+	public void setSignOutTime(Time signOutTime) {
 		this.signOutTime = signOutTime;
 	}
 
 
 
-	public String getSignInTime() {
+	public Time getSignInTime() {
 		return signInTime;
 	}
 
 
 
-	public void setSignInTime(String signInTime) {
+	public void setSignInTime(Time signInTime) {
 		this.signInTime = signInTime;
 	}
 
 
 
 
-
-
-
-
-
-	
 	
 }

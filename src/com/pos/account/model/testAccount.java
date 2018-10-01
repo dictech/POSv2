@@ -8,7 +8,7 @@ import java.util.Date;
 public class testAccount {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	/*	// TODO Auto-generated method stub
         Attendant att = new Attendant();
         att.setfName("Stanley");
         att.setSurname("Okafor");
@@ -17,7 +17,7 @@ public class testAccount {
         Clock c = Clock.systemDefaultZone();
         System.out.println(LocalTime.now(c));
         
-        AttendantDAO.createNewAttendant(att);
+        AttendantDAO.createNewAttendant(att);  */
 	}
 
 }

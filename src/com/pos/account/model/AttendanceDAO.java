@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Time;
-import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.pos.database.Database;
 
@@ -17,30 +19,29 @@ public class AttendanceDAO {
 	     private static ResultSet result;
 	      private static Statement statement;
 	
-	       private static void createAttendance(Attendance attendance ) {
+	       public static void createAttendance(Attendance attendance ) {
 	    	   
 	    	try {
 	    	String signIn = "INSERT INTO attendance ("
-	    			+ "			attdnc_attdnt_id,"
-	    			+ "			attdnc_first_name,"
-	    			+ "			attdnc_last_name,"
+	    			+ "			attdnc_id,"
+	    			+ "         attdnc_attdnt_id,"
+	    			+ "			attdnc_attdnt_firstName,"
+	    			+ "			attdnc_attdnt_lastName,"
 	    			+ "			attdnc_signin_time,"
 	    			+ "			attdnc_signout_time,"
-	    			+ "			attdnc_date,"
-	    			+ "         attdnc_date, )"
+	    			+ "         attdnc_date )"
 	    			+ " VALUES (?,?,?,?,?,?,?)";
 	    	
 	    	    myConnect = Database.getDatabaseConnection();
 	    	     prepareStatement = myConnect.prepareStatement(signIn);
-	    	             
-	    	     prepareStatement.setBigDecimal(1, attendance.getAttenc_attendt_Id());
-	    	             prepareStatement.setString(2, attendance.getAttendcFirstName());
-	    	              prepareStatement.setString(3, attendance.getAttendcLastName());
-	    	               prepareStatement.setString(4,  attendance.getSignInTime()); 
-	    	                prepareStatement.setString(5, attendance.getSignOutTime());
-	    	                prepareStatement.setBoolean(6, attendance.isHasSignedIn());
-	    	                prepareStatement.setBoolean(7, attendance.isHasSignedOut());
-	    	                 prepareStatement.setDate(8, (java.sql.Date) attendance.getDate());
+	    	        
+	    	     prepareStatement.setBigDecimal(1, attendance.getAttenc_ID());
+	    	     prepareStatement.setBigDecimal(2, attendance.getAttenc_attendt_Id());
+	    	             prepareStatement.setString(3, attendance.getAttendcFirstName());
+	    	              prepareStatement.setString(4, attendance.getAttendcLastName());
+	    	               prepareStatement.setObject(5,  attendance.getSignInTime()); 
+	    	                prepareStatement.setObject(6, attendance.getSignOutTime());
+	    	                 prepareStatement.setObject(7,attendance.getDate());
 	    	         
 	    	                   int row =  prepareStatement.executeUpdate();
 	    	                    System.out.print("your Attendance for today was ctreated ! \n rows Affected :"+row);
@@ -60,28 +61,28 @@ public class AttendanceDAO {
 	    	
 	       
 	    	
-		      private static void readAttendance(Attendance attendance) {
-		    	  
+		      public static List<Attendance> readAllAttendance() {
+		    	       List<Attendance> attendanceList =  new ArrayList<Attendance>();
 		    	  try {
 		    		  
-		    		     myConnect = Database.getDatabaseConnection();
-		    		      String sqlQuery = "SELECT * FROM attendance";
+		    		       myConnect = Database.getDatabaseConnection();
+		    		       String sqlQuery = "SELECT * FROM attendance";
 		    		       statement = myConnect.createStatement();
-		    		        result = statement.executeQuery(sqlQuery);
+		    		       result = statement.executeQuery(sqlQuery);
 		    		        
 		  	                while(result.next()) {
-		  	                 attendance.setAttenc_ID(result.getInt(1));
-		  	    	          attendance.setAttenc_attendt_Id(result.getBigDecimal(2));
-		  	    	           attendance.setAttendcFirstName(result.getString(3));
-		  	    	            attendance.setAttendcLastName(result.getString(4));
-		  	    	             attendance.setSignInTime(result.getString(5));
-		  	    	               attendance.setSignOutTime(result.getString(6));
-		  	    	                attendance.setHasSignedIn(result.getBoolean(7));
-		  	    	                 attendance.setHasSignedOut(result.getBoolean(8));
-		  	    	                  attendance.setDate(result.getDate(9));
+		  	                Attendance attendance =  new Attendance();	
+		  	                attendance.setAttenc_ID(result.getBigDecimal(1));
+		  	    	        attendance.setAttenc_attendt_Id(result.getBigDecimal(2));
+		  	    	        attendance.setAttendcFirstName(result.getString(3));
+		  	    	        attendance.setAttendcLastName(result.getString(4));
+		  	    	        attendance.setSignInTime(result.getTime(5));
+		  	    	        attendance.setSignOutTime(result.getTime(6));
+		  	    	        attendance.setDate(result.getDate(7));
 		  	    	        
-		  	    	           System.out.println(result.getString("attdnc_first_name")+" "+result.getString("attdnc_last_name")
-		  	    	           +" "+result.getDate("attdnc_date"));
+		  	    	        attendanceList.add(attendance);
+		  	    	        
+		  	    	    
 		  	                }
 		  	              
 		  	            result.close();
@@ -92,36 +93,46 @@ public class AttendanceDAO {
 		    		    error.printStackTrace();
 		    	  }
 		    	  
-		   	  
-	              
+		   	    
+	            return attendanceList;  
+	            
 		      }
 	   
 		      //code for readAttendance Ends here.
 		      
-		      public static void viewAllAttendance(Attendance attendance) {
-		    	  
-		    	         readAttendance(attendance);
-		      }
-		      public static void createNewAttendance(Attendance attendance) {
-		    	         createAttendance(attendance);
-		      }
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
+		  
+		      public static  Attendance getSingleAttendance(BigDecimal id) {
+	            	Attendance attendance = new Attendance();
+	            	   try {
+	            		   String sql = "SELECT * from attendance "
+	            		   		+ "WHERE attdnc_attdnt_id =?";
+	            		    myConnect = Database.getDatabaseConnection();
+	            		    prepareStatement = myConnect.prepareStatement(sql);
+	            		    prepareStatement.setBigDecimal(1, id);
+	            		    result = prepareStatement.executeQuery();
+	            		    
+	            		    if(result.next()) {
+	            		    	 attendance.setAttenc_ID(result.getBigDecimal(1));
+	            		    	 attendance.setAttenc_attendt_Id(result.getBigDecimal(2));
+	            		    	 attendance.setAttendcFirstName(result.getString(3));
+	            		    	 attendance.setAttendcLastName(result.getString(4));
+	            		    	 attendance.setSignInTime(result.getTime(5));
+	            		    	 attendance.setSignOutTime(result.getTime(6));
+	            		    	 attendance.setDate(result.getDate(7));
+	            		    	 
+	            		    	 
+	            		    }
+	            		   
+	            		   
+	            		   
+	            	   }catch(Exception e) {
+	            		   
+	            		    e.printStackTrace();
+	            	   }
+	            	
+	            	return attendance;
+	            }     
+		          
 		      
 	}
 
