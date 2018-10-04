@@ -41,7 +41,6 @@ public class AttendantDAO {
 			
 			stmt.execute();
 			stmt.close();
-			SystemAccountDAO.fillAccountDetails();
 			dbConnection.close();
 			
 			             
@@ -88,7 +87,7 @@ public class AttendantDAO {
 	 try {
 		
 		PreparedStatement stmt = conn
-									.prepareStatement("select * from attendant where attdt_id = ?");
+								 .prepareStatement("select * from attendant where attdt_id = ?");
 		stmt.setBigDecimal(1, id);
 		ResultSet record = stmt.executeQuery();
 		if(record.next()) {

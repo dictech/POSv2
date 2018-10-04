@@ -1,9 +1,14 @@
 package com.pos.account.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Random;
 import java.sql.Date;
 
 import com.pos.database.Database;
@@ -11,7 +16,7 @@ import com.pos.database.Database;
 public class SystemAccountDAO {
 
 	   private static  Connection myConnect;
-	   private static ResultSet result;
+	   private static ResultSet result,result1;
 	   private static PreparedStatement prepareStatement;
 	   
 	   
@@ -44,21 +49,74 @@ public class SystemAccountDAO {
 		   
 	   }
 	   
+	   public static void createNewAccount(final String firstName, final String middleName, final String surName,
+			   final String address, final String gender, final Date date, final String email, final String phoneNumber,
+			   final String workPosition, final String userName, final String password) {
+		   
+		   
+		      Random generator = new Random();
+		      int gen = 30000 + generator.nextInt(30000);
+		      BigDecimal id = new BigDecimal(gen);
+
+
+        Attendant attd = new Attendant();
+        attd.setId(id);
+        attd.setfName(firstName);
+        attd.setmName(middleName);
+        attd.setSurname(surName);
+        attd.setAddress(address);
+        attd.setGender(gender);
+        attd.setDob(date);
+        attd.setDoe(Date.valueOf(LocalDate.now()));
+        attd.setEmail(email);
+        attd.setPhoneNo(phoneNumber);
+        attd.setPosition(workPosition);
+	    AttendantDAO.createNewAttendant(attd);
+        
+	       try {
+	       String sql = "SELECT * FROM attendant"
+	       		+ " WHERE            attdt_id=?";
+	       
+	       myConnect = Database.getDatabaseConnection();
+	       prepareStatement = myConnect.prepareStatement(sql);
+	       prepareStatement.setBigDecimal(1, attd.getId());
+	       result = prepareStatement.executeQuery();
+	       while(result.next()) {
+
+	         SystemAccount act = new SystemAccount();
+	         act.setActAttendantID(result.getBigDecimal(1));
+	         act.setUserName(userName);
+	         act.setPassword(password);
+	         SystemAccountDAO.createSystemAccount(act);
+	         System.out.println("Your Account has been Created Sucessfully! \n please login to continue");
+	       }
+	           
+	       }catch(Exception e) {
+	    	   
+	    	   e.printStackTrace();
+	       }
+	           
+	           
+	      
+	          
+	   }
 	   
-	   
-	   public static void logInSystemAccount(String userName, String password) {
+	   public static void logInSystemAccount(final String userName, final String password) {
 		               
 		   
-		             if(userName == null || password == null) {
+		             if(userName.isEmpty() || password.isEmpty()) {
 		            	 
 		            	    System.out.println("please Enter userName or password.");
-		             }
+		            	    
+		             }else {
 		             
 		      try {
 		
 		    	 String sql = "SELECT acct_attdt_id FROM account "
 		    	 		    + "WHERE  acct_username = ? "
 		    	 		    + "AND    acct_password = ?";
+		    	 
+		    	 
 		    	   myConnect = Database.getDatabaseConnection();
 		    	   prepareStatement = myConnect.prepareStatement(sql);
 		    	   prepareStatement.setString(1, userName);
@@ -67,12 +125,32 @@ public class SystemAccountDAO {
 		    	     
 		    	      if(result.next()) {
 
-		    	    	    Attendant attendant = AttendantDAO.getAttendant(result.getBigDecimal(1));
-		    	    	    AttendanceDAO.readAllAttendance();
-		    	    	    AttendanceDAO.getSingleAttendance(result.getBigDecimal(1));
-		    	    	    System.out.println("Welcome !");
+		    	    	    Attendant attendant = AttendantDAO.getAttendant(result.getBigDecimal(1)); 
+		    	    	    System.out.println("Welcome " + attendant.getfName() + " " + attendant.getSurname());
+		    	    	    
+		    	    	    
+		    	    	    Attendance attendance = new Attendance();
+		    	    	    
+		    	    	    String query = "SELECT * from attendant "
+	            		   		      + " WHERE      attdt_id =?";
+	            		    myConnect = Database.getDatabaseConnection();
+	            		    prepareStatement = myConnect.prepareStatement(query);
+	            		    prepareStatement.setBigDecimal(1, attendant.getId());
+	            		    
+	            		    result1 = prepareStatement.executeQuery();
+	            		    
+	            		    if(result1.next()) {
+	            		    	      
+		                   AttendanceDAO.createAttendance(attendance, attendant.getId(),
+		                   attendant.getfName(), attendant.getSurname());
+		                   
+		    	    	         }
+		    	    	    
+		    	    	   
 		    	      }else {
-		    	    	      System.out.println("Invalid userName or password !");
+		    	    	  
+		    	    	  System.out.println("No Account is associated with this user name or password "
+		    	    	  		+ "please check details and try again.");
 		    	      }
 		    	      
 		    	      prepareStatement.close();
@@ -84,7 +162,7 @@ public class SystemAccountDAO {
 		    	  e.printStackTrace();
 		      }
 		   
-		   
+		             }
 	   }
 	   
 		 
@@ -132,10 +210,9 @@ public class SystemAccountDAO {
 	    */
 
 	   
-	     public static void fillAccountDetails() {
+	     public static void fillAccountDetails(BigDecimal id) {
 	    	 SystemAccount act = new SystemAccount ();
-	    	   Attendant attd = new Attendant();
-			     act.setActAttendantID(attd.getId());
+			     act.setActAttendantID(id);
 			     act.setPassword(act.getPassword());
 			     act.setUserName(act.getUserName());
 			     SystemAccountDAO.createSystemAccount(act);
@@ -144,20 +221,7 @@ public class SystemAccountDAO {
 	       }
 	   
 	   
-		   public static void fillAttendance(Attendance attendance) {
-				   final Date date;
-				 Attendant attendant = new Attendant();
-			
-				     attendance.setAttenc_attendt_Id(attendant.getId());
-				     attendance.setAttendcFirstName(attendant.getfName());
-				     attendance.setAttendcLastName(attendant.getSurname());
-				     // attendance.setSignInTime(Time.);
-				    //  attendance.setDate();
-				      AttendanceDAO.createAttendance(attendance);
-			 }
 
-	   
-	   
 	   
 	   
 	   

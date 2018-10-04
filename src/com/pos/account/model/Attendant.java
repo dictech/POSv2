@@ -15,7 +15,7 @@ public class Attendant {
 	 private String address; 
 	 private String phoneNo; 
 	 private String email; 
-	 private Date   doe; 
+	 private  Date   doe; 
 	 
 	 public Date getDoe() {
 		return doe;
@@ -55,7 +55,7 @@ public class Attendant {
 		this.gender = gender;
 	}
 	
-	public Date getDob() {
+	public  Date getDob() {
 		return dob;
 	}
 	public void setDob(Date dob) {
