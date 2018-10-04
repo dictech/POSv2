@@ -49,14 +49,14 @@ public class SystemAccountDAO {
 		   
 	   }
 	   
-	   public static void createNewAccount(final String firstName, final String middleName, final String surName,
-			   final String address, final String gender, final Date date, final String email, final String phoneNumber,
-			   final String workPosition, final String userName, final String password) {
+	   public static void createNewAccount( String firstName, String middleName,  String surName,
+			    String address,  String gender,  Date dateOfbirth,  String email, String phoneNumber,
+			    String workPosition, String userName, String password) {
 		   
 		   
-		      Random generator = new Random();
-		      int gen = 30000 + generator.nextInt(30000);
-		      BigDecimal id = new BigDecimal(gen);
+		      final  Random generator = new Random();
+		      final int gen = 30000 + generator.nextInt(30000);
+		      final BigDecimal id = new BigDecimal(gen);
 
 
         Attendant attd = new Attendant();
@@ -66,7 +66,7 @@ public class SystemAccountDAO {
         attd.setSurname(surName);
         attd.setAddress(address);
         attd.setGender(gender);
-        attd.setDob(date);
+        attd.setDob(dateOfbirth);
         attd.setDoe(Date.valueOf(LocalDate.now()));
         attd.setEmail(email);
         attd.setPhoneNo(phoneNumber);
@@ -75,7 +75,7 @@ public class SystemAccountDAO {
         
 	       try {
 	       String sql = "SELECT * FROM attendant"
-	       		+ " WHERE            attdt_id=?";
+	       		      + " WHERE       attdt_id=?";
 	       
 	       myConnect = Database.getDatabaseConnection();
 	       prepareStatement = myConnect.prepareStatement(sql);
@@ -128,26 +128,9 @@ public class SystemAccountDAO {
 		    	    	    Attendant attendant = AttendantDAO.getAttendant(result.getBigDecimal(1)); 
 		    	    	    System.out.println("Welcome " + attendant.getfName() + " " + attendant.getSurname());
 		    	    	    
-		    	    	    
-		    	    	    Attendance attendance = new Attendance();
-		    	    	    
-		    	    	    String query = "SELECT * from attendant "
-	            		   		      + " WHERE      attdt_id =?";
-	            		    myConnect = Database.getDatabaseConnection();
-	            		    prepareStatement = myConnect.prepareStatement(query);
-	            		    prepareStatement.setBigDecimal(1, attendant.getId());
-	            		    
-	            		    result1 = prepareStatement.executeQuery();
-	            		    
-	            		    if(result1.next()) {
-	            		    	      
-		                   AttendanceDAO.createAttendance(attendance, attendant.getId(),
-		                   attendant.getfName(), attendant.getSurname());
-		                   
-		    	    	         }
-		    	    	    
-		    	    	   
-		    	      }else {
+		    	    	    AttendanceDAO.checkAttendance(attendant.getId(),
+		    	    		Date.valueOf(LocalDate.now()), attendant.getfName(), attendant.getSurname());
+    	                        }else {
 		    	    	  
 		    	    	  System.out.println("No Account is associated with this user name or password "
 		    	    	  		+ "please check details and try again.");

@@ -103,7 +103,7 @@ public class AttendanceDAO {
 		      //code for readAttendance Ends here.
 		      
 		  
-		      public static  Attendance checkAttendance(BigDecimal id, Date date) {
+		      public static  Attendance checkAttendance(BigDecimal id, Date date, String firstName,String lastName) {
 	            	Attendance attendance = new Attendance();
 	            	   try {
 	            		   String sql = "SELECT * from attendance "
@@ -125,13 +125,15 @@ public class AttendanceDAO {
 	            		    	 attendance.setSignOutTime(result.getTime(6));
 	            		    	 attendance.setDate(result.getDate(7));
 	            		    
-	            		    	 System.out.println("your Attendance Already Exist!");
+	            		    	 System.out.println(attendance.getAttendcLastName()+" your Attendance Already Exist!"
+	            		    	 + " and will not be created");
 	            		    	 
-	            		    }else {
+	            		        }else {
 	            		    	System.out.println("sorry your Attendance list is not present! and will be created soon. ");
 	            		    	System.out.println("Please Wait... ");
-	            	
-	            			    String query = "SELECT * from attendant "
+	            		    	
+	            		    	  
+			                    String query = "SELECT * from attendant "
 		            		   		      + " WHERE      attdt_id =?";
 		            		    myConnect = Database.getDatabaseConnection();
 		            		    prepareStatement = myConnect.prepareStatement(query);
@@ -141,13 +143,12 @@ public class AttendanceDAO {
 		            		    
 		            		    if(result.next()) {
 		            		    	      
-		            		   Attendant attendant = new Attendant();
 		            		   AttendanceDAO.createAttendance(attendance, id,
-		            		   attendant.getfName(), attendant.getSurname());
+		            		   firstName,lastName);
 		            		   
-			    	    	         }
-	            		    
-	            		    }
+			    	    	  }
+			                    
+	            	               }
 	            		   
 	            		   
 	            		   
