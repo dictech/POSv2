@@ -1,4 +1,4 @@
-package com.pos.sales;
+package com.pos.sales.model;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pos.database.Database;
-import com.pos.inventory.ProductDAO;
+import com.pos.inventory.model.ProductDAO;
 
 public class purchaseDAO {
 	public static void createPurchase(Purchase purchase) {

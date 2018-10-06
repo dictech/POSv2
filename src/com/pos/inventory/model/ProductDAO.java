@@ -1,4 +1,4 @@
-package com.pos.inventory;
+package com.pos.inventory.model;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
