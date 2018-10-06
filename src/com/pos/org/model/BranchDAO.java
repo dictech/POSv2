@@ -21,13 +21,13 @@ public class BranchDAO {
 		      prepareStatement = myConnect.prepareStatement("insert into branch "
 		   	    + "(branchName,branchAddress,branchState,branchLGA)"
 		   	  	 + " values(?,?,?,?);");
-		           prepareStatement.setString(1,branch.getBranchName());
-		            prepareStatement.setString(2,branch.getBranchAddr());
-		             prepareStatement.setString(3,branch.getBranchState());
-		              prepareStatement.setString(4,branch.getBranchLga());
-		               prepareStatement.execute();
-		                 System.out.println("Branch Succesfully created!");
-		                  prepareStatement.close();
+		        prepareStatement.setString(1,branch.getBranchName());
+		        prepareStatement.setString(2,branch.getBranchAddr());
+		        prepareStatement.setString(3,branch.getBranchState());
+		        prepareStatement.setString(4,branch.getBranchLga());
+		        prepareStatement.execute();
+		        System.out.println("Branch Succesfully created!");
+		        prepareStatement.close();
 		                    myConnect.close();}
 	   
 	    catch(Exception error){
@@ -45,14 +45,14 @@ public class BranchDAO {
 		  myConnect = Database.getDatabaseConnection();
 		   prepareStatement = myConnect.prepareStatement("select * from branch "
 		    + "where branchID=?");
-		        prepareStatement.setInt(1, id);
-		          result = prepareStatement.executeQuery();
-		            if(result.next()) {
-		              branch.setBranchID(result.getInt(1));
-		               branch.setBranchName(result.getString("branchName"));
-		                branch.setBranchAddr(result.getString("branchAddress"));
-		                 branch.setBranchState(result.getString("branchState"));
-		                  branch.setBranchLga(result.getString("branchLGA"));
+		    prepareStatement.setInt(1, id);
+		     result = prepareStatement.executeQuery();
+		    if(result.next()) {
+		     branch.setBranchID(result.getInt(1));
+		     branch.setBranchName(result.getString("branchName"));
+		     branch.setBranchAddr(result.getString("branchAddress"));
+		     branch.setBranchState(result.getString("branchState"));
+		      branch.setBranchLga(result.getString("branchLGA"));
 		    	 
 		     }
 		  
