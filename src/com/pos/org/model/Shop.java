@@ -1,4 +1,4 @@
-package com.pos.org;
+package com.pos.org.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

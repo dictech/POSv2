@@ -8,8 +8,8 @@ import java.sql.PreparedStatement;
 public class Database {
 	
 	static String dbUrl = "jdbc:mysql://127.0.0.1:3306/posv2";
-	static String dbUsername = "";
-	static String dbPassword = "";
+	static String dbUsername = "root";
+	static String dbPassword = "Manchester81#";
 	static Connection conn = null;
 	static PreparedStatement stmt;
 	
