@@ -1,8 +1,8 @@
-package com.pos.sales;
+package com.pos.sales.model;
 
 import java.math.BigDecimal;
 
-import com.pos.inventory.Product;
+import com.pos.inventory.model.Product;
 
 public class Purchase {
 	private BigDecimal id;

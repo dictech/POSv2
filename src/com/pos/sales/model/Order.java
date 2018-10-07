@@ -1,4 +1,4 @@
-package com.pos.sales;
+package com.pos.sales.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;

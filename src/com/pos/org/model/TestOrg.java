@@ -1,4 +1,4 @@
-package com.pos.org;
+package com.pos.org.model;
 
 public class TestOrg {
 	public static void main(String args[]) {

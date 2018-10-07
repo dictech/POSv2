@@ -1,4 +1,4 @@
-package com.pos.account.view;
+package com.pos.org.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +19,10 @@ public class DashboardView extends Application {
 		Scene scene =  new Scene(root,800,800);
 		window.setScene(scene);
 		window.show();
+	}
+	
+	public static void main(String args[]) {
+		launch(args);
 	}
 
 }
