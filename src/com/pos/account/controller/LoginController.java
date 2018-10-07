@@ -13,22 +13,22 @@ import javafx.scene.control.TextField;
 
 public class LoginController implements Initializable {
 	
-	@FXML
-    private TextField usernameBtn;
+	   @FXML
+	    private TextField userName;
 
-    @FXML
-    private TextField passwordBtn;
+	    @FXML
+	    private TextField password;
 
-    @FXML
-    private Button signinBtn;
+	    @FXML
+	    private Button btnLogIn;
 
-    @FXML
-    void signIn(ActionEvent event) {
-    	System.out.println("Button Clicked");
-    	String username = this.usernameBtn.getText();
-    	String password = this.passwordBtn.getText();
-    	SystemAccountDAO.logInSystemAccount(username,password);
-    }
+	    @FXML
+	    private Button btnSignUp;
+
+	    @FXML
+	    void createAccount(ActionEvent event) {
+
+	    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
