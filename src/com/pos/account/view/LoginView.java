@@ -21,5 +21,5 @@ public class LoginView extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	
 }

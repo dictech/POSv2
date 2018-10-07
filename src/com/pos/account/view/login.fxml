@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #133D3D;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #133D3D;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.LoginController">
    <children>
       <AnchorPane layoutY="1.0">
          <children>
@@ -42,7 +42,7 @@
                         <Font name="Georgia Bold Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="btnLogIn" contentDisplay="CENTER" layoutX="86.0" layoutY="330.0" mnemonicParsing="false" onAction="loginAccount" prefHeight="41.0" prefWidth="163.0" style="-fx-background-color: #133d3d#133d3d;" text="Login" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CLIP">
+                  <Button fx:id="btnLogIn" contentDisplay="CENTER" layoutX="86.0" layoutY="330.0" mnemonicParsing="false" onAction="#loginAccount" prefHeight="41.0" prefWidth="163.0" style="-fx-background-color: #133d3d#133d3d;" text="Login" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="Georgia Bold Italic" size="14.0" />
                      </font>
