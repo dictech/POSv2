@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="207.0" style="-fx-background-color: #3D407F;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@MS_CGTK_IMG_200x130.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <HBox prefHeight="53.0" prefWidth="207.0">
+               <children>
+                  <Hyperlink fx:id="salesLink" prefHeight="53.0" prefWidth="209.0" text="Sales" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="143.0" prefHeight="53.0" prefWidth="207.0">
+               <children>
+                  <Hyperlink fx:id="inventoryLink" prefHeight="53.0" prefWidth="209.0" text="Inventory" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="143.0" prefHeight="53.0" prefWidth="207.0">
+               <children>
+                  <Hyperlink fx:id="accountLink" prefHeight="53.0" prefWidth="209.0" text="Account" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="249.0" prefHeight="53.0" prefWidth="207.0">
+               <children>
+                  <Hyperlink fx:id="orgLink" prefHeight="53.0" prefWidth="209.0" text="Organization" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
