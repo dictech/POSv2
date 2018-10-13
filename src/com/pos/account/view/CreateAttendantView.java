@@ -12,9 +12,13 @@ public class CreateAttendantView extends Application {
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
 		Parent root = FXMLLoader.load(getClass().getResource("createAttendant.fxml"));
-		Scene scene = new Scene(root,300,400);
+		Scene scene = new Scene(root,500,520);
 		stage.setScene(scene);
 		stage.show();	
 	}
 
+	  public static void main(String [] args) {
+		  
+		    launch();
+	  }
 }
