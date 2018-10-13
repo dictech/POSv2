@@ -1,7 +1,18 @@
-.sidebar{
-	-fx-background-color:#232123;
+
+.title{
+    -fx-translate-x: -20;
+	-fx-pref-width: 20.0;
 }
 
-.logo{
-	-fx-background-color:#009CC1;
+.accordion .titled-pane {
+	-fx-pref-height: 150.0;
+}
+
+ .titled-pane .title{
+    -fx-background-color: #020529 ;
+}
+
+.accordion .title > .arrow-button .arrow{
+    -fx-translate-x: 180;
+	-fx-translate-y: -2;
 }
