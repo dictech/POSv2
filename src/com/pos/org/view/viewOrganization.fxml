@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="orgDtlsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1164.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="16.0" layoutY="14.0" prefHeight="343.0" prefWidth="244.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -50,7 +49,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <VBox layoutX="282.0" layoutY="14.0" prefHeight="579.0" prefWidth="608.0" style="-fx-background-color: #ffffff;">
+      <VBox layoutX="282.0" layoutY="14.0" prefHeight="359.0" prefWidth="846.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label prefHeight="50.0" prefWidth="608.0" text="Our Shops" textFill="#8d8d8d">
                <font>
@@ -61,7 +60,7 @@
                </padding>
             </Label>
             <Separator prefWidth="200.0" />
-            <TableView prefHeight="291.0" prefWidth="608.0">
+            <TableView prefHeight="291.0" prefWidth="672.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Name" />
                 <TableColumn prefWidth="160.66668701171875" text="Branch" />
