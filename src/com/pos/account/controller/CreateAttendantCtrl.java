@@ -10,9 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -94,7 +99,7 @@ public class CreateAttendantCtrl implements Initializable{
 
     
     @FXML
-    void registerAttendant(ActionEvent event) {
+     void registerAttendant(ActionEvent event) throws Exception {
        
     	    if(fname.getText().isEmpty() || sname.getText().isEmpty()
     	    	|| mname.getText().isEmpty() || phoneNo.getText().isEmpty()
@@ -116,7 +121,10 @@ public class CreateAttendantCtrl implements Initializable{
     	    	 SystemAccountDAO.newAccount(fname.getText(), mname.getText(), sname.getText(),
  	    	     addr.getText(), gender.getValue(), dob.getValue().toString(),
  	    	     email.getText(), phoneNo.getText(), pos.getValue(), uName.getText(), password.getText());
-
+    	    	 
+    	    	
+    	    	 confirmScreen(event);
+                 
     	            }
     	        
     	         else {
@@ -124,16 +132,26 @@ public class CreateAttendantCtrl implements Initializable{
     	        	 Alert alert = new Alert(AlertType.WARNING);
           	         alert.setHeaderText(" password mismatch");
           	         alert.setContentText("form validation");
-          	         alert.setContentText("Password doe's not match !");
+          	         alert.setContentText("Password does not match !");
           	         alert.showAndWait();  
     	    	           
     	          }
-    	    
-    	    
-	    
+    
     }
 
 
+                  public void confirmScreen(ActionEvent event) throws Exception {
+   	 
+    	          Parent root = FXMLLoader.load(getClass().getResource("../view/Confirmation.fxml"));
+	              Scene scene =  new Scene(root,500,520);
+	    	      Stage stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	      stage.setScene(scene);
+	    	      stage.show();}
+
+        
+                
+        
+   }
 
     
     
@@ -144,4 +162,4 @@ public class CreateAttendantCtrl implements Initializable{
     
     
     
-}
+

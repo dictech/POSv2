@@ -18,8 +18,6 @@ public class ConfirmationScrView extends Application{
 		
 	}
 
-	   public static void main(String args[]) {
-		     launch();
-	   }
+	  
 	    
 }
