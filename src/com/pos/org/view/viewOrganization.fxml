@@ -11,34 +11,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="orgDtlsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1164.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.org.controller.viewOrganizationCtrl">
    <children>
       <VBox layoutX="16.0" layoutY="14.0" prefHeight="343.0" prefWidth="244.0" style="-fx-background-color: #ffffff;">
          <children>
-            <ImageView fitHeight="129.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="orgLogo" fitHeight="129.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
                </image>
             </ImageView>
             <VBox prefHeight="262.0" prefWidth="234.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Label alignment="CENTER" prefHeight="29.0" prefWidth="238.0" text="MAMA ROSE STORES">
+                  <Label fx:id="orgName" alignment="CENTER" prefHeight="29.0" prefWidth="238.0">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="29.0" prefWidth="238.0" text="7,Ilorin Str Surulere, Lagos">
+                  <Label fx:id="orgAddr" alignment="CENTER" prefHeight="29.0" prefWidth="238.0">
                      <font>
                         <Font name="Lucida Sans Unicode" size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="39.0" prefHeight="29.0" prefWidth="238.0" text="Phone: 08030754375">
+                  <Label fx:id="orgPhone" alignment="CENTER" layoutX="10.0" layoutY="39.0" prefHeight="29.0" prefWidth="238.0">
                      <font>
                         <Font name="Lucida Sans Unicode" size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="68.0" prefHeight="29.0" prefWidth="238.0" text="Email: info@mamarose.com">
+                  <Label fx:id="orgEmail" alignment="CENTER" layoutX="10.0" layoutY="68.0" prefHeight="29.0" prefWidth="238.0">
                      <font>
                         <Font name="Lucida Sans Unicode" size="14.0" />
                      </font>
@@ -50,7 +49,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <VBox layoutX="282.0" layoutY="14.0" prefHeight="579.0" prefWidth="608.0" style="-fx-background-color: #ffffff;">
+      <VBox layoutX="282.0" layoutY="14.0" prefHeight="359.0" prefWidth="846.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label prefHeight="50.0" prefWidth="608.0" text="Our Shops" textFill="#8d8d8d">
                <font>
@@ -61,13 +60,13 @@
                </padding>
             </Label>
             <Separator prefWidth="200.0" />
-            <TableView prefHeight="291.0" prefWidth="608.0">
+            <TableView fx:id="shopsTable" prefHeight="291.0" prefWidth="672.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Name" />
-                <TableColumn prefWidth="160.66668701171875" text="Branch" />
-                  <TableColumn prefWidth="160.66668701171875" text="Location" />
-                  <TableColumn prefWidth="160.66668701171875" text="Manager" />
-                  <TableColumn prefWidth="160.66668701171875" text="RC No." />
+                <TableColumn fx:id="shopName" prefWidth="154.0" text="Name" />
+                <TableColumn fx:id="shopBranch" prefWidth="176.0" text="Branch" />
+                  <TableColumn fx:id="shopLocation" prefWidth="228.0" text="Location" />
+                  <TableColumn fx:id="shopManager" minWidth="0.0" prefWidth="189.33331298828125" text="Manager" />
+                  <TableColumn fx:id="shopRCNo" prefWidth="97.66668701171875" text="RC No." />
               </columns>
                <VBox.margin>
                   <Insets top="5.0" />
