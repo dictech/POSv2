@@ -2,89 +2,105 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="-2.0" prefHeight="802.0" prefWidth="298.0" styleClass="sidebar" stylesheets="@style.css">
+      <VBox prefHeight="800.0" prefWidth="222.0" style="-fx-background-color: #020529;">
          <children>
-            <Label prefHeight="153.0" prefWidth="298.0" text="Admin Panel" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="34.0" />
-               </font>
+            <ImageView fitHeight="100.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@CharityBuy%20Logo%20200x100.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <HBox prefHeight="34.0" prefWidth="222.0">
+               <children>
+                  <Hyperlink fx:id="dashboardLink" onAction="#viewDashBoard" text="Dashboard" textFill="#f2efef">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" top="7.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="15.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
                <padding>
                   <Insets left="10.0" />
                </padding>
-            </Label>
-            <HBox prefHeight="50.0" prefWidth="298.0">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </VBox.margin>
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Home">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="163.0" prefHeight="50.0" prefWidth="298.0">
+            <HBox layoutX="10.0" layoutY="133.0" prefHeight="34.0" prefWidth="222.0">
                <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Sales">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
+                  <Hyperlink fx:id="salesLink" onAction="#viewSales" text="Sales" textFill="#f2efef">
                      <font>
-                        <Font size="28.0" />
+                        <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
+                     <padding>
+                        <Insets left="7.0" top="7.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="15.0" />
+                     </HBox.margin>
                   </Hyperlink>
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </HBox>
-            <HBox layoutX="10.0" layoutY="163.0" prefHeight="50.0" prefWidth="298.0">
+            <HBox layoutX="10.0" layoutY="167.0" prefHeight="34.0" prefWidth="222.0">
                <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Store">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
+                  <Hyperlink fx:id="inventoryLink" onAction="#viewInventory" text="Inventory" textFill="#f2efef">
                      <font>
-                        <Font size="28.0" />
+                        <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
+                     <padding>
+                        <Insets left="7.0" top="7.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="15.0" />
+                     </HBox.margin>
                   </Hyperlink>
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </HBox>
-            <HBox layoutX="10.0" layoutY="287.0" prefHeight="50.0" prefWidth="298.0">
+            <HBox layoutX="10.0" layoutY="201.0" prefHeight="34.0" prefWidth="222.0">
                <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Account">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
+                  <Hyperlink fx:id="accountLink" onAction="#viewAccount" text="Account" textFill="#f2efef">
                      <font>
-                        <Font size="28.0" />
+                        <Font name="Lucida Sans Regular" size="14.0" />
                      </font>
+                     <padding>
+                        <Insets left="7.0" top="7.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
                   </Hyperlink>
                </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="349.0" prefHeight="50.0" prefWidth="298.0">
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Organization">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="297.0" layoutY="-2.0" prefHeight="804.0" prefWidth="983.0" styleClass="parent" stylesheets="@style.css" />
+      <HBox layoutX="222.0" prefHeight="100.0" prefWidth="1058.0" style="-fx-background-color: #f9f9f9;" />
    </children>
 </AnchorPane>
