@@ -8,15 +8,26 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.sql.Date;
 
+import com.pos.account.controller.LoginController;
 import com.pos.database.Database;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class SystemAccountDAO {
 
 	   private static  Connection myConnect;
-	   private static ResultSet result,result1;
+	   private static ResultSet result;
 	   private static PreparedStatement prepareStatement;
 	   
 	   
@@ -49,10 +60,12 @@ public class SystemAccountDAO {
 		   
 	   }
 	   
-	   public static void createNewAccount( String firstName, String middleName,  String surName,
-			    String address,  String gender,  Date dateOfbirth,  String email, String phoneNumber,
+	   public static void newAccount( String firstName, String middleName,  String surName,
+			    String address,  String gender,  String dateOfBirth,  String email, String phoneNumber,
 			    String workPosition, String userName, String password) {
 		   
+//	     DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//		      Date date =  Date.valueOf( LocalDate.parse(dateOfBirth, format));           
 		   
 		      final  Random generator = new Random();
 		      final int gen = 30000 + generator.nextInt(30000);
@@ -66,7 +79,7 @@ public class SystemAccountDAO {
         attd.setSurname(surName);
         attd.setAddress(address);
         attd.setGender(gender);
-        attd.setDob(dateOfbirth);
+        attd.setDob(Date.valueOf(dateOfBirth));
         attd.setDoe(Date.valueOf(LocalDate.now()));
         attd.setEmail(email);
         attd.setPhoneNo(phoneNumber);
@@ -101,14 +114,10 @@ public class SystemAccountDAO {
 	          
 	   }
 	   
-	   public static void logInSystemAccount(final String userName, final String password) {
+	   public static void logInSystemAccount(ActionEvent event, String userName,  String password) {
 		               
 		   
-		             if(userName.isEmpty() || password.isEmpty()) {
-		            	 
-		            	    System.out.println("please Enter userName or password.");
-		            	    
-		             }else {
+		         
 		             
 		      try {
 		
@@ -128,12 +137,16 @@ public class SystemAccountDAO {
 		    	    	    Attendant attendant = AttendantDAO.getAttendant(result.getBigDecimal(1)); 
 		    	    	    System.out.println("Welcome " + attendant.getfName() + " " + attendant.getSurname());
 		    	    	    
-		    	    	    AttendanceDAO.checkAttendance(attendant.getId(),
-		    	    		Date.valueOf(LocalDate.now()), attendant.getfName(), attendant.getSurname());
-    	                        }else {
+		    	    	     LoginController home = new LoginController();
+		    	    	     home.homePage(event);
+		    	    	     AttendanceDAO.checkAttendance(attendant.getId(),
+		    	    		 Date.valueOf(LocalDate.now()), attendant.getfName(), attendant.getSurname());
+    	                        }
+		    	      else {
 		    	    	  
-		    	    	  System.out.println("No Account is associated with this user name or password "
-		    	    	  		+ "please check details and try again.");
+		    	    	      Alert alert = new Alert(AlertType.ERROR);
+		    	    	      alert.setContentText("Invalid user name or password !");
+		    	    	      alert.showAndWait();
 		    	      }
 		    	      
 		    	      prepareStatement.close();
@@ -146,7 +159,7 @@ public class SystemAccountDAO {
 		      }
 		   
 		             }
-	   }
+	   
 	   
 		 
 
@@ -186,23 +199,7 @@ public class SystemAccountDAO {
 	   }
 	   
 	   
-	   /*
-	    *  below is the list of methods 
-	    *  that will be called on other
-	    *   classes for functionality.
-	    */
-
-	   
-	     public static void fillAccountDetails(BigDecimal id) {
-	    	 SystemAccount act = new SystemAccount ();
-			     act.setActAttendantID(id);
-			     act.setPassword(act.getPassword());
-			     act.setUserName(act.getUserName());
-			     SystemAccountDAO.createSystemAccount(act);
-	                  
-		   	 
-	       }
-	   
+	
 	   
 
 	   

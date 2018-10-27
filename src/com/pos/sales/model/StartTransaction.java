@@ -20,9 +20,11 @@ public class StartTransaction {
 	public static void main(String args[]) {
 		
 		
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate txt = LocalDate.parse("23-12-1993", fmt);
-		System.out.println(txt);
+
+       
+        
+    SystemAccountDAO.newAccount("willaims", "gray", "benson", "5 villa estate", "male", "09-02-1982",
+    		 "danim@gmail.com", "008128787383", "Store Attendant", "willi", "willtana");
 
 	}
 }
