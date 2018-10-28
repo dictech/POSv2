@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,17 +14,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.org.controller.DashboardCtrl">
    <children>
-      <VBox prefHeight="800.0" prefWidth="215.0" style="-fx-background-color: #020529;">
+      <VBox layoutY="67.0" prefHeight="733.0" prefWidth="207.0" style="-fx-background-color: #020529;">
          <children>
-            <ImageView fitHeight="68.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
-               </image>
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-            </ImageView>
-            <Separator opacity="0.22" prefWidth="200.0" />
             <Accordion>
               <panes>
                 <TitledPane animated="false" prefHeight="0.0" prefWidth="215.0" styleClass="accordion" stylesheets="@style.css" text="Dashboard" textFill="#f2efef">
@@ -134,7 +124,7 @@
                                                 <Insets top="8.0" />
                                              </HBox.margin>
                                           </FontAwesomeIconView>
-                                          <Hyperlink onAction="#editOrganizationDtls" text="Edit" />
+                                          <Hyperlink onAction="#editOrganizationDtls" text="Shops" />
                                        </children>
                                        <padding>
                                           <Insets top="5.0" />
@@ -172,7 +162,18 @@
             </Accordion>
          </children>
       </VBox>
-      <HBox layoutX="216.0" prefHeight="68.0" prefWidth="1058.0" style="-fx-background-color: #f9f9f9;" />
-      <AnchorPane fx:id="mainPane" layoutX="216.0" layoutY="68.0" prefHeight="736.0" prefWidth="1066.0" />
+      <HBox prefHeight="68.0" prefWidth="1375.0" style="-fx-background-color: #f9f9f9;">
+         <children>
+            <VBox alignment="BASELINE_LEFT" prefHeight="68.0" prefWidth="207.0" style="-fx-background-color: #020529;">
+               <children>
+                  <ImageView fitHeight="83.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children></HBox>
+      <AnchorPane fx:id="mainPane" layoutX="207.0" layoutY="71.0" prefHeight="733.0" prefWidth="1082.0" />
    </children>
 </AnchorPane>
