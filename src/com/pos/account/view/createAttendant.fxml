@@ -10,78 +10,126 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateAttendantCtrl">
+<AnchorPane prefHeight="520.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateAttendantCtrl">
    <children>
       <TitledPane alignment="TOP_LEFT" animated="false" collapsible="false" prefHeight="520.0" prefWidth="500.0" text="Attendant Registration">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="498.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="498.0" style="-fx-background-color: #020529;">
                <children>
-                  <TextField fx:id="fname" layoutX="108.0" layoutY="37.0" prefHeight="27.0" prefWidth="255.0" />
-                  <Label layoutX="14.0" layoutY="42.0" text="First Name:">
+                  <TextField fx:id="fname" layoutX="8.0" layoutY="40.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font></TextField>
+                  <Label layoutX="84.0" layoutY="21.0" text="First Name" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="sname" layoutX="108.0" layoutY="72.0" prefHeight="27.0" prefWidth="255.0" />
-                  <Label layoutX="14.0" layoutY="77.0" text="Surname Name:">
+                  <TextField fx:id="sname" layoutX="277.0" layoutY="39.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font></TextField>
+                  <Label layoutX="327.0" layoutY="20.0" text="Surname Name" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="oname" layoutX="108.0" layoutY="110.0" prefHeight="27.0" prefWidth="255.0" />
-                  <Label layoutX="14.0" layoutY="115.0" text="Other Name:">
+                  <TextField fx:id="mname" layoutX="8.0" layoutY="106.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font></TextField>
+                  <Label layoutX="72.0" layoutY="86.0" text="Other Name" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="gender" layoutX="108.0" layoutY="150.0" prefHeight="27.0" prefWidth="71.0" visibleRowCount="2" />
-                  <Label layoutX="14.0" layoutY="155.0" text="Gender:">
+                  <ComboBox fx:id="gender" layoutX="140.0" layoutY="173.0" prefHeight="27.0" prefWidth="111.0" visibleRowCount="2" />
+                  <Label layoutX="173.0" layoutY="154.0" text="Gender" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="191.0" layoutY="154.0" text="Date of Birth:" />
-                  <DatePicker fx:id="dob" layoutX="274.0" layoutY="150.0" prefHeight="27.0" prefWidth="89.0" />
-                  <TextArea fx:id="addr" layoutX="108.0" layoutY="190.0" prefHeight="51.0" prefWidth="256.0" />
-                  <Label layoutX="14.0" layoutY="207.0" prefHeight="17.0" prefWidth="58.0" text="Address:">
+                  <Label layoutX="407.0" layoutY="156.0" text="Date of Birth" textFill="WHITE" />
+                  <DatePicker fx:id="dob" layoutX="396.0" layoutY="173.0" prefHeight="27.0" prefWidth="89.0" />
+                  <TextArea fx:id="addr" layoutX="6.0" layoutY="236.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font></TextArea>
+                  <Label layoutX="86.0" layoutY="218.0" prefHeight="21.0" prefWidth="68.0" text="Address" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="13.0" layoutY="261.0" prefHeight="17.0" prefWidth="71.0" text="Phone No. :">
+                  <Label layoutX="345.0" layoutY="86.0" prefHeight="17.0" prefWidth="71.0" text="Mobile No" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="phoneNo" layoutX="109.0" layoutY="257.0" prefHeight="27.0" prefWidth="143.0" />
-                  <Label layoutX="13.0" layoutY="296.0" prefHeight="17.0" prefWidth="71.0" text="Email:">
+                  <TextField fx:id="phoneNo" layoutX="280.0" layoutY="107.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font></TextField>
+                  <Label layoutX="346.0" layoutY="218.0" prefHeight="17.0" prefWidth="71.0" text="Email" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="email" layoutX="109.0" layoutY="292.0" prefHeight="27.0" prefWidth="254.0" />
-                  <Label layoutX="13.0" layoutY="336.0" prefHeight="17.0" prefWidth="71.0" text="Position:">
+                  <TextField fx:id="email" layoutX="274.0" layoutY="236.0" prefHeight="45.0" prefWidth="214.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font></TextField>
+                  <Label layoutX="57.0" layoutY="154.0" prefHeight="17.0" prefWidth="71.0" text="Position" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="pos" layoutX="108.0" layoutY="331.0" prefHeight="27.0" prefWidth="146.0" />
-                  <Label layoutX="13.0" layoutY="377.0" text="Date Employed:">
+                  <ComboBox fx:id="pos" layoutX="7.0" layoutY="173.0" prefHeight="27.0" prefWidth="127.0" />
+                  <Label layoutX="278.0" layoutY="154.0" text="Date Employed" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="doe" layoutX="109.0" layoutY="372.0" prefHeight="27.0" prefWidth="89.0" />
-                  <Button fx:id="registerBtn" layoutX="254.0" layoutY="426.0" mnemonicParsing="false" onAction="#registerAttendant" prefHeight="27.0" prefWidth="103.0" text="Register">
+                  <DatePicker fx:id="doe" layoutX="277.0" layoutY="173.0" prefHeight="27.0" prefWidth="89.0" />
+                  <Button fx:id="registerBtn" layoutX="125.0" layoutY="427.0" mnemonicParsing="false" onAction="#registerAttendant" prefHeight="38.0" prefWidth="103.0" text="Register">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancelBtn" layoutX="363.0" layoutY="426.0" mnemonicParsing="false" onAction="#cancelRegistration" prefHeight="27.0" prefWidth="81.0" text="Cancel">
+                  <Button fx:id="cancelBtn" layoutX="246.0" layoutY="427.0" mnemonicParsing="false" onAction="#cancelRegistration" prefHeight="38.0" prefWidth="100.0" text="Cancel">
                      <font>
                         <Font name="Lucida Sans Unicode" size="12.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="uName" layoutX="6.0" layoutY="316.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="password" layoutX="282.0" layoutY="311.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="73.0" layoutY="294.0" text="User Name" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="356.0" layoutY="292.0" text="Password" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Repeat_password" layoutX="281.0" layoutY="367.0" prefHeight="37.0" prefWidth="207.0">
+                     <font>
+                        <Font name="Microsoft Tai Le Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="322.0" layoutY="348.0" text="Re-peat Password" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>

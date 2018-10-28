@@ -64,8 +64,8 @@ public class SystemAccountDAO {
 			    String address,  String gender,  String dateOfBirth,  String email, String phoneNumber,
 			    String workPosition, String userName, String password) {
 		   
-		      DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		      Date date =  Date.valueOf( LocalDate.parse(dateOfBirth, format));             
+//	     DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//		      Date date =  Date.valueOf( LocalDate.parse(dateOfBirth, format));           
 		   
 		      final  Random generator = new Random();
 		      final int gen = 30000 + generator.nextInt(30000);
@@ -79,7 +79,7 @@ public class SystemAccountDAO {
         attd.setSurname(surName);
         attd.setAddress(address);
         attd.setGender(gender);
-        attd.setDob(date);
+        attd.setDob(Date.valueOf(dateOfBirth));
         attd.setDoe(Date.valueOf(LocalDate.now()));
         attd.setEmail(email);
         attd.setPhoneNo(phoneNumber);
@@ -199,23 +199,7 @@ public class SystemAccountDAO {
 	   }
 	   
 	   
-	   /*
-	    *  below is the list of methods 
-	    *  that will be called on other
-	    *   classes for functionality.
-	    */
-
-	   
-	     public static void fillAccountDetails(BigDecimal id) {
-	    	 SystemAccount act = new SystemAccount ();
-			     act.setActAttendantID(id);
-			     act.setPassword(act.getPassword());
-			     act.setUserName(act.getUserName());
-			     SystemAccountDAO.createSystemAccount(act);
-	                  
-		   	 
-	       }
-	   
+	
 	   
 
 	   
