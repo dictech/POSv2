@@ -9,7 +9,7 @@ public class Database {
 	
 	static String dbUrl = "jdbc:mysql://127.0.0.1:3306/posv2";
 	static String dbUsername = "root";
-	static String dbPassword = "esthermylove";
+	static String dbPassword = "Manchester81#";
 	static Connection conn = null;
 	static PreparedStatement stmt;
 	

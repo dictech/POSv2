@@ -30,7 +30,6 @@ public class LoginController implements Initializable {
 	    private Button btnLogIn;
 
 
-
 	    @FXML
 	    void createAccount(ActionEvent event) {
 

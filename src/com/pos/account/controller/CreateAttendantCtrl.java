@@ -1,10 +1,19 @@
 package com.pos.account.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.pos.account.model.Attendant;
+import com.pos.account.model.AttendantDAO;
+import com.pos.account.model.SystemAccount;
 import com.pos.account.model.SystemAccountDAO;
+import com.pos.database.Database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,6 +83,8 @@ public class CreateAttendantCtrl implements Initializable{
 
     
 
+
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	    ObservableList<String> gender = FXCollections.observableArrayList("male","female");
@@ -118,12 +129,31 @@ public class CreateAttendantCtrl implements Initializable{
     	       }
     	     else if(password.getText().equals(Repeat_password.getText())) {
     	    	       
-    	    	 SystemAccountDAO.newAccount(fname.getText(), mname.getText(), sname.getText(),
- 	    	     addr.getText(), gender.getValue(), dob.getValue().toString(),
- 	    	     email.getText(), phoneNo.getText(), pos.getValue(), uName.getText(), password.getText());
-    	    	 
-    	    	
-    	    	 confirmScreen(event);
+    	    	     Attendant attendant = new Attendant();
+    	    	      attendant.setId(attendant.getId());
+    	    	      attendant.setfName(this.fname.getText());
+    	    	      attendant.setmName(this.mname.getText());
+    	    	      attendant.setSurname(this.sname.getText());
+    	    	      attendant.setDob(Date.valueOf(this.dob.getValue()));
+    	    	      attendant.setDoe(Date.valueOf(this.doe.getValue()));
+    	    	      attendant.setAddress(this.addr.getText());
+    	    	      attendant.setEmail(this.email.getText());
+    	    	      attendant.setGender(this.gender.getValue());
+    	    	      attendant.setPhoneNo(this.phoneNo.getText());
+    	    	      attendant.setPosition(this.pos.getValue());
+    	    	      AttendantDAO.createNewAttendant(attendant);
+    	    	       
+    	    	      
+    	    	       
+    	    	    	   SystemAccount act = new SystemAccount();
+    	    	    	   act.setActAttendantID(attendant.getId());
+    	    	    	   act.setUserName(this.uName.getText());
+    	    	    	   act.setPassword(this.password.getText());
+    	    	    	   SystemAccountDAO.createSystemAccount(act);
+    	    	    	   System.out.println("Account created");
+    	    	    	   confirmScreen(event); 
+    	    	       
+    	    	       
                  
     	            }
     	        
