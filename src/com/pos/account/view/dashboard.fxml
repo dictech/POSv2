@@ -1,90 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.org.controller.DashboardCtrl">
    <children>
-      <VBox layoutX="-2.0" prefHeight="802.0" prefWidth="298.0" styleClass="sidebar" stylesheets="@style.css">
+      <VBox layoutY="67.0" prefHeight="733.0" prefWidth="207.0" style="-fx-background-color: #020529;">
          <children>
-            <Label prefHeight="153.0" prefWidth="298.0" text="Admin Panel" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Sans Unicode" size="34.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <HBox prefHeight="50.0" prefWidth="298.0">
+            <Accordion>
+              <panes>
+                <TitledPane animated="false" prefHeight="0.0" prefWidth="215.0" styleClass="accordion" stylesheets="@style.css" text="Dashboard" textFill="#f2efef">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f58a08" glyphName="HOME" size="20" wrappingWidth="31.0" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="215.0" styleClass="accordion" stylesheets="@style.css" text="Sales" textFill="#f2efef">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f58a08" glyphName="SHOPPING_CART" size="20" wrappingWidth="31.0" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="70.0" prefHeight="0.0" prefWidth="215.0" styleClass="accordion" stylesheets="@style.css" text="Inventory" textFill="#f2efef">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f58a08" glyphName="LIST_OL" size="20" wrappingWidth="31.0" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+                  <TitledPane layoutX="10.0" layoutY="220.0" prefHeight="492.0" prefWidth="215.0" styleClass="accordion" stylesheets="@style.css" text="Account" textFill="#f2efef">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="222.0" style="-fx-background-color: #020529;">
+                           <children>
+                              <VBox layoutX="47.0" prefHeight="120.0" prefWidth="125.0" style="-fx-background-color: #020529;">
+                                 <children>
+                                    <HBox prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0">
+                                             <HBox.margin>
+                                                <Insets top="7.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <Hyperlink onAction="#createNewAttendant" prefHeight="25.0" prefWidth="139.0" text="New Attendant" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0">
+                                             <HBox.margin>
+                                                <Insets top="7.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <Hyperlink onAction="#editAttendant" prefHeight="25.0" prefWidth="139.0" text="Edit Attendant" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="40.0" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0">
+                                             <HBox.margin>
+                                                <Insets top="7.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <Hyperlink onAction="#viewAttendant" prefHeight="25.0" prefWidth="139.0" text="Attendant Enqiry" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f58a08" glyphName="USERS" size="20" wrappingWidth="31.0" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+                  <TitledPane layoutX="10.0" layoutY="251.0" prefHeight="0.0" prefWidth="215.0" style="-fx-background-color: #020529;" styleClass="accordion" stylesheets="@style.css" text="Organization" textFill="#f2efef">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="234.0" style="-fx-background-color: #020529;">
+                           <children>
+                              <VBox layoutX="43.0" layoutY="-2.0" prefHeight="120.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                 <children>
+                                    <HBox prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0">
+                                             <HBox.margin>
+                                                <Insets top="8.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <Hyperlink onAction="#editOrganizationDtls" text="Shops" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0">
+                                             <HBox.margin>
+                                                <Insets top="8.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <Hyperlink onAction="#viewOrganizationDtls" text="Enquiry" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f58a08" glyphName="BUILDING_ALT" size="20" wrappingWidth="31.0" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+              </panes>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="40.0" />
                </VBox.margin>
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Home">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="163.0" prefHeight="50.0" prefWidth="298.0">
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Sales">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="163.0" prefHeight="50.0" prefWidth="298.0">
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Store">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="287.0" prefHeight="50.0" prefWidth="298.0">
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Account">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="349.0" prefHeight="50.0" prefWidth="298.0">
-               <children>
-                  <Hyperlink prefHeight="52.0" prefWidth="227.0" text="Organization">
-                     <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Hyperlink>
-               </children>
-            </HBox>
+            </Accordion>
          </children>
       </VBox>
-      <VBox layoutX="297.0" layoutY="-2.0" prefHeight="804.0" prefWidth="983.0" styleClass="parent" stylesheets="@style.css" />
+      <HBox prefHeight="68.0" prefWidth="1375.0" style="-fx-background-color: #f9f9f9;">
+         <children>
+            <VBox alignment="BASELINE_LEFT" prefHeight="68.0" prefWidth="207.0" style="-fx-background-color: #020529;">
+               <children>
+                  <ImageView fitHeight="83.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children></HBox>
+      <AnchorPane fx:id="mainPane" layoutX="207.0" layoutY="71.0" prefHeight="733.0" prefWidth="1082.0" />
    </children>
 </AnchorPane>

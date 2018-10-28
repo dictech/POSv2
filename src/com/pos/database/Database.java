@@ -6,20 +6,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class Database {
-	
-<<<<<<< HEAD
-	static String dbUrl = "jdbc:mysql://127.0.0.1:3306/posv2";
-	static String dbUsername = "root";
-	static String dbPassword = "Manchester81#";
-||||||| merged common ancestors
-	static String dbUrl = "jdbc:mysql://127.0.0.1:3306/posv2";
-	static String dbUsername = "root";
-	static String dbPassword = "esthermylove";
-=======
+
 	static String dbUrl = "jdbc:mysql://192.168.8.104:3306/posv2";
 	static String dbUsername = "office";
 	static String dbPassword = "1234567890";
->>>>>>> 08d9bc0ba38eb50b1ce4b8fa99709ebc676b5693
+
 	static Connection conn = null;
 	static PreparedStatement stmt;
 	
