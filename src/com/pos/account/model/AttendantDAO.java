@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class AttendantDAO {
 						  + "values(?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
-			PreparedStatement stmt = dbConnection.prepareStatement(sqlQuery);
+			PreparedStatement stmt = dbConnection.prepareStatement(sqlQuery,Statement.RETURN_GENERATED_KEYS);
 			stmt.setBigDecimal(1, attendant.getId());
 			stmt.setString(2, attendant.getfName());
 			stmt.setString(3, attendant.getmName());
@@ -38,8 +39,13 @@ public class AttendantDAO {
 			stmt.setString(9, attendant.getEmail());
 			stmt.setObject(10,attendant.getDoe());
 			stmt.setString(11,attendant.getPosition());
+			stmt.executeUpdate();
+		    ResultSet result = stmt.getGeneratedKeys();
+		    if(result.next()) {
+		    	attendant.setId(result.getBigDecimal(1));
+		    }
 			
-			stmt.execute();
+		
 			stmt.close();
 			dbConnection.close();
 			

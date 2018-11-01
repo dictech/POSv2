@@ -60,7 +60,7 @@
                </padding>
             </Label>
             <Separator prefWidth="200.0" />
-            <TableView fx:id="shopsTable" prefHeight="291.0" prefWidth="672.0">
+            <TableView fx:id="shopsTable" prefHeight="291.0" prefWidth="672.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="shopName" prefWidth="154.0" text="Name" />
                 <TableColumn fx:id="shopBranch" prefWidth="176.0" text="Branch" />

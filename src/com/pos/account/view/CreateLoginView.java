@@ -6,18 +6,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class CreateAttendantView extends Application {
+public class CreateLoginView extends Application {
+
+	public static void main(String[] args) {
+	
+		launch(args);
+	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("createAttendant.fxml"));
-		Scene scene = new Scene(root,500,520);
+		
+		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+		Scene scene = new Scene(root,700,320);
 		stage.setScene(scene);
-		stage.show();	
+		stage.show();
 	}
-
-	  public static void main(String [] args) {
-		  
-		    launch();
-	  }
+	
 }

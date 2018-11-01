@@ -8,6 +8,11 @@ import javafx.stage.Stage;
 
 public class DashboardView extends Application {
     
+	
+	public static void main(String args[]) {
+		launch(args);
+	}
+	
 	Stage window;
 	
 	@Override
@@ -15,14 +20,12 @@ public class DashboardView extends Application {
 		// TODO Auto-generated method stub
 		window = arg0;
 		
-		Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
 		Scene scene =  new Scene(root,1280,800);
 		window.setScene(scene);
 		window.show();
 	}
 	
-	public static void main(String args[]) {
-		launch(args);
-	}
+
 
 }

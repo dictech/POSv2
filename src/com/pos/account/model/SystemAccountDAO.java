@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class SystemAccountDAO {
 	   
 	   
 	   
-	   public static void createSystemAccount(SystemAccount act) {
+	   public static void createSystemAccount(SystemAccount act)throws SQLException {
 		        
 		      try {
 		    	  String sql = "INSERT INTO account ("
@@ -60,59 +61,70 @@ public class SystemAccountDAO {
 		   
 	   }
 	   
-	   public static void newAccount( String firstName, String middleName,  String surName,
-			    String address,  String gender,  String dateOfBirth,  String email, String phoneNumber,
-			    String workPosition, String userName, String password) {
-		   
-//	     DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//		      Date date =  Date.valueOf( LocalDate.parse(dateOfBirth, format));           
-		   
-		      final  Random generator = new Random();
-		      final int gen = 30000 + generator.nextInt(30000);
-		      final BigDecimal id = new BigDecimal(gen);
-
-
-        Attendant attd = new Attendant();
-        attd.setId(id);
-        attd.setfName(firstName);
-        attd.setmName(middleName);
-        attd.setSurname(surName);
-        attd.setAddress(address);
-        attd.setGender(gender);
-        attd.setDob(Date.valueOf(dateOfBirth));
-        attd.setDoe(Date.valueOf(LocalDate.now()));
-        attd.setEmail(email);
-        attd.setPhoneNo(phoneNumber);
-        attd.setPosition(workPosition);
-	    AttendantDAO.createNewAttendant(attd);
-        
-	       try {
-	       String sql = "SELECT * FROM attendant"
-	       		      + " WHERE       attdt_id=?";
-	       
-	       myConnect = Database.getDatabaseConnection();
-	       prepareStatement = myConnect.prepareStatement(sql);
-	       prepareStatement.setBigDecimal(1, attd.getId());
-	       result = prepareStatement.executeQuery();
-	       while(result.next()) {
-
-	         SystemAccount act = new SystemAccount();
-	         act.setActAttendantID(result.getBigDecimal(1));
-	         act.setUserName(userName);
-	         act.setPassword(password);
-	         SystemAccountDAO.createSystemAccount(act);
-	         System.out.println("Your Account has been Created Sucessfully! \n please login to continue");
-	       }
-	           
-	       }catch(Exception e) {
-	    	   
-	    	   e.printStackTrace();
-	       }
-	           
-	           
-	      
-	          
+	   
+	   
+	   public static SystemAccount readSystemAccount(BigDecimal id) throws SQLException{
+		      SystemAccount act = new SystemAccount();
+		      myConnect = null;
+		      prepareStatement = null;
+		      result = null;
+		      
+		      String sql = " SELECT * FROM posv2.account "
+		      		     + " WHERE acct_id=?";
+		      myConnect = Database.getDatabaseConnection();
+		      prepareStatement = myConnect.prepareStatement(sql);
+		      prepareStatement.setBigDecimal(1, id);
+		      result = prepareStatement.executeQuery();
+		      
+		      if(result.next()) {
+		    	  
+		    	  act.setAccountID(result.getBigDecimal(1));
+		    	  act.setActAttendantID(result.getBigDecimal(2));
+		    	  act.setUserName(result.getString(3));
+		    	  act.setPassword(result.getString(4));
+		    	  prepareStatement.close();
+		    	  myConnect.close();
+		      }
+		      return act;
 	   }
+	   
+	   public static void updateSystemAccount(BigDecimal id) throws SQLException{
+		   SystemAccount act = new SystemAccount();
+		   myConnect = null;
+		   prepareStatement = null;
+		   result = null;
+		   
+		   String sql = "UPDATE posv2.account "
+		   		+ " SET       acct_username=? "
+		   		+ "            acct_password=? "
+		   		+ " WHERE            acct_id=? ";
+		   myConnect = Database.getDatabaseConnection();
+		   prepareStatement = myConnect.prepareStatement(sql);
+		   prepareStatement.setString(1, act.getUserName());
+		   prepareStatement.setString(2, act.getPassword());
+		   prepareStatement.setBigDecimal(3, id);
+		   prepareStatement.executeUpdate();
+		   prepareStatement.close();
+		   myConnect.close();
+		   
+	   }
+		
+	   public static void deleteSystemAccount(BigDecimal id) throws SQLException{
+		   myConnect = null;
+		   prepareStatement = null;
+		    
+		     String sql = " DELETE * FROM posv2.account "
+		     		    + " WHERE acct_id=? ";
+		              myConnect = Database.getDatabaseConnection();
+		              prepareStatement = myConnect.prepareStatement(sql);
+		              prepareStatement.setBigDecimal(1, id);
+		              prepareStatement.execute();
+		              prepareStatement.close();
+		              myConnect.close();
+		              System.out.println(" your account has been deleted !");
+		              
+	   }
+
 	   
 	   public static void logInSystemAccount(ActionEvent event, String userName,  String password) {
 		               
@@ -160,8 +172,6 @@ public class SystemAccountDAO {
 		   
 		             }
 	   
-	   
-		 
 
 	   
 	   public static  void logOutSystemAccount(Attendance attendance) {
@@ -199,9 +209,6 @@ public class SystemAccountDAO {
 	   }
 	   
 	   
-	
-	   
-
 	   
 	   
 	   
