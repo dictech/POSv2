@@ -1,15 +1,24 @@
 package com.pos.account.controller;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
+import com.pos.account.model.Attendant;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class CreateActProfileCtrl  implements Initializable{
 
@@ -74,16 +83,24 @@ public class CreateActProfileCtrl  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		CreateAttendantCtrl ctr = new CreateAttendantCtrl();
-		 this.firstN.setText(ctr.getFname().getText());
-		 this.lastN.setText(ctr.getSname().getText());
-		 this.surN.setText(ctr.getMname().getText());
-		 this.dob.setText(ctr.getDob().getValue().toString());
+		  Attendant ctr = new Attendant();
+		 this.firstN.setText(ctr.getfName());
+		 this.lastN.setText(ctr.getSurname());
+		 this.surN.setText(ctr.getmName());
+		 this.dob.setText(Date.554              );
+		 this.mobile.setText(ctr.getPhoneNo().getText());
+		 this.position.setText(ctr.getPos().getValue());
+		 this.email.setText(ctr.getEmail().getText());
+    	 this.homeAddr.setText(ctr.getAddr().getText());
+		 this.gender.setText(ctr.getGender().getValue());
 		    
 	}
 
 	
-	
+	public void editProfile(ActionEvent event) throws Exception {
+		
+
+	}
 	  
 	
 	
