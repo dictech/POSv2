@@ -1,5 +1,6 @@
 package com.pos.account.controller;
 
+<<<<<<< HEAD
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
@@ -116,4 +117,8 @@ public class CreateActProfileCtrl  implements Initializable{
 	
 	
 	
+=======
+public class CreateActProfileCtrl {
+
+>>>>>>> 5963731145b31b34751db59d60d8910e7c07fd77
 }
