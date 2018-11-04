@@ -83,7 +83,7 @@ public class CreateAttendantCtrl implements Initializable{
 
     
 
-<<<<<<< HEAD
+
     TextField getFname() {
 		return fname;
 	}
@@ -215,10 +215,6 @@ public class CreateAttendantCtrl implements Initializable{
 
 	
 
-=======
-
-
->>>>>>> 5963731145b31b34751db59d60d8910e7c07fd77
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	    ObservableList<String> gender = FXCollections.observableArrayList("male","female");

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="index" opacity="0.91" prefHeight="576.0" prefWidth="737.0" style="-fx-background-color: #e09b0d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateActProfileCtrl">
+   <children>
+      <Pane fx:id="head" layoutX="5.0" layoutY="7.0" prefHeight="143.0" prefWidth="726.0" style="-fx-background-color: #726856;">
+         <children>
+            <AnchorPane layoutX="4.0" layoutY="5.0" opacity="0.89" prefHeight="127.0" prefWidth="144.0" style="-fx-border-color: #020529; -fx-border-width: 3;">
+               <children>
+                  <ImageView fx:id="profile_image" fitHeight="122.0" fitWidth="132.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../../../Assets/images/54091415-icono-de-la-barra-de-la-trama-de-usuario-para-el-diseño-de-software-el-estilo-es-el-símbolo-gradiente-ico.jpg" />
+                     </image></ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView fx:id="company_logo" fitHeight="41.0" fitWidth="86.0" layoutX="629.0" layoutY="3.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane fx:id="body" layoutX="6.0" layoutY="158.0" prefHeight="412.0" prefWidth="726.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 6;">
+         <children>
+            <Pane fx:id="body_items" layoutX="116.0" layoutY="5.0" prefHeight="346.0" prefWidth="450.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 7;">
+               <children>
+                  <Label fx:id="acct_info" layoutX="16.0" layoutY="24.0" prefHeight="24.0" prefWidth="172.0" text="Attendant identity" textFill="#e09b0d">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="10.0" layoutY="76.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="5.0" layoutY="8.0" prefHeight="17.0" prefWidth="77.0" text="first name :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fname" editable="false" layoutX="148.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="andy">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="9.0" layoutY="109.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="77.0" text="last name :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="lname" editable="false" layoutX="149.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="uwem">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="9.0" layoutY="142.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="other name :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="mname" editable="false" layoutX="149.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="essien">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="175.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text=" address :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="addr" editable="false" layoutX="148.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="21 cosmos avenue">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="207.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="gender :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="gender" editable="false" layoutX="147.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="male">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="239.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="date of brith :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="dob" editable="false" layoutX="147.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="12/8/1992">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="271.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="mobile :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="mobile" editable="false" layoutX="146.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="090667873">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="303.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="date of emp :" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="doe" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="12/23/2018">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="128.0" layoutY="341.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+               <children>
+                  <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="email :" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="email" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="example@gmail.com">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
+            <Pane layoutX="128.0" layoutY="374.0" prefHeight="33.0" prefWidth="430.0" style="-fx-background-color: #020521; -fx-background-radius: 5;">
+               <children>
+                  <Label layoutX="3.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" text="position :" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="position2" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="manager">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="517.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateAttdntListCtr">
+   <children>
+      <HBox fx:id="header" layoutX="9.0" layoutY="8.0" prefHeight="41.0" prefWidth="726.0" style="-fx-background-color: #020529;">
+         <children>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="179.0" style="-fx-background-color: #020529;" text="Attendants " textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="10.0" layoutY="51.0" prefHeight="458.0" prefWidth="726.0" style="-fx-border-color: #726856; -fx-background-color: #020529;">
+         <children>
+            <ListView fx:id="attendantList" layoutX="152.0" layoutY="8.0" prefHeight="444.0" prefWidth="339.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -62,8 +62,8 @@ public class LoginController implements Initializable {
 	    
 	                        public void homePage(ActionEvent event) throws Exception {
 	                    	 
-	                    	Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
-	             	    	Scene scene =  new Scene(root,400,400);
+	                    	Parent root = FXMLLoader.load(getClass().getResource("../../org/view/dashboard.fxml"));
+	             	    	Scene scene =  new Scene(root,1280,800);
 	             	    	Stage stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
 	             	    	stage.setScene(scene);
 	             	    	stage.show();}

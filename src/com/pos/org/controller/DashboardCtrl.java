@@ -5,7 +5,11 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class DashboardCtrl {
 
@@ -15,6 +19,7 @@ public class DashboardCtrl {
     @FXML
     void createNewAttendant(ActionEvent event) {
 
+    	   
     }
 
     @FXML
@@ -28,8 +33,9 @@ public class DashboardCtrl {
     }
 
     @FXML
-    void viewAttendant(ActionEvent event) {
-
+    void viewAttendant(ActionEvent event) throws Exception{
+       
+    	   
     }
 
     @FXML
