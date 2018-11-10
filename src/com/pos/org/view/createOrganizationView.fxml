@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.org.controller.OrganizationCtrl">
+   <children>
+      <TabPane layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="1192.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="orgTab" text="Organization">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="729.0">
+                     <children>
+                        <VBox layoutY="-1.0" prefHeight="373.0" prefWidth="1194.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="162.0" text="ORGANIZATION DETAILS">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="400.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button contentDisplay="TEXT_ONLY" graphicTextGap="9.0" mnemonicParsing="false" onAction="#createOrganization" text="create">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#updateOrganization" text="update">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button layoutX="473.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteOrganization" text="delete" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="590.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="40.0" />
+                                 </padding>
+                              </HBox>
+                              <Separator prefHeight="3.0" prefWidth="581.0" />
+                              <HBox prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Organization Name:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgName" prefHeight="25.0" prefWidth="280.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="51.0" prefHeight="65.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="location:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="orgLocation" prefHeight="37.0" prefWidth="241.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="86.0" prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Phone no.">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgPhoneNo" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="121.0" prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="E-mail:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgEmail" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="186.0" prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="ID:" visible="false">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgId" prefHeight="25.0" prefWidth="86.0" visible="false" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="shopTab" text="Shop">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="600.0">
+                     <children>
+                        <VBox layoutY="-1.0" prefHeight="372.0" prefWidth="1192.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="162.0" text="SHOP DETAILS">
+                                       <font>
+                                          <Font name="Lucida Sans Demibold" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="400.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button contentDisplay="TEXT_ONLY" graphicTextGap="9.0" mnemonicParsing="false" onAction="#createShop" text="create">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#updateShop" text="update">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button layoutX="473.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteShop" text="delete" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="590.0">
+                                 <padding>
+                                    <Insets right="40.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <Separator prefHeight="3.0" prefWidth="581.0" />
+                              <HBox prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Shop Name:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgShopName" prefHeight="25.0" prefWidth="280.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="51.0" prefHeight="65.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Location:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="orgShopLocation" prefHeight="43.0" prefWidth="223.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="86.0" prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Branch">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgShopBranch" prefHeight="25.0" prefWidth="146.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="121.0" prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="RC. No.">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="orgShopRCNo" prefHeight="25.0" prefWidth="86.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="20.0" layoutY="221.0" prefHeight="35.0" prefWidth="590.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Attendant">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="orgShopAttendant" prefHeight="25.0" prefWidth="224.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

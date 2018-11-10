@@ -21,6 +21,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class viewOrganizationCtrl implements Initializable {
+	
+	
 
     @FXML
     private AnchorPane orgDtlsPane;
@@ -61,26 +63,26 @@ public class viewOrganizationCtrl implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		Organization  organization= OrganizationDAO.getOrg().get(0);
-		orgName.setText(organization.getOrg_name());
-		orgAddr.setText(organization.getOrg_addrs());
-		orgPhone.setText(organization.getOrg_phone());
-		orgEmail.setText(organization.getOrg_email());
-		
-		//Convert ArrayList to ObservableArrayList
-		ObservableList<Shop> listOfShops = FXCollections.observableArrayList(ShopDAO.getAllShops());
-		
-		shopsTable.setItems(listOfShops);
-		shopsTable.getColumns().clear();
-		
-		//Map front-end table column to Pojo properties
-		shopName.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopName"));
-		shopBranch.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopBranch"));
-		shopLocation.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopLocation"));
-		shopManager.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopMgr"));
-		shopRCNo.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopRCNo"));
-		
-		shopsTable.getColumns().addAll(shopName,shopBranch,shopLocation,shopManager,shopRCNo);
+//		Organization  organization= OrganizationDAO.getOrg().get(0);
+//		orgName.setText(organization.getOrg_name());
+//		orgAddr.setText(organization.getOrg_addrs());
+//		orgPhone.setText(organization.getOrg_phone());
+//		orgEmail.setText(organization.getOrg_email());
+//		
+//		//Convert ArrayList to ObservableArrayList
+//		ObservableList<Shop> listOfShops = FXCollections.observableArrayList(ShopDAO.getAllShops());
+//		
+//		shopsTable.setItems(listOfShops);
+//		shopsTable.getColumns().clear();
+//		
+//		//Map front-end table column to Pojo properties
+//		shopName.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopName"));
+//		shopBranch.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopBranch"));
+//		shopLocation.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopLocation"));
+//		shopManager.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopMgr"));
+//		shopRCNo.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopRCNo"));
+//		
+//		shopsTable.getColumns().addAll(shopName,shopBranch,shopLocation,shopManager,shopRCNo);
 	}
     
     
