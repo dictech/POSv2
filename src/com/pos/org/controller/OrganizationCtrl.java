@@ -2,21 +2,26 @@ package com.pos.org.controller;
 
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 import com.pos.org.model.Organization;
 import com.pos.org.model.OrganizationDAO;
+import com.pos.org.model.Shop;
+import com.pos.org.model.ShopDAO;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OrganizationCtrl implements Initializable{
 
@@ -54,6 +59,24 @@ public class OrganizationCtrl implements Initializable{
     private ComboBox<?> orgShopAttendant;
 
 	private BigDecimal orgId;
+	
+	@FXML
+    private TableView<Shop> shopTable;
+	
+    @FXML
+    private TableColumn<Shop, String> shopNameCol;
+    
+    @FXML
+    private TableColumn<Shop, String> shopLocationCol;
+
+    @FXML
+    private TableColumn<Shop, String> shopBranchCol;
+
+    @FXML
+    private TableColumn<Shop, String> shopManagerCol;
+
+    @FXML
+    private TableColumn<Shop, String> shopRCNoCol;
     
     
     @Override
@@ -69,7 +92,22 @@ public class OrganizationCtrl implements Initializable{
 	    	this.orgPhoneNo.setText(org.getOrg_phone());
 	    	this.orgEmail.setText(org.getOrg_email());
 	    	}
+    	
+    	ObservableList<Shop> listOfShops = FXCollections.observableArrayList(ShopDAO.getAllShops());
+    	this.shopTable.setItems(listOfShops);
+    	
+    	
+    	this.shopTable.getColumns().clear();
+    	this.shopNameCol.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopName"));
+    	this.shopLocationCol.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopLocation"));
+    	this.shopBranchCol.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopBranch"));
+    	this.shopManagerCol.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopMgr"));
+    	this.shopRCNoCol.setCellValueFactory(new PropertyValueFactory<Shop, String>("shopRCNo"));
+    	this.shopTable.getColumns().addAll(this.shopNameCol,this.shopLocationCol,this.shopBranchCol,this.shopManagerCol,this.shopRCNoCol);
+    	
+    	
     }
+     
 
     @FXML
     void createOrganization(ActionEvent event) {
@@ -83,12 +121,20 @@ public class OrganizationCtrl implements Initializable{
 
     @FXML
     void createShop(ActionEvent event) {
-
+    	Shop shop = new Shop();
+    	shop.setShopName(orgShopName.getText());
+    	shop.setShopLocation(orgShopLocation.getText());
+    	shop.setShopBranch(orgShopBranch.getText());
+    	shop.setShopRCNo(orgShopRCNo.getText());
+    	//shop.setShopAttendant(orgShopAttendant.get);
+    	ShopDAO.createShop(shop);
+    	this.shopTable.refresh();;
     }
 
     @FXML
     void deleteOrganization(ActionEvent event) {
-    	
+    	Organization org = OrganizationDAO.getOrg().get(0);
+    	OrganizationDAO.deleteOrg(org);
     }
 
     @FXML

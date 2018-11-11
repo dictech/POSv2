@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +18,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.org.controller.OrganizationCtrl">
    <children>
-      <TabPane layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="1192.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-2.0" layoutY="-1.0" prefHeight="586.0" prefWidth="1192.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="orgTab" text="Organization">
             <content>
@@ -268,6 +270,15 @@
                               <Insets left="10.0" top="10.0" />
                            </padding>
                         </VBox>
+                        <TableView fx:id="shopTable" layoutY="278.0" prefHeight="278.0" prefWidth="1192.0">
+                           <columns>
+                              <TableColumn fx:id="shopNameCol" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="shopLocationCol" prefWidth="75.0" text="Location" />
+                              <TableColumn fx:id="shopBranchCol" prefWidth="75.0" text="Branch" />
+                              <TableColumn fx:id="shopManagerCol" prefWidth="75.0" text="Manager" />
+                              <TableColumn fx:id="shopRCNoCol" prefWidth="75.0" text="RC No." />
+                           </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
                </content>
