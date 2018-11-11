@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="index" opacity="0.91" prefHeight="576.0" prefWidth="737.0" style="-fx-background-color: #e09b0d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateActProfileCtrl">
+<AnchorPane fx:id="index" opacity="0.91" prefHeight="583.0" prefWidth="1080.0" style="-fx-background-color: #e09b0d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateActProfileCtrl">
    <children>
-      <Pane fx:id="head" layoutX="5.0" layoutY="7.0" prefHeight="143.0" prefWidth="726.0" style="-fx-background-color: #726856;">
+      <HBox fx:id="header" layoutX="11.0" layoutY="9.0" prefHeight="47.0" prefWidth="478.0" style="-fx-background-color: #020529;">
+         <children>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #020529;" text="Attendants " textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Pane fx:id="head" layoutX="508.0" layoutY="8.0" prefHeight="143.0" prefWidth="565.0" style="-fx-background-color: #726856;">
          <children>
             <AnchorPane layoutX="4.0" layoutY="5.0" opacity="0.89" prefHeight="127.0" prefWidth="144.0" style="-fx-border-color: #020529; -fx-border-width: 3;">
                <children>
@@ -20,13 +32,13 @@
                      </image></ImageView>
                </children>
             </AnchorPane>
-            <ImageView fx:id="company_logo" fitHeight="41.0" fitWidth="86.0" layoutX="629.0" layoutY="3.0" pickOnBounds="true">
+            <ImageView fx:id="company_logo" fitHeight="41.0" fitWidth="86.0" layoutX="465.0" layoutY="14.0" pickOnBounds="true">
                <image>
                   <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
                </image>
             </ImageView>
          </children></Pane>
-      <Pane fx:id="body" layoutX="6.0" layoutY="158.0" prefHeight="412.0" prefWidth="726.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 6;">
+      <Pane fx:id="body" layoutX="502.0" layoutY="161.0" prefHeight="412.0" prefWidth="572.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 6;">
          <children>
             <Pane fx:id="body_items" layoutX="116.0" layoutY="5.0" prefHeight="346.0" prefWidth="450.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 7;">
                <children>
@@ -42,7 +54,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="fname" editable="false" layoutX="148.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="andy">
+                        <TextField fx:id="fname" editable="false" layoutX="148.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -56,7 +68,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lname" editable="false" layoutX="149.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="uwem">
+                        <TextField fx:id="lname" editable="false" layoutX="149.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -70,7 +82,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mname" editable="false" layoutX="149.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="essien">
+                        <TextField fx:id="mname" editable="false" layoutX="149.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -84,7 +96,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addr" editable="false" layoutX="148.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="21 cosmos avenue">
+                        <TextField fx:id="addr" editable="false" layoutX="148.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -98,7 +110,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="gender" editable="false" layoutX="147.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="male">
+                        <TextField fx:id="gender" editable="false" layoutX="147.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -112,7 +124,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="dob" editable="false" layoutX="147.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="12/8/1992">
+                        <TextField fx:id="dob" editable="false" layoutX="147.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -126,7 +138,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mobile" editable="false" layoutX="146.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="090667873">
+                        <TextField fx:id="mobile" editable="false" layoutX="146.0" layoutY="2.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -140,7 +152,7 @@
                               <Font name="Lucida Sans Demibold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="doe" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="12/23/2018">
+                        <TextField fx:id="doe" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                            <font>
                               <Font name="Lucida Sans Demibold" size="14.0" />
                            </font>
@@ -156,7 +168,7 @@
                         <Font name="Lucida Sans Demibold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="email" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="example@gmail.com">
+                  <TextField fx:id="email" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                      <font>
                         <Font name="Lucida Sans Demibold" size="14.0" />
                      </font>
@@ -170,7 +182,7 @@
                         <Font name="Lucida Sans Demibold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="position2" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0" text="manager">
+                  <TextField fx:id="position" editable="false" layoutX="146.0" layoutY="3.0" opacity="0.73" prefHeight="25.0" prefWidth="277.0">
                      <font>
                         <Font name="Lucida Sans Demibold" size="14.0" />
                      </font>
@@ -179,5 +191,20 @@
             </Pane>
          </children>
       </Pane>
+      <TableView fx:id="tableView" layoutX="11.0" layoutY="55.0" prefHeight="518.0" prefWidth="478.0">
+        <columns>
+          <TableColumn fx:id="columnID" minWidth="0.0" prefWidth="26.0" text="ID" />
+          <TableColumn fx:id="columnFname" prefWidth="38.0" text="firstN" />
+            <TableColumn fx:id="columnMname" minWidth="0.0" prefWidth="54.0" text="middleN" />
+            <TableColumn fx:id="columnLname" minWidth="0.0" prefWidth="47.0" text="lastN" />
+            <TableColumn fx:id="columnGender" minWidth="0.0" prefWidth="49.0" text="gender" />
+            <TableColumn fx:id="columnMobile" minWidth="0.0" prefWidth="47.0" text="mobile" />
+            <TableColumn fx:id="columnEmail" prefWidth="42.0" text="email" />
+            <TableColumn fx:id="columnDob" prefWidth="38.0" text="dob" />
+            <TableColumn fx:id="columnDoe" prefWidth="42.0" text="doe" />
+            <TableColumn fx:id="columnPos" prefWidth="46.0" text="pos" />
+            <TableColumn fx:id="columnAddr" prefWidth="48.0" text="addr" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package com.pos.account.controller;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -283,7 +284,9 @@ public class CreateAttendantCtrl implements Initializable{
     	    	    	   System.out.println("Account created");
     	    	    	   confirmScreen(event); 
     	    	       
-    	    	       
+    	    	    	   
+    	    	    	   
+    	    	    
                  
     	            }
     	        
@@ -309,7 +312,7 @@ public class CreateAttendantCtrl implements Initializable{
 	    	      stage.show();}
 
         
-                
+             
         
    }
 
