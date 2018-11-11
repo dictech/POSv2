@@ -21,6 +21,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class viewOrganizationCtrl implements Initializable {
+	
+	
 
     @FXML
     private AnchorPane orgDtlsPane;

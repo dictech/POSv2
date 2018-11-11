@@ -23,7 +23,7 @@ public class DashboardView extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
 		Scene scene =  new Scene(root,1280,800);
 		window.setScene(scene);
-		window.show();
+		window.show(); 
 	}
 	
 

@@ -39,11 +39,28 @@ public class DashboardCtrl {
     	 this.mainPane.getChildren().setAll(attendantList);
     	   
     }
+    
+    public AnchorPane getPane(String pane) {
+    	  
+    	AnchorPane anchorPane = null;
+    	
+    	try{
+    		anchorPane =  FXMLLoader.load(getClass().getResource(pane)); 		
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
+       
+    	return anchorPane;
+    }
 
     @FXML
-    void viewOrganizationDtls(ActionEvent event) throws IOException {
-    	AnchorPane orgDtlsPane = FXMLLoader.load(getClass().getResource("../view/viewOrganization.fxml"));
-    	this.mainPane.getChildren().setAll(orgDtlsPane);
+    void viewOrganizationDtls(ActionEvent event){
+    	this.mainPane.getChildren().setAll(getPane("../view/viewOrganization.fxml"));
+    }
+      
+    @FXML
+    void updateOrganizationDtls(ActionEvent event) {
+    	this.mainPane.getChildren().setAll(getPane("../view/createOrganizationView.fxml"));
     }
 
 }

@@ -71,8 +71,7 @@ public class OrganizationDAO {
 				   + "SET    org_name  = ?,"
 				   + "       org_addrs = ?,"
 				   + "       org_phone = ?,"
-				   + "       org_email = ?,"
-				   + "       org_logo  = ?"
+				   + "       org_email = ? "
 				   + "WHERE  org_id    = ?";
 		
 		try {
@@ -85,8 +84,8 @@ public class OrganizationDAO {
 			stmt.setString(2,org.getOrg_addrs());
 			stmt.setString(3,org.getOrg_phone());
 			stmt.setString(4,org.getOrg_email());
-			stmt.setString(5,org.getOrg_logo());
-			stmt.setBigDecimal(6, org.getOrg_id());
+			//stmt.setString(5,org.getOrg_logo());
+			stmt.setBigDecimal(5, org.getOrg_id());
 			stmt.executeUpdate();
 			stmt.close();
 			cxtn.close();

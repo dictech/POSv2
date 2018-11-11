@@ -124,7 +124,7 @@
                                                 <Insets top="8.0" />
                                              </HBox.margin>
                                           </FontAwesomeIconView>
-                                          <Hyperlink onAction="#editOrganizationDtls" text="Shops" />
+                                          <Hyperlink onAction="#updateOrganizationDtls" text="Organization Details" />
                                        </children>
                                        <padding>
                                           <Insets top="5.0" />
@@ -137,7 +137,20 @@
                                                 <Insets top="8.0" />
                                              </HBox.margin>
                                           </FontAwesomeIconView>
-                                          <Hyperlink onAction="#viewOrganizationDtls" text="Enquiry" />
+                                          <Hyperlink onAction="#viewOrganizationDtls" text="Organization Enquiry" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #020529;">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0">
+                                             <HBox.margin>
+                                                <Insets top="8.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <Hyperlink onAction="#editOrganizationDtls" text="Shops" />
                                        </children>
                                        <padding>
                                           <Insets top="5.0" />
