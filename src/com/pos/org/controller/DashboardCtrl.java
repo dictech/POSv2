@@ -35,6 +35,8 @@ public class DashboardCtrl {
     @FXML
     void viewAttendant(ActionEvent event) throws Exception{
        
+    	AnchorPane attendantList = FXMLLoader.load(getClass().getResource("../../account/view/CreateActProfile.fxml"));
+    	 this.mainPane.getChildren().setAll(attendantList);
     	   
     }
     

@@ -12,7 +12,7 @@ public class CreateActProfileView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("CreateActProfile.fxml"));
-		Scene scene = new Scene(root,737,576);
+		Scene scene = new Scene(root,1082,733);
 		stage.setScene(scene);
 		stage.setTitle("Your Account Infomations");
 		stage.show();	
