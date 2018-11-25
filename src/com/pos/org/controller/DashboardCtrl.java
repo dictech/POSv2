@@ -62,5 +62,15 @@ public class DashboardCtrl {
     void updateOrganizationDtls(ActionEvent event) {
     	this.mainPane.getChildren().setAll(getPane("../view/createOrganizationView.fxml"));
     }
+    
+    @FXML
+    void updateInventoryDtls(ActionEvent event) {
+    	this.mainPane.getChildren().setAll(getPane("../../inventory/view/updateInventoryView.fxml"));
+    }
+    
+    @FXML
+    void viewInventory(ActionEvent event) {
+    	this.mainPane.getChildren().setAll(getPane("../../inventory/view/inventoryView.fxml"));
+    }
 
 }
