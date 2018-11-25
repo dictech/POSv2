@@ -16,12 +16,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class OrganizationCtrl implements Initializable{
 
@@ -77,6 +80,15 @@ public class OrganizationCtrl implements Initializable{
 
     @FXML
     private TableColumn<Shop, String> shopRCNoCol;
+    
+    @FXML
+    private Label orgShopIdLbl;
+
+    @FXML
+    private TextField orgShopId;
+    
+    private Shop shop;
+
     
     
     @Override
@@ -139,7 +151,7 @@ public class OrganizationCtrl implements Initializable{
 
     @FXML
     void deleteShop(ActionEvent event) {
-
+    	ShopDAO.deleteShop(this.shop);
     }
 
     @FXML
@@ -158,8 +170,30 @@ public class OrganizationCtrl implements Initializable{
 
     @FXML
     void updateShop(ActionEvent event) {
-
+    	
+    	this.shop.setShopId(new BigDecimal(orgShopId.getText()));
+    	this.shop.setShopName(orgShopName.getText());
+    	this.shop.setShopLocation(orgShopLocation.getText());
+        this.shop.setShopBranch(orgShopBranch.getText());
+        this.shop.setShopRCNo(orgShopRCNo.getText());
+        
+        ShopDAO.updateShop(shop);
     }
+    
+    
+    @FXML
+    void getTableRowData(MouseEvent event) {
+    	
+      this.shop = this.shopTable.getSelectionModel().getSelectedItem();
+
+      orgShopId.setText(this.shopTable.getSelectionModel().getSelectedItem().getShopId().toString());
+      orgShopName.setText(this.shopTable.getSelectionModel().getSelectedItem().getShopName());
+      orgShopLocation.setText(this.shopTable.getSelectionModel().getSelectedItem().getShopLocation());
+      orgShopBranch.setText(this.shopTable.getSelectionModel().getSelectedItem().getShopBranch());
+      orgShopRCNo.setText(this.shopTable.getSelectionModel().getSelectedItem().getShopRCNo());
+      
+    }
+
 
 }
 
