@@ -191,19 +191,18 @@
             </Pane>
          </children>
       </Pane>
-      <TableView fx:id="tableView" layoutX="11.0" layoutY="55.0" prefHeight="518.0" prefWidth="478.0">
+      <TableView fx:id="attendant_table" layoutX="11.0" layoutY="61.0" onMouseClicked="#getAttendantInfo" prefHeight="514.0" prefWidth="478.0">
         <columns>
-          <TableColumn fx:id="columnID" minWidth="0.0" prefWidth="26.0" text="ID" />
-          <TableColumn fx:id="columnFname" prefWidth="38.0" text="firstN" />
-            <TableColumn fx:id="columnMname" minWidth="0.0" prefWidth="54.0" text="middleN" />
-            <TableColumn fx:id="columnLname" minWidth="0.0" prefWidth="47.0" text="lastN" />
-            <TableColumn fx:id="columnGender" minWidth="0.0" prefWidth="49.0" text="gender" />
-            <TableColumn fx:id="columnMobile" minWidth="0.0" prefWidth="47.0" text="mobile" />
-            <TableColumn fx:id="columnEmail" prefWidth="42.0" text="email" />
-            <TableColumn fx:id="columnDob" prefWidth="38.0" text="dob" />
-            <TableColumn fx:id="columnDoe" prefWidth="42.0" text="doe" />
-            <TableColumn fx:id="columnPos" prefWidth="46.0" text="pos" />
-            <TableColumn fx:id="columnAddr" prefWidth="48.0" text="addr" />
+          <TableColumn fx:id="column_lName" prefWidth="93.0" text="Last Name" />
+          <TableColumn fx:id="column_fName" prefWidth="100.0" text="First Name" />
+            <TableColumn fx:id="column_mName" prefWidth="63.0" text="mN" />
+            <TableColumn fx:id="column_address" prefWidth="19.0" text="aD" visible="false" />
+            <TableColumn fx:id="column_mobile" minWidth="9.0" prefWidth="10.0" text="ph" visible="false" />
+            <TableColumn fx:id="column_email" prefWidth="33.0" text="em" visible="false" />
+            <TableColumn fx:id="column_position" prefWidth="37.0" text="pos" visible="false" />
+            <TableColumn fx:id="column_dob" prefWidth="32.0" text="dob" visible="false" />
+            <TableColumn fx:id="column_doe" prefWidth="40.0" text="doe" visible="false" />
+            <TableColumn fx:id="column_gender" prefWidth="46.0" text="gen" visible="false" />
         </columns>
       </TableView>
    </children>
