@@ -11,7 +11,7 @@ public class CreateAttendantView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("createAttendant.fxml"));
-		Scene scene = new Scene(root,500,520);
+		Scene scene = new Scene(root,1082,733);
 		stage.setScene(scene);
 		stage.show();	
 	}

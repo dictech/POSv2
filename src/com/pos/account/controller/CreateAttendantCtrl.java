@@ -15,6 +15,7 @@ import com.pos.account.model.AttendantDAO;
 import com.pos.account.model.SystemAccount;
 import com.pos.account.model.SystemAccountDAO;
 import com.pos.database.Database;
+import com.pos.org.controller.DashboardCtrl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 public class CreateAttendantCtrl implements Initializable{
 
@@ -214,7 +217,11 @@ public class CreateAttendantCtrl implements Initializable{
 		this.uName = uName;
 	}
 
-	
+    @FXML
+    private Pane confirmation;
+    
+    @FXML
+    private AnchorPane attendant_regHolder;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -282,8 +289,7 @@ public class CreateAttendantCtrl implements Initializable{
     	    	    	   act.setPassword(this.password.getText());
     	    	    	   SystemAccountDAO.createSystemAccount(act);
     	    	    	   System.out.println("Account created");
-    	    	    	   confirmScreen(event); 
-    	    	       
+    	    	    	   this.attendant_regHolder.setOpacity(0);
     	    	    	   
     	    	    	   
     	    	    
@@ -303,15 +309,6 @@ public class CreateAttendantCtrl implements Initializable{
     }
 
 
-                  public void confirmScreen(ActionEvent event) throws Exception {
-   	 
-    	          Parent root = FXMLLoader.load(getClass().getResource("../view/Confirmation.fxml"));
-	              Scene scene =  new Scene(root,500,520);
-	    	      Stage stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
-	    	      stage.setScene(scene);
-	    	      stage.show();}
-
-        
              
         
    }

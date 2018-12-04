@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -36,6 +37,7 @@ import javafx.scene.layout.Pane;
 public class CreateActProfileCtrl implements Initializable{
 
 
+	 
     @FXML
     private AnchorPane index;
 
@@ -52,7 +54,11 @@ public class CreateActProfileCtrl implements Initializable{
     private ImageView company_logo;
 
     @FXML
-    private Pane body;
+    private Pane actProfileCntHolder;
+    
+
+    @FXML
+    private Button save_change_btn;
 
     @FXML
     private Pane body_items;
@@ -123,23 +129,12 @@ public class CreateActProfileCtrl implements Initializable{
     @FXML
     private TableColumn<Attendant, String> column_gender;
 
+   
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-//		
-//    	List<Attendant> listOfAttendant = AttendantDAO.getAllAttendants();
-//    	
-//    	if(listOfAttendant.size() > 0) {
-//	    	Attendant attd = listOfAttendant.get(0);
-//            
-////	    	this.orgId = org.getOrg_id();
-////	    	this.orgName.setText(org.getOrg_name());
-////	    	this.orgLocation.setText(org.getOrg_addrs());
-////	    	this.orgPhoneNo.setText(org.getOrg_phone());
-////	    	this.orgEmail.setText(org.getOrg_email());
-//	    	}
-//    	
+
     	ObservableList<Attendant> staffs = FXCollections.observableArrayList(AttendantDAO.getAllAttendants());
     	this.attendant_table.setItems(staffs);
     	
@@ -177,6 +172,7 @@ public class CreateActProfileCtrl implements Initializable{
     	    
     }
     
+
     
     
 }
