@@ -73,6 +73,7 @@ CREATE TABLE `attendant` (
   `attdt_email` varchar(45) DEFAULT NULL,
   `attdt_dt_emp` date DEFAULT NULL,
   `attdt_position` varchar(45) DEFAULT NULL,
+  `attdt_image` longblob DEFAULT NULL,
   PRIMARY KEY (`attdt_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

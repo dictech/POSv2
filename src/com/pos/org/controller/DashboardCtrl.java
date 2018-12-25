@@ -2,7 +2,7 @@ package com.pos.org.controller;
 
 import java.io.IOException;
 
-import com.pos.account.controller.CreateActProfileCtrl;
+import com.pos.account.controller.ViewAttdListCtrl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class DashboardCtrl {
+	
 
+	
     @FXML
     private AnchorPane mainPane;
 
@@ -28,8 +30,8 @@ public class DashboardCtrl {
     @FXML
     void editAttendant(ActionEvent event) throws Exception{
           
-    
-   	   
+        AnchorPane editAttdnt = FXMLLoader.load(getClass().getResource("../../account/view/EditAttendant.fxml"));
+   	    this.mainPane.getChildren().setAll(editAttdnt);
     }
 
     @FXML
@@ -80,6 +82,7 @@ public class DashboardCtrl {
 
     
     
-   
+
+	
       
 }
