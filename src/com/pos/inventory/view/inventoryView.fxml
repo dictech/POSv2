@@ -1,8 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane fx:id="orgDtlsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.inventory.controller.viewInventoryCtrl">
+   <children>
+      <VBox layoutX="7.0" layoutY="14.0" prefHeight="97.0" prefWidth="232.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fx:id="orgLogo" fitHeight="47.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Assets/images/CharityBuy%20Logo%20200x100.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="103.0" prefWidth="211.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Separator prefWidth="200.0" />
+                  <HBox prefHeight="25.0" prefWidth="224.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="74.0" text="Product:">
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="productTxtBox" onAction="#searchInventory" prefHeight="19.0" prefWidth="110.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="246.0" layoutY="12.0" prefHeight="545.0" prefWidth="790.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label prefHeight="50.0" prefWidth="906.0" text="Inventory Enquiry" textFill="#8d8d8d">
+               <font>
+                  <Font name="Lucida Sans Regular" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <TableView fx:id="inventoryEnquiryTable" editable="true" prefHeight="299.0" prefWidth="818.0" tableMenuButtonVisible="true">
+              <columns>
+                <TableColumn fx:id="inventoryitemCol" prefWidth="144.0" text="Product" />
+                <TableColumn fx:id="productDescCol" prefWidth="266.0" text="Description" />
+                  <TableColumn fx:id="noOfUnitsCol" prefWidth="112.0" text="No. of Units" />
+                  <TableColumn fx:id="qtyPerUnitCol" minWidth="0.0" prefWidth="120.0" text="Quantity per Unit" />
+                  <TableColumn fx:id="totalNoOfItemsCol" prefWidth="144.0" text="Total No. of Items" />
+              </columns>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>
-

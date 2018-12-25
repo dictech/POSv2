@@ -5,13 +5,15 @@ import java.math.BigDecimal;
 public class ProductInventory {
 	
 	private BigDecimal id;
-	private int proId;
+	
+	private Product product;
 	private String proDesc;
-	private int noOfUnits;
-	private int qtyPerUnit;
-	private int totalQty;
-	private int noOfOrdered;
-	private int reorderLvl;
+	private String proName;
+	private BigDecimal noOfUnits;
+	private BigDecimal qtyPerUnit;
+	private BigDecimal totalQty;
+	private BigDecimal noOfOrdered;
+	private BigDecimal reorderLvl;
 	
 	
 	
@@ -22,11 +24,11 @@ public class ProductInventory {
 		this.id = id;
 	}
 	
-	public int getProId() {
-		return proId;
+	public Product getProduct() {
+		return this.product;
 	}
-	public void setProId(int proId) {
-		this.proId = proId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	public String getProDesc() {
 		return proDesc;
@@ -34,35 +36,41 @@ public class ProductInventory {
 	public void setProDesc(String proDesc) {
 		this.proDesc = proDesc;
 	}
-	public int getNoOfUnits() {
+	public BigDecimal getNoOfUnits() {
 		return noOfUnits;
 	}
-	public void setNoOfUnits(int noOfUnits) {
+	public void setNoOfUnits(BigDecimal noOfUnits) {
 		this.noOfUnits = noOfUnits;
 	}
-	public int getQtyPerUnit() {
+	public BigDecimal getQtyPerUnit() {
 		return qtyPerUnit;
 	}
-	public void setQtyPerUnit(int qtyPerUnit) {
+	public void setQtyPerUnit(BigDecimal qtyPerUnit) {
 		this.qtyPerUnit = qtyPerUnit;
 	}
-	public int getTotalQty() {
+	public BigDecimal getTotalQty() {
 		return totalQty;
 	}
-	public void setTotalQty(int totalQty) {
+	public void setTotalQty(BigDecimal totalQty) {
 		this.totalQty = totalQty;
 	}
-	public int getNoOfOrdered() {
+	public BigDecimal getNoOfOrdered() {
 		return noOfOrdered;
 	}
-	public void setNoOfOrdered(int noOfOrdered) {
+	public void setNoOfOrdered(BigDecimal noOfOrdered) {
 		this.noOfOrdered = noOfOrdered;
 	}
-	public int getReorderLvl() {
+	public BigDecimal getReorderLvl() {
 		return reorderLvl;
 	}
-	public void setReorderLvl(int reorderLvl) {
+	public void setReorderLvl(BigDecimal reorderLvl) {
 		this.reorderLvl = reorderLvl;
 	}
-		
+	
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
+	}	
 }

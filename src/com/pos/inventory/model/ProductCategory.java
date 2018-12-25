@@ -2,10 +2,12 @@ package com.pos.inventory.model;
 
 import java.math.BigDecimal;
 
-public class ProductCategory {
+public class ProductCategory{
 	private BigDecimal id;
 	private String 	   name;
 	private String     desc;
+	
+	
 	public BigDecimal getId() {
 		return id;
 	}
@@ -23,6 +25,11 @@ public class ProductCategory {
 	}
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getName();
 	}
 
 }

@@ -20,10 +20,10 @@ public class ProductDAO {
 		    
 		    stmt.setBigDecimal(1, product.getId());
 		    stmt.setString(2,product.getName());
-		    stmt.setBigDecimal(3,product.getCategoryId());
+		    stmt.setBigDecimal(3,product.getCategory().getId());
 		    stmt.setString(4,product.getDesc());
-		    stmt.setInt(5,product.getCost());
-		    stmt.setInt(6,product.getPrice());
+		    stmt.setBigDecimal(5,product.getCost());
+		    stmt.setBigDecimal(6,product.getPrice());
 		    stmt.execute();
 		    stmt.close();
 		    cxtn.close();
@@ -46,10 +46,10 @@ public class ProductDAO {
 		    	Product product = new Product();
 		    	product.setId(rows.getBigDecimal(1));
 		    	product.setName(rows.getString(2));
-		    	product.setCategoryId(rows.getBigDecimal(3));
+		    	product.setCategory(ProductCategoryDAO.getCategory(rows.getBigDecimal(3)));
 		    	product.setDesc(rows.getString(4));
-		    	product.setCost(rows.getInt(5));
-		    	product.setPrice(rows.getInt(6));
+		    	product.setCost(rows.getBigDecimal(5));
+		    	product.setPrice(rows.getBigDecimal(6));
 
 		    	listOfProducts.add(product);
 		    }
@@ -57,7 +57,7 @@ public class ProductDAO {
 		    listOfProducts.forEach((product)->{
 		    	System.out.println(product.getId());
 		    	System.out.println(product.getName());
-		    	System.out.println(product.getCategoryId());
+		    	System.out.println(product.getCategory());
 		    	System.out.println(product.getDesc());
 		    	System.out.println(product.getCost());
 		    	System.out.println(product.getPrice());
@@ -82,21 +82,21 @@ public class ProductDAO {
 				Connection cxtn =  Database.getDatabaseConnection();
 			    PreparedStatement stmt = cxtn.prepareStatement(sql);
 			    
-			    stmt.setBigDecimal(1, new BigDecimal(2));
+			    stmt.setBigDecimal(1, id);
 			    ResultSet row  = stmt.executeQuery();
 			    
 			    if(row.next()) {
 			    	product.setId(row.getBigDecimal(1));
 			    	product.setName(row.getString(2));
-			    	product.setCategoryId(row.getBigDecimal(3));
+			    	product.setCategory(ProductCategoryDAO.getCategory(row.getBigDecimal(3)));
 			    	product.setDesc(row.getString(4));
-			    	product.setCost(row.getInt(5));
-			    	product.setPrice(row.getInt(6));
+			    	product.setCost(row.getBigDecimal(5));
+			    	product.setPrice(row.getBigDecimal(6));
 			    }
 			    
 			    	System.out.println(product.getId());
 			    	System.out.println(product.getName());
-			    	System.out.println(product.getCategoryId());
+			    	System.out.println(product.getCategory());
 			    	System.out.println(product.getDesc());
 			    	System.out.println(product.getCost());
 			    	System.out.println(product.getPrice());
@@ -124,10 +124,10 @@ public class ProductDAO {
 		    PreparedStatement stmt = cxtn.prepareStatement(sql);
 		    
 		    stmt.setString(1,product.getName());
-		    stmt.setBigDecimal(2,product.getCategoryId());
+		    stmt.setBigDecimal(2,product.getCategory().getId());
 		    stmt.setString(3,product.getDesc());
-		    stmt.setInt(4,product.getCost());
-		    stmt.setInt(5,product.getPrice());
+		    stmt.setBigDecimal(4,product.getCost());
+		    stmt.setBigDecimal(5,product.getPrice());
 		    stmt.setBigDecimal(6, product.getId());
 
 		    stmt.executeUpdate();
@@ -141,10 +141,10 @@ public class ProductDAO {
 	
 	
 	
-	public static void deleteProduct(BigDecimal id) {
+	public static void deleteProduct(Product product) {
 		String sql = "DELETE FROM product "
 				   + "WHERE  pro_cat_id = ?";
 		
-		Database.deleteFromTable(sql, id);
+		Database.deleteFromTable(sql, product.getId());
 	};
 }
