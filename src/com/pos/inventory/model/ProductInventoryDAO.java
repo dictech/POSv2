@@ -9,23 +9,28 @@ import java.util.List;
 
 import com.pos.database.Database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class ProductInventoryDAO {
 	
 	public static void createInventory(ProductInventory inventory) {
-		String sql = "INSERT INTO inventory VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO inventory VALUES(?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			Connection cxtn = Database.getDatabaseConnection();
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
 			
 			stmt.setBigDecimal(1, inventory.getId());
-			stmt.setInt(2, inventory.getProId());
-			stmt.setString(3, inventory.getProDesc());
-			stmt.setInt(4, inventory.getNoOfUnits());
-			stmt.setInt(5, inventory.getQtyPerUnit());
-			stmt.setInt(6, inventory.getTotalQty());
-			stmt.setInt(7, inventory.getNoOfOrdered());
-			stmt.setInt(8, inventory.getReorderLvl());
+			stmt.setBigDecimal(2, inventory.getProduct().getId());
+			stmt.setString(3, inventory.getProduct().getName());
+			stmt.setBigDecimal(4, inventory.getNoOfUnits());
+			stmt.setBigDecimal(5, inventory.getQtyPerUnit());
+			stmt.setBigDecimal(6, inventory.getTotalQty());
+			stmt.setBigDecimal(7, inventory.getNoOfOrdered());
+			stmt.setBigDecimal(8, inventory.getReorderLvl());
+			stmt.setString(9, inventory.getProduct().getName());
+			stmt.execute();
 			stmt.close();
 			cxtn.close();
 			
@@ -45,21 +50,25 @@ public class ProductInventoryDAO {
 				   + "       inv_qty_per_unit= ?,"
 				   + "       inv_total_qty = ?,"
 				   + "       inv_total_ordered = ?,"
-				   + "       inv_reorder_lvl = ? "
+				   + "       inv_reorder_lvl = ? ,"
+				   + "       inv_pro_name = ?"
 				   + "WHERE  inv_id = ?";
 		
 		try {
 			Connection cxtn = Database.getDatabaseConnection();
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
 			
-			stmt.setBigDecimal(1, inventory.getId());
-			stmt.setInt(2, inventory.getProId());
-			stmt.setString(3, inventory.getProDesc());
-			stmt.setInt(4, inventory.getNoOfUnits());
-			stmt.setInt(5, inventory.getQtyPerUnit());
-			stmt.setInt(6, inventory.getTotalQty());
-			stmt.setInt(7, inventory.getNoOfOrdered());
-			stmt.setInt(8, inventory.getReorderLvl());
+			stmt.setBigDecimal(1, inventory.getProduct().getId());
+			stmt.setString(2, inventory.getProDesc());
+			stmt.setBigDecimal(3, inventory.getNoOfUnits());
+			stmt.setBigDecimal(4, inventory.getQtyPerUnit());
+			stmt.setBigDecimal(5, inventory.getTotalQty());
+			stmt.setBigDecimal(6, inventory.getNoOfOrdered());
+			stmt.setBigDecimal(7, inventory.getReorderLvl());
+			stmt.setBigDecimal(8, inventory.getId());
+			stmt.setString(9, inventory.getProduct().getName());
+			
+			stmt.executeUpdate();
 			stmt.close();
 			cxtn.close();
 			
@@ -80,13 +89,14 @@ public class ProductInventoryDAO {
 			while(rows.next()) {
 				ProductInventory inventory =  new ProductInventory();
 				inventory.setId(rows.getBigDecimal(1));
-				inventory.setProId(rows.getInt(2));
+				inventory.setProduct(ProductDAO.getProduct(rows.getBigDecimal(2)));
 				inventory.setProDesc(rows.getString(3));
-				inventory.setNoOfUnits(rows.getInt(4));
-				inventory.setQtyPerUnit(rows.getInt(5));
-				inventory.setTotalQty(rows.getInt(6));
-				inventory.setNoOfOrdered(rows.getInt(7));
-				inventory.setReorderLvl(rows.getInt(8));
+				inventory.setNoOfUnits(rows.getBigDecimal(4));
+				inventory.setQtyPerUnit(rows.getBigDecimal(5));
+				inventory.setTotalQty(rows.getBigDecimal(6));
+				inventory.setNoOfOrdered(rows.getBigDecimal(7));
+				inventory.setReorderLvl(rows.getBigDecimal(8));
+				inventory.setProName(ProductDAO.getProduct(rows.getBigDecimal(2)).getName());
 				listOfInventories.add(inventory);
 			}
 			
@@ -112,13 +122,14 @@ public class ProductInventoryDAO {
 			
 			if(row.next()) {
 				inventory.setId(row.getBigDecimal(1));
-				inventory.setProId(row.getInt(2));
+				inventory.setProduct(ProductDAO.getProduct(row.getBigDecimal(2)));
 				inventory.setProDesc(row.getString(3));
-				inventory.setNoOfUnits(row.getInt(4));
-				inventory.setQtyPerUnit(row.getInt(5));
-				inventory.setTotalQty(row.getInt(6));
-				inventory.setNoOfOrdered(row.getInt(7));
-				inventory.setReorderLvl(row.getInt(8));
+				inventory.setNoOfUnits(row.getBigDecimal(4));
+				inventory.setQtyPerUnit(row.getBigDecimal(5));
+				inventory.setTotalQty(row.getBigDecimal(6));
+				inventory.setNoOfOrdered(row.getBigDecimal(7));
+				inventory.setReorderLvl(row.getBigDecimal(8));
+				inventory.setProName(ProductDAO.getProduct(row.getBigDecimal(2)).getName());
 			}
 			
 		}catch(Exception e) {
@@ -128,9 +139,49 @@ public class ProductInventoryDAO {
 		return inventory;
 	}
    
-	public static void deleteInventory(BigDecimal id) {
+	public static void deleteInventory(ProductInventory inventory) {
 		String sql = "DELETE FROM inventory where inv_id = ?";
-		Database.deleteFromTable(sql, id);
+		Database.deleteFromTable(sql, inventory.getId());
+	}
+
+
+
+	public static ObservableList<ProductInventory> getInventoryByProduct(String productName) {
+		String sql = "SELECT * FROM inventory WHERE inv_desc like ?";
+		List<ProductInventory> listOfInventories = new ArrayList<ProductInventory>();
+		
+		try {
+			Connection cxtn = Database.getDatabaseConnection();
+			PreparedStatement stmt =  cxtn.prepareStatement(sql);
+			
+			stmt.setString(1, "%" + productName + "%");
+			ResultSet row = stmt.executeQuery();
+			
+			while(row.next()) {
+				ProductInventory inventory =  new ProductInventory();
+				inventory.setId(row.getBigDecimal(1));
+				inventory.setProduct(ProductDAO.getProduct(row.getBigDecimal(2)));
+				inventory.setProName(ProductDAO.getProduct(row.getBigDecimal(2)).getName());
+				inventory.setProDesc(row.getString(3));
+				inventory.setNoOfUnits(row.getBigDecimal(4));
+				inventory.setQtyPerUnit(row.getBigDecimal(5));
+				inventory.setTotalQty(row.getBigDecimal(6));
+				inventory.setNoOfOrdered(row.getBigDecimal(7));
+				inventory.setReorderLvl(row.getBigDecimal(8));
+				listOfInventories.add(inventory);
+			}
+			
+			listOfInventories.forEach(i ->{
+				System.out.println(i.getProduct());
+				System.out.println(i.getProDesc());				
+				System.out.println(i.getProName());				
+			});
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return FXCollections.observableArrayList(listOfInventories);
 	}
 
 }

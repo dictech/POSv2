@@ -115,7 +115,7 @@ public class ProductCategoryDAO {
 	}
 	
 	
-	public static void deleteCategory(BigDecimal id) {
+	public static void deleteCategory(ProductCategory category) {
 		String sql = "DELETE FROM product_category "
 				   + "WHERE  cat_id = ?";
 		
@@ -123,7 +123,7 @@ public class ProductCategoryDAO {
 			Connection cxtn =  Database.getDatabaseConnection();
 		    PreparedStatement stmt = cxtn.prepareStatement(sql);
 		    
-		    stmt.setBigDecimal(1,id);
+		    stmt.setBigDecimal(1,category.getId());
 		    stmt.execute();
 		    stmt.close();
 		    cxtn.close();

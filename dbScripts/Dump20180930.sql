@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `posv2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `posv2`;
+CREATE DATABASE  IF NOT EXISTS `POSv2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `POSv2`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: posv2
+-- Host: localhost    Database: POSv2
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `account` (
   PRIMARY KEY (`acct_id`),
   KEY `acct_attndt_fk_idx` (`acct_attdt_id`),
   CONSTRAINT `acct_attndt_fk` FOREIGN KEY (`acct_attdt_id`) REFERENCES `attendant` (`attdt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `attendance` (
   PRIMARY KEY (`attdnc_id`),
   KEY `attndce_attdnt_fk_idx` (`attdnc_attdnt_id`),
   CONSTRAINT `attndce_attdnt_fk` FOREIGN KEY (`attdnc_attdnt_id`) REFERENCES `attendant` (`attdt_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `attendant` (
   `attdt_dt_emp` date DEFAULT NULL,
   `attdt_position` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`attdt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `branch` (
   `branchState` varchar(50) DEFAULT NULL,
   `branchLGA` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`branchID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `inventory` (
   PRIMARY KEY (`inv_id`),
   KEY `inv_pro_id_fk_idx` (`inv_pro_id`),
   CONSTRAINT `inv_pro_id_fk` FOREIGN KEY (`inv_pro_id`) REFERENCES `product` (`pro_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `order` (
   `order_no` varchar(45) NOT NULL,
   `order_price` int(11) NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `organization` (
   `org_email` varchar(45) NOT NULL,
   `org_logo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`org_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `payment` (
   KEY `pay_order_id_fk_idx` (`pay_order_id`),
   CONSTRAINT `pay_attdt_id_fk` FOREIGN KEY (`pay_attdt_id`) REFERENCES `attendant` (`attdt_id`),
   CONSTRAINT `pay_order_id_fk` FOREIGN KEY (`pay_order_id`) REFERENCES `order` (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +193,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`pro_id`),
   KEY `pro_cat_id_fk_idx` (`pro_cat_id`),
   CONSTRAINT `pro_cat_id_fk` FOREIGN KEY (`pro_cat_id`) REFERENCES `product_category` (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,7 +208,7 @@ CREATE TABLE `product_category` (
   `cat_name` varchar(45) NOT NULL,
   `cat_desc` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +228,7 @@ CREATE TABLE `purchases` (
   KEY `pur_order_id_idx` (`pur_order_id`),
   CONSTRAINT `pur_item_fk` FOREIGN KEY (`pur_pro_id`) REFERENCES `product` (`pro_id`),
   CONSTRAINT `pur_order_id` FOREIGN KEY (`pur_order_id`) REFERENCES `order` (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +246,7 @@ CREATE TABLE `shop` (
   `shop_rc_no` varchar(15) DEFAULT NULL,
   `shop_owner` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`shop_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

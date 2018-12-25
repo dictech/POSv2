@@ -3,12 +3,13 @@ package com.pos.inventory.model;
 import java.math.BigDecimal;
 
 public class Product {
+	
 	private BigDecimal id;
 	private String name;
-	private BigDecimal categoryId;
+	private ProductCategory category;
 	private String desc;
-	private int cost;
-	private int price;
+	private BigDecimal cost;
+	private BigDecimal price;
 	
 	public String getName() {
 		return name;
@@ -17,11 +18,11 @@ public class Product {
 		this.name = name;
 	}
 	
-	public BigDecimal getCategoryId() {
-		return categoryId;
+	public ProductCategory getCategory() {
+		return category;
 	}
-	public void setCategoryId(BigDecimal categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(ProductCategory category) {
+		this.category = category;
 	}
 	public String getDesc() {
 		return desc;
@@ -29,16 +30,16 @@ public class Product {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	public int getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
-	public void setCost(int cost) {
+	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public BigDecimal getId() {
@@ -46,5 +47,10 @@ public class Product {
 	}
 	public void setId(BigDecimal id) {
 		this.id = id;
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
 	}
 }
