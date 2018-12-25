@@ -2,6 +2,8 @@ package com.pos.org.controller;
 
 import java.io.IOException;
 
+import com.pos.account.controller.CreateActProfileCtrl;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,14 +19,17 @@ public class DashboardCtrl {
     private AnchorPane mainPane;
 
     @FXML
-    void createNewAttendant(ActionEvent event) {
+    void createNewAttendant(ActionEvent event)throws Exception {
 
-    	   
+    	AnchorPane attendantList = FXMLLoader.load(getClass().getResource("../../account/view/createAttendant.fxml"));
+   	    this.mainPane.getChildren().setAll(attendantList);
     }
 
     @FXML
-    void editAttendant(ActionEvent event) {
-
+    void editAttendant(ActionEvent event) throws Exception{
+          
+    
+   	   
     }
 
     @FXML
@@ -35,7 +40,7 @@ public class DashboardCtrl {
     @FXML
     void viewAttendant(ActionEvent event) throws Exception{
        
-    	AnchorPane attendantList = FXMLLoader.load(getClass().getResource("../../account/view/CreateActProfile.fxml"));
+    	AnchorPane attendantList = FXMLLoader.load(getClass().getResource("../../account/view/ViewAttdList.fxml"));
     	 this.mainPane.getChildren().setAll(attendantList);
     	   
     }
@@ -73,4 +78,8 @@ public class DashboardCtrl {
     	this.mainPane.getChildren().setAll(getPane("../../inventory/view/inventoryView.fxml"));
     }
 
+    
+    
+   
+      
 }

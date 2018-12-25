@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="index" opacity="0.91" prefHeight="583.0" prefWidth="1080.0" style="-fx-background-color: #e09b0d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.CreateActProfileCtrl">
+   <children>
+      <HBox fx:id="header" layoutX="11.0" layoutY="9.0" prefHeight="47.0" prefWidth="1055.0" style="-fx-background-color: #020529;">
+         <children>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #020529;" text="Attendants " textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <TableView fx:id="attendant_table" layoutX="11.0" layoutY="61.0" onMouseClicked="" prefHeight="514.0" prefWidth="1055.0">
+        <columns>
+          <TableColumn fx:id="column_lName" prefWidth="98.0" text="Last Name" />
+          <TableColumn fx:id="column_fName" prefWidth="101.0" text="First Name" />
+            <TableColumn fx:id="column_mName" prefWidth="99.0" text="Middle Name" />
+            <TableColumn fx:id="column_address" prefWidth="100.0" text="Address" />
+            <TableColumn fx:id="column_mobile" minWidth="9.0" prefWidth="96.0" text="Phone" />
+            <TableColumn fx:id="column_email" prefWidth="132.0" text="Email" />
+            <TableColumn fx:id="column_position" prefWidth="116.0" text="position" />
+            <TableColumn fx:id="column_dob" prefWidth="118.0" text="date of birth" />
+            <TableColumn fx:id="column_doe" prefWidth="110.0" text="date employed" />
+            <TableColumn fx:id="column_gender" prefWidth="84.0" text="gender" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

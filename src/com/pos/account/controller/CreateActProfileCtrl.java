@@ -5,16 +5,23 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.pos.account.model.Attendant;
 import com.pos.account.model.AttendantDAO;
 import com.pos.database.Database;
+import com.pos.org.model.Organization;
+import com.pos.org.model.OrganizationDAO;
+import com.pos.org.model.Shop;
+import com.pos.org.model.ShopDAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -22,13 +29,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class CreateActProfileCtrl implements Initializable{
 
-	private BigDecimal id;
+
+	 
     @FXML
     private AnchorPane index;
 
@@ -45,7 +54,11 @@ public class CreateActProfileCtrl implements Initializable{
     private ImageView company_logo;
 
     @FXML
-    private Pane body;
+    private Pane actProfileCntHolder;
+    
+
+    @FXML
+    private Button save_change_btn;
 
     @FXML
     private Pane body_items;
@@ -82,118 +95,84 @@ public class CreateActProfileCtrl implements Initializable{
 
     @FXML
     private TextField position;
+
+    @FXML
+    private TableView<Attendant> attendant_table;
+
+    @FXML
+    private TableColumn<Attendant, String> column_fName;
+
+    @FXML
+    private TableColumn<Attendant, String> column_lName;
     
     @FXML
-    private TableView<Attendant> tableView;
+    private TableColumn<Attendant, String> column_mName;
 
     @FXML
-    private TableColumn<Attendant, BigDecimal> columnID;
+    private TableColumn<Attendant, String> column_address;
 
     @FXML
-    private TableColumn<Attendant, String> columnFname;
+    private TableColumn<Attendant, String> column_mobile;
 
     @FXML
-    private TableColumn<Attendant, String> columnMname;
+    private TableColumn<Attendant, String> column_email;
 
     @FXML
-    private TableColumn<Attendant, String> columnLname;
+    private TableColumn<Attendant, String> column_position;
 
     @FXML
-    private TableColumn<Attendant, String> columnGender;
+    private TableColumn<Attendant, String> column_dob;
 
     @FXML
-    private TableColumn<Attendant, String> columnMobile;
+    private TableColumn<Attendant, String> column_doe;
 
     @FXML
-    private TableColumn<Attendant, String> columnEmail;
+    private TableColumn<Attendant, String> column_gender;
 
-    @FXML
-    private TableColumn<Attendant, String> columnDob;
-
-    @FXML
-    private TableColumn<Attendant, String> columnDoe;
-
-    @FXML
-    private TableColumn<Attendant, String> columnPos;
-
-    @FXML
-    private TableColumn<Attendant, String> columnAddr;
-
-    
-    private Connection myConnect = null;
-    private PreparedStatement prepareStatement = null;
-    private ResultSet result = null;
-	
+   
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 
-
-	    String sql = " SELECT * FROM posv2.attendant;";
-        try {
-             this.myConnect = Database.getDatabaseConnection();
-             this.result = myConnect.createStatement().executeQuery(sql);
-             
-             while(result.next()) {
-
-        ObservableList<Attendant> staffs = FXCollections.observableArrayList();
-        
-        Attendant attendant = new Attendant();
-        attendant.setId(result.getBigDecimal(1));
-        attendant.setfName(result.getString(2));
-        attendant.setmName(result.getString(3));
-        attendant.setSurname(result.getString(4));
-        attendant.setGender(result.getString(5));
-        attendant.setDob(result.getDate(6));
-        attendant.setAddress(result.getString(7));
-        attendant.setPhoneNo(result.getString(8));
-        attendant.setEmail(result.getString(9));
-        attendant.setDoe(result.getDate(10));
-        attendant.setPosition(result.getString(11));
-     
-        
-        PropertyValueFactory<Attendant, String> test = new PropertyValueFactory<Attendant, String>("fName");
-        columnID.setCellValueFactory(new PropertyValueFactory<Attendant, BigDecimal>("id"));
-        columnFname.setCellValueFactory(test);
-        columnMname.setCellValueFactory(new PropertyValueFactory<Attendant, String>("mName"));
-        columnLname.setCellValueFactory(new PropertyValueFactory<Attendant, String>("surname"));
-        columnGender.setCellValueFactory(new PropertyValueFactory<Attendant, String>("gender"));
-        columnAddr.setCellValueFactory(new PropertyValueFactory<Attendant, String>("address"));
-        columnDob.setCellValueFactory(new PropertyValueFactory<Attendant, String>("dob"));
-        columnPos.setCellValueFactory(new PropertyValueFactory<Attendant, String>("position"));
-        columnDoe.setCellValueFactory(new PropertyValueFactory<Attendant, String>("doe"));
-        columnMobile.setCellValueFactory(new PropertyValueFactory<Attendant, String>("phoneNo"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory<Attendant, String>("email"));
-        
-         staffs.addAll(AttendantDAO.getAllAttendants());
-         tableView.setItems(staffs);
-         tableView.getColumns().clear();
-
-         
-         tableView.getColumns().addAll(columnFname,columnMname,columnLname);
-
-         
-         Attendant attd = tableView.getSelectionModel().getSelectedItem();
-         
-         
-         
-         this.id = result.getBigDecimal(1);
-           this.result.close();
-           this.myConnect.close();
-             }
-             
-             
-        }catch(Exception error) {
-     	   
-     	   error.getMessage();
-        }
+    	ObservableList<Attendant> staffs = FXCollections.observableArrayList(AttendantDAO.getAllAttendants());
+    	this.attendant_table.setItems(staffs);
+    	
+    	this.attendant_table.getColumns().clear();
+    	this.column_fName.setCellValueFactory(new PropertyValueFactory<Attendant, String>("fName"));
+    	this.column_lName.setCellValueFactory(new PropertyValueFactory<Attendant, String>("surname"));
+    	this.column_mName.setCellValueFactory(new PropertyValueFactory<Attendant, String>("mName"));
+    	this.column_address.setCellValueFactory(new PropertyValueFactory<Attendant, String>("address"));
+    	this.column_email.setCellValueFactory(new PropertyValueFactory<Attendant, String>("email"));
+    	this.column_gender.setCellValueFactory(new PropertyValueFactory<Attendant, String>("gender"));
+    	this.column_mobile.setCellValueFactory(new PropertyValueFactory<Attendant, String>("phoneNo"));
+    	this.column_position.setCellValueFactory(new PropertyValueFactory<Attendant, String>("position"));
+    	this.column_dob.setCellValueFactory(new PropertyValueFactory<Attendant, String>("dob"));
+    	this.column_doe.setCellValueFactory(new PropertyValueFactory<Attendant, String>("doe"));
+    	this.attendant_table.getColumns().addAll(this.column_fName,this.column_lName,this.column_mName,
+    			this.column_address,this.column_email,this.column_gender,this.column_mobile,this.column_dob,
+    			this.column_doe,this.column_position);
+		
 	}
 
-	
-	
+    @FXML
+    void getAttendantInfo(MouseEvent event) {
+
+    	    this.attendant_table.getSelectionModel().getSelectedItem();
+    	    fname.setText(this.attendant_table.getSelectionModel().getSelectedItem().getfName());
+    	    lname.setText(this.attendant_table.getSelectionModel().getSelectedItem().getSurname());
+    	    mname.setText(this.attendant_table.getSelectionModel().getSelectedItem().getmName());
+    	    addr.setText(this.attendant_table.getSelectionModel().getSelectedItem().getAddress());
+    	    gender.setText(this.attendant_table.getSelectionModel().getSelectedItem().getGender());
+    	    email.setText(this.attendant_table.getSelectionModel().getSelectedItem().getEmail());
+    	    mobile.setText(this.attendant_table.getSelectionModel().getSelectedItem().getPhoneNo());
+    	    dob.setText(this.attendant_table.getSelectionModel().getSelectedItem().getDob().toString());
+    	    doe.setText(this.attendant_table.getSelectionModel().getSelectedItem().getDoe().toString());
+    	    position.setText(this.attendant_table.getSelectionModel().getSelectedItem().getPosition());
+    	    
+    }
     
-    
-    
+
     
     
 }
