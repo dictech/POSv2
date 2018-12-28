@@ -100,7 +100,7 @@ public class AttendanceDAO {
 	            
 		      }
 	   
-		      //code for readAttendance Ends here.
+		
 		      
 		  
 		      public static  Attendance checkAttendance(BigDecimal id, Date date, String firstName,String lastName) {

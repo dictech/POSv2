@@ -73,7 +73,7 @@ public class BranchDAO {
 	    	 		+ " 		branchState=?,"
 	    	 		+ " 		branchLGA=?"
 	    	 		+ " WHERE branchID=?");
-	    	   // prepared statement for Branch.
+	 
 	    	       prepareStatement.setString(1, branch.getBranchName());
 	    	        prepareStatement.setString(2, branch.getBranchAddr());
 	    	         prepareStatement.setString(3, branch.getBranchState());

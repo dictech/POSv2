@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="index" opacity="0.91" prefHeight="583.0" prefWidth="1080.0" style="-fx-background-color: #e09b0d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.EditAttendantCtrl">
+<AnchorPane fx:id="index" opacity="0.91" prefHeight="583.0" prefWidth="1080.0" style="-fx-background-color: #e09b0d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.EditAttendantCtrl">
    <children>
       <HBox fx:id="header" layoutX="11.0" layoutY="9.0" prefHeight="47.0" prefWidth="478.0" style="-fx-background-color: #020529;">
          <children>
@@ -23,14 +23,19 @@
             </Label>
          </children>
       </HBox>
-      <Pane fx:id="head" layoutX="508.0" layoutY="8.0" prefHeight="143.0" prefWidth="565.0" style="-fx-background-color: #726856;">
+      <Pane fx:id="head" layoutX="508.0" layoutY="8.0" prefHeight="143.0" prefWidth="565.0" style="-fx-background-color: #fff;">
          <children>
-            <AnchorPane layoutX="4.0" layoutY="5.0" opacity="0.89" prefHeight="127.0" prefWidth="144.0" style="-fx-border-color: #020529; -fx-border-width: 3;">
+            <AnchorPane layoutX="4.0" layoutY="5.0" opacity="0.89" prefHeight="133.0" prefWidth="162.0" style="-fx-border-color: #020529; -fx-border-width: 3;">
                <children>
-                  <ImageView fx:id="profile_image" fitHeight="122.0" fitWidth="132.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
+                  <ImageView fx:id="profile_image" fitHeight="122.0" fitWidth="150.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../../../../Assets/images/54091415-icono-de-la-barra-de-la-trama-de-usuario-para-el-diseño-de-software-el-estilo-es-el-símbolo-gradiente-ico.jpg" />
                      </image></ImageView>
+                  <Button fx:id="change_photo_btn" layoutX="13.0" layoutY="102.0" mnemonicParsing="false" onAction="#change_photo" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #e09b0d;" text="change photo" textFill="#020529">
+                     <font>
+                        <Font name="Lucida Sans Demibold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <ImageView fx:id="company_logo" fitHeight="41.0" fitWidth="86.0" layoutX="465.0" layoutY="14.0" pickOnBounds="true">
@@ -41,7 +46,7 @@
          </children></Pane>
       <Pane fx:id="actProfileCntHolder" layoutX="502.0" layoutY="161.0" prefHeight="412.0" prefWidth="572.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 6;">
          <children>
-            <Pane fx:id="body_items" layoutX="116.0" layoutY="5.0" prefHeight="346.0" prefWidth="450.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 7;">
+            <Pane fx:id="body_items" layoutX="116.0" layoutY="5.0" prefHeight="405.0" prefWidth="450.0" style="-fx-background-color: #020529; -fx-background-radius: 7; -fx-border-radius: 7;">
                <children>
                   <Label fx:id="acct_info" layoutX="16.0" layoutY="24.0" prefHeight="24.0" prefWidth="172.0" text="Attendant identity" textFill="#e09b0d">
                      <font>
@@ -160,7 +165,7 @@
                         </TextField>
                      </children>
                   </Pane>
-                  <Button fx:id="save_change_btn" layoutX="310.0" layoutY="20.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #e09b0d;" text="Save Changes" textFill="#020529" visible="false">
+                  <Button fx:id="save_change_btn" layoutX="310.0" layoutY="20.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #e09b0d;" text="Save Changes" textFill="#020529" visible="false">
                      <font>
                         <Font name="Lucida Sans Demibold" size="12.0" />
                      </font>
@@ -195,20 +200,27 @@
                   </TextField>
                </children>
             </Pane>
+            <TextField fx:id="id" layoutX="14.0" layoutY="27.0" opacity="0.0" prefHeight="28.0" prefWidth="77.0">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="14.0" />
+               </font>
+            </TextField>
          </children>
       </Pane>
       <TableView fx:id="attendant_table" layoutX="11.0" layoutY="61.0" onMouseClicked="#getAttendantInfo" prefHeight="514.0" prefWidth="478.0">
         <columns>
           <TableColumn fx:id="column_lName" prefWidth="93.0" text="Last Name" />
-          <TableColumn fx:id="column_fName" prefWidth="100.0" text="First Name" visible="false" />
-            <TableColumn fx:id="column_mName" prefWidth="63.0" text="mN" visible="false" />
-            <TableColumn fx:id="column_address" prefWidth="19.0" text="aD" visible="false" />
-            <TableColumn fx:id="column_mobile" minWidth="9.0" prefWidth="10.0" text="ph" visible="false" />
-            <TableColumn fx:id="column_email" prefWidth="33.0" text="em" visible="false" />
-            <TableColumn fx:id="column_position" prefWidth="37.0" text="pos" visible="false" />
-            <TableColumn fx:id="column_dob" prefWidth="32.0" text="dob" visible="false" />
-            <TableColumn fx:id="column_doe" prefWidth="40.0" text="doe" visible="false" />
-            <TableColumn fx:id="column_gender" prefWidth="46.0" text="gen" visible="false" />
+          <TableColumn fx:id="column_mName" prefWidth="89.0" text="Middle Name" />
+            <TableColumn fx:id="column_fName" prefWidth="33.0" text="Fast Name" visible="false" />
+            <TableColumn fx:id="column_address" prefWidth="27.0" text="aD" visible="false" />
+            <TableColumn fx:id="column_mobile" minWidth="9.0" prefWidth="25.0" text="ph" visible="false" />
+            <TableColumn fx:id="column_email" prefWidth="18.0" text="em" visible="false" />
+            <TableColumn fx:id="column_position" prefWidth="30.0" text="pos" visible="false" />
+            <TableColumn fx:id="column_dob" prefWidth="44.0" text="dob" visible="false" />
+            <TableColumn fx:id="column_doe" prefWidth="26.0" text="doe" visible="false" />
+            <TableColumn fx:id="column_gender" prefWidth="43.0" text="gen" visible="false" />
+            <TableColumn fx:id="column_id" prefWidth="21.0" text="Id" visible="false" />
+            <TableColumn fx:id="column_image" prefWidth="25.0" text="im" visible="false" />
         </columns>
       </TableView>
    </children>

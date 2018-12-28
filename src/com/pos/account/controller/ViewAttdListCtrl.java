@@ -34,7 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-public class CreateActProfileCtrl implements Initializable{
+public class ViewAttdListCtrl implements Initializable{
 
 
 	 
@@ -154,24 +154,6 @@ public class CreateActProfileCtrl implements Initializable{
     			this.column_doe,this.column_position);
 		
 	}
-
-    @FXML
-    void getAttendantInfo(MouseEvent event) {
-
-    	    this.attendant_table.getSelectionModel().getSelectedItem();
-    	    fname.setText(this.attendant_table.getSelectionModel().getSelectedItem().getfName());
-    	    lname.setText(this.attendant_table.getSelectionModel().getSelectedItem().getSurname());
-    	    mname.setText(this.attendant_table.getSelectionModel().getSelectedItem().getmName());
-    	    addr.setText(this.attendant_table.getSelectionModel().getSelectedItem().getAddress());
-    	    gender.setText(this.attendant_table.getSelectionModel().getSelectedItem().getGender());
-    	    email.setText(this.attendant_table.getSelectionModel().getSelectedItem().getEmail());
-    	    mobile.setText(this.attendant_table.getSelectionModel().getSelectedItem().getPhoneNo());
-    	    dob.setText(this.attendant_table.getSelectionModel().getSelectedItem().getDob().toString());
-    	    doe.setText(this.attendant_table.getSelectionModel().getSelectedItem().getDoe().toString());
-    	    position.setText(this.attendant_table.getSelectionModel().getSelectedItem().getPosition());
-    	    
-    }
-    
 
     
     

@@ -2,7 +2,10 @@ package com.pos.account.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.time.LocalDate;
+import javafx.scene.image.Image;
+
+
+
 
 public class Attendant {
 	
@@ -16,6 +19,8 @@ public class Attendant {
 	 private String phoneNo; 
 	 private String email; 
 	 private  Date   doe; 
+	 private Image image;
+	 
 	 
 	 public Date getDoe() {
 		return doe;
@@ -89,7 +94,15 @@ public class Attendant {
 	public void setPosition(String position) {
 		this.position = position;
 	}
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
+	}
 
+	
+	
 }
 
 	
