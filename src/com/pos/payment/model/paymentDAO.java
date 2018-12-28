@@ -1,4 +1,4 @@
-package com.pos.sales.model;
+package com.pos.payment.model;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -9,9 +9,15 @@ import java.util.List;
 
 import com.pos.account.model.AttendantDAO;
 import com.pos.database.Database;
+import com.pos.order.model.OrderDAO;
 
 public class paymentDAO {
-	public static void createPayment(Payment payment) {
+	
+	public static int executionStatus;
+	public static boolean status;
+	
+	public static boolean createPayment(Payment payment) {
+		
 		String sql = "INSERT INTO payment VALUES(?,?,?,?,?,?,?,?,?)";
 		
 		try {
@@ -26,14 +32,26 @@ public class paymentDAO {
 		    stmt.setString(7,payment.getType());
 		    stmt.setDate(8,payment.getDate());
 		    stmt.setString(9,payment.getTime());
-		    stmt.execute();
+		    
+		    executionStatus = stmt.executeUpdate();
+		    
+		    if(executionStatus > 0){
+		        status =  true;
+		      }else{
+		        status = false;
+		        }
 		    
 		    Database.closeDatabaseConnection();
 		    
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		return status;
 	}
+	
+	
+	
 	
 	public static List<Payment> getAllPayments() {
 		 List<Payment> listOfPayments =  new ArrayList<Payment>();
@@ -93,7 +111,7 @@ public class paymentDAO {
 		return payment;
 	}
 	
-	public static void updatePayment(Payment payment) {
+	public static boolean updatePayment(Payment payment) {
 		String sql = "UPDATE payment "
 				   + "SET    pay_attdt_id = ?,"
 				   + "       pay_order_id = ?,"
@@ -116,12 +134,20 @@ public class paymentDAO {
 			stmt.setDate(7, payment.getDate());
 			stmt.setString(8, payment.getTime());
 			stmt.setBigDecimal(9, payment.getId());
-			stmt.executeUpdate();
+			executionStatus = stmt.executeUpdate();
 			
 			stmt.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		if(executionStatus > 0) {
+			status = true;
+		}else {
+			status = false;
+		}
+		
+		return status;
 	}
 	
 	public static void deletePayment(BigDecimal id) {

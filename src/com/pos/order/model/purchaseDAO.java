@@ -1,4 +1,4 @@
-package com.pos.sales.model;
+package com.pos.order.model;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -17,8 +17,9 @@ public class purchaseDAO {
 		try {
 			PreparedStatement stmt = Database.getConnectedPreparedStatement(sql);
 			stmt.setBigDecimal(1, purchase.getId());
-			stmt.setBigDecimal(2, purchase.getOrder().getId());
-			stmt.setBigDecimal(3, purchase.getProduct().getId());
+			stmt.setBigDecimal(2, purchase.getProduct().getId());
+			stmt.setInt(3, purchase.getQty());
+			stmt.setInt(4, purchase.getTotalPriceOfPurchase());
 			stmt.execute();
 			
 			stmt.close();
@@ -37,8 +38,9 @@ public class purchaseDAO {
 			while(records.next()) {
 				Purchase purchase =  new Purchase();
 				purchase.setId(records.getBigDecimal(1));
-				purchase.setOrder(OrderDAO.getOrder(records.getBigDecimal(2)));
-				purchase.setProduct(ProductDAO.getProduct(records.getBigDecimal(3)));
+				purchase.setProduct(ProductDAO.getProduct(records.getBigDecimal(2)));
+				purchase.setQty(records.getInt(3));
+				purchase.setTotalPriceOfPurchase(records.getInt(4));
 				listOfPurchases.add(purchase);
 			}
 			
@@ -58,10 +60,11 @@ public class purchaseDAO {
 			stmt.setBigDecimal(1, id);
 			ResultSet records  = stmt.executeQuery();
 			
-			if(records.next()) {
+			if(records.next()) {				
 				purchase.setId(records.getBigDecimal(1));
-				purchase.setOrder(OrderDAO.getOrder(records.getBigDecimal(2)));
-				purchase.setProduct(ProductDAO.getProduct(records.getBigDecimal(3)));
+				purchase.setProduct(ProductDAO.getProduct(records.getBigDecimal(2)));
+				purchase.setQty(records.getInt(3));
+				purchase.setTotalPriceOfPurchase(records.getInt(4));
 			}
 			
 		}catch(Exception e) {
@@ -72,16 +75,18 @@ public class purchaseDAO {
 	}
 	
 	
-	public static void getPurchase(Purchase purchase){
+	public static void updatePurchase(Purchase purchase){
 		String sql = "UPDATE purchases "
-				   + "SET    pur_order_id = ?,"
-				   + "       pur_pro_id = ? "
-				   + "AND    pur_id = ?";
+				   + "SET    pur_pro_id = ?,"
+				   + "       pur_qty = ?,"
+				   + "       pur_tot_price = ? "
+				   + "WHERE  pur_id = ?";
 		try {
 			PreparedStatement stmt =  Database.getConnectedPreparedStatement(sql);
 			stmt.setBigDecimal(1, purchase.getProduct().getId());
-			stmt.setBigDecimal(2, purchase.getOrder().getId());
-			stmt.setBigDecimal(3, purchase.getId());
+			stmt.setInt(2, purchase.getQty());
+			stmt.setInt(3, purchase.getTotalPriceOfPurchase());
+			stmt.setBigDecimal(4, purchase.getId());
 			
 			stmt.executeUpdate();
 			

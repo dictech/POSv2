@@ -1,0 +1,2 @@
+ALTER TABLE `POSv2`.`order` 
+ADD COLUMN `order_attdt_id` INT(11) NOT NULL AFTER `order_price`;

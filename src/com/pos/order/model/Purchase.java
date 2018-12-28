@@ -1,4 +1,4 @@
-package com.pos.sales.model;
+package com.pos.order.model;
 
 import java.math.BigDecimal;
 
@@ -6,8 +6,9 @@ import com.pos.inventory.model.Product;
 
 public class Purchase {
 	private BigDecimal id;
-	private Order order;
 	private Product product;
+	private int qty;
+	private int totalPriceOfPurchase;
 	
 	
 	public BigDecimal getId() {
@@ -16,17 +17,28 @@ public class Purchase {
 	public void setId(BigDecimal id) {
 		this.id = id;
 	}
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+	
 	public Product getProduct() {
 		return product;
 	}
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	
+	
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	
+	public int getTotalPriceOfPurchase() {
+		return totalPriceOfPurchase;
+	}
+	
+	public void setTotalPriceOfPurchase(int totalPriceOfPurchase) {
+		this.totalPriceOfPurchase = totalPriceOfPurchase;
 	}
 	
 	

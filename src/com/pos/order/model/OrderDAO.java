@@ -1,4 +1,4 @@
-package com.pos.sales.model;
+package com.pos.order.model;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -20,8 +20,8 @@ public class OrderDAO {
 			stmt.setBigDecimal(1, order.getId());
 			stmt.setDate(2, order.getDate());
 			stmt.setString(3,order.getTime());
-			stmt.setString(4,order.getNo());
-			stmt.setInt(5, order.getPrice());
+			stmt.setString(4,order.getCode());
+			stmt.setBigDecimal(5, order.getTotalPriceOfOrder());
 			stmt.execute();
 			
 		}catch(Exception e) {
@@ -42,8 +42,8 @@ public class OrderDAO {
 				order.setId(records.getBigDecimal(1));
 				order.setDate(records.getDate(2));
 				order.setTime(records.getString(3));
-				order.setNo(records.getString(4));
-				order.setPrice(records.getInt(5));
+				order.setCode(records.getString(4));
+				order.setTotalPriceOfOrder(records.getBigDecimal(5));
 				listOfOrders.add(order);
 			}
 			
@@ -69,8 +69,8 @@ public class OrderDAO {
 				order.setId(record.getBigDecimal(1));
 				order.setDate(record.getDate(2));
 				order.setTime(record.getString(3));
-				order.setNo(record.getString(4));
-				order.setPrice(record.getInt(5));
+				order.setCode(record.getString(4));
+				order.setTotalPriceOfOrder(record.getBigDecimal(5));
 			}
 			
 		}catch(Exception e) {
@@ -94,8 +94,8 @@ public class OrderDAO {
 			
 			stmt.setDate(1, order.getDate());
 			stmt.setString(2, order.getTime());
-			stmt.setString(3,order.getNo());
-			stmt.setInt(4, order.getPrice());
+			stmt.setString(3,order.getCode());
+			stmt.setBigDecimal(4, order.getTotalPriceOfOrder());
 			stmt.setBigDecimal(5,order.getId());
 		    stmt.executeUpdate();
 		    

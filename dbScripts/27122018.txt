@@ -1,0 +1,8 @@
+ALTER TABLE `POSv2`.`purchases` 
+DROP FOREIGN KEY `pur_order_id`;
+ALTER TABLE `POSv2`.`purchases` 
+DROP COLUMN `pur_order_id`,
+ADD COLUMN `pur_tot_price` INT(11) NOT NULL AFTER `pur_qty`,
+CHANGE COLUMN `pur_price` `pur_qty` INT(11) NOT NULL ,
+DROP INDEX `pur_order_id_idx` ;
+;

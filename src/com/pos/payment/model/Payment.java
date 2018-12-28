@@ -1,9 +1,10 @@
-package com.pos.sales.model;
+package com.pos.payment.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
 import com.pos.account.model.Attendant;
+import com.pos.order.model.Order;
 
 public class Payment {
 	private BigDecimal id;
