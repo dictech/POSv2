@@ -44,7 +44,9 @@ DROP TABLE IF EXISTS `attendance`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `attendance` (
   `attdnc_id` int(11) NOT NULL AUTO_INCREMENT,
-  `attdnc_attdnt_id` int(11) NOT NULL,
+  `attdnc_attdnt_id` int(11) NOT NULL,  
+  `attdnc_attdnt_firstName` varchar(45) DEFAULT NULL,
+  `attdnc_attdnt_lastName` varchar(45) DEFAULT NULL,
   `attdnc_signin_time` varchar(45) DEFAULT NULL,
   `attdnc_signout_time` varchar(45) DEFAULT NULL,
   `attdnc_date` varchar(45) DEFAULT NULL,

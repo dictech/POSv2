@@ -25,7 +25,7 @@ public class paymentDAO {
 		    
 		    stmt.setBigDecimal(1, payment.getId());
 		    stmt.setBigDecimal(2,payment.getRecipient().getId());
-		    stmt.setBigDecimal(3,payment.getOrder().getId());
+		    stmt.setBigDecimal(3,payment.getOrder().getOrder_id());
 		    stmt.setInt(4, payment.getPrice());
 		    stmt.setInt(5,payment.getAmtPaid());
 		    stmt.setInt(6,payment.getBalance());
@@ -126,7 +126,7 @@ public class paymentDAO {
 		try {
 			PreparedStatement stmt =  Database.getConnectedPreparedStatement(sql);
 			stmt.setBigDecimal(1, payment.getRecipient().getId());
-			stmt.setBigDecimal(2, payment.getOrder().getId());
+			stmt.setBigDecimal(2, payment.getOrder().getOrder_id());
 			stmt.setInt(3, payment.getPrice());
 			stmt.setInt(4, payment.getAmtPaid());
 			stmt.setInt(5, payment.getBalance());

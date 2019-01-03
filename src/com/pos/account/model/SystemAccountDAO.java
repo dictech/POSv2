@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.sql.Date;
 
-import com.pos.account.controller.LoginController;
+import com.pos.account.controller.LoginCtrl;
 import com.pos.database.Database;
 
 import javafx.event.ActionEvent;
@@ -32,8 +32,12 @@ public class SystemAccountDAO {
 	   private static PreparedStatement prepareStatement;
 	   
 	   
-	   
-	   public static void createSystemAccount(SystemAccount act)throws SQLException {
+
+
+
+
+
+	public static void createSystemAccount(SystemAccount act)throws SQLException {
 		        
 		      try {
 		    	  String sql = "INSERT INTO account ("
@@ -145,12 +149,12 @@ public class SystemAccountDAO {
 		    	   result = prepareStatement.executeQuery();
 		    	     
 		    	      if(result.next()) {
-
+		    	    	  
+		    	    	 
 		    	    	    Attendant attendant = AttendantDAO.getAttendant(result.getBigDecimal(1)); 
 		    	    	    System.out.println("Welcome " + attendant.getfName() + " " + attendant.getSurname());
 		    	    	    
-		    	    	     LoginController home = new LoginController();
-		    	    	     home.homePage(event);
+		    	    	   
 		    	    	     AttendanceDAO.checkAttendance(attendant.getId(),
 		    	    		 Date.valueOf(LocalDate.now()), attendant.getfName(), attendant.getSurname());
     	                        }

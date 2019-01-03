@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.pos.account.model.SystemAccountDAO;
+import com.pos.org.controller.DashboardCtrl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController implements Initializable {
+public class LoginCtrl implements Initializable {
 	
 	   @FXML
 	    private TextField userName;
@@ -29,8 +30,32 @@ public class LoginController implements Initializable {
 	    @FXML
 	    private Button btnLogIn;
 
+	     private  String u_name;
+	     
+	     private String pass;
+	    
+	     
 
-	    @FXML
+	    public String getU_name() {
+			return u_name;
+		}
+
+		public void setU_name(String u_name) {
+			this.u_name = u_name;
+		}
+
+		public String getPass() {
+			return pass;
+		}
+
+
+		public void setPass(String pass) {
+			this.pass = pass;
+		}
+
+		
+		
+		@FXML
 	    void createAccount(ActionEvent event) {
 
 	    }
@@ -53,20 +78,23 @@ public class LoginController implements Initializable {
 	    	
 	    	
 	    	else {
-        	    	SystemAccountDAO.logInSystemAccount(event,userName.getText(), password.getText());}
+        	    	SystemAccountDAO.logInSystemAccount(event,userName.getText(), password.getText());
+	    	         this.setU_name(userName.getText());
+	    	         this.setPass(password.getText());
+	    	}
 	    	
 	    	
 	  
 	    	        }
 	    
 	    
-	                        public void homePage(ActionEvent event) throws Exception {
-	                    	 
-	                    	Parent root = FXMLLoader.load(getClass().getResource("../../org/view/dashboard.fxml"));
-	             	    	Scene scene =  new Scene(root,1280,800);
-	             	    	Stage stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
-	             	    	stage.setScene(scene);
-	             	    	stage.show();}
+//	                        public void homePage(ActionEvent event) throws Exception {
+//	                    	 
+//	                    	Parent root = FXMLLoader.load(getClass().getResource("../../org/view/dashboard.fxml"));
+//	             	    	Scene scene =  new Scene(root,1280,800);
+//	             	    	Stage stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
+//	             	    	stage.setScene(scene);
+//	             	    	stage.show();}
 	    
 	                        
 	                        

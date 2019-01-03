@@ -1,25 +1,48 @@
 package com.pos.org.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import com.pos.account.controller.ViewAttdListCtrl;
+import com.pos.account.controller.LoginCtrl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
-public class DashboardCtrl {
+
+public class DashboardCtrl implements Initializable {
 	
 
+    @FXML
+    private Text atttd_ID;
 	
     @FXML
     private AnchorPane mainPane;
 
+
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+	
+		
+	}
+	
+	
+    @FXML
+    void sign_in(ActionEvent event) throws Exception{
+
+			AnchorPane loginView = FXMLLoader.load(getClass().getResource("../../account/view/login.fxml"));
+			this.mainPane.getChildren().setAll(loginView);
+		    
+			
+    }
+	
+    
     @FXML
     void createNewAttendant(ActionEvent event)throws Exception {
 
@@ -80,8 +103,13 @@ public class DashboardCtrl {
     	this.mainPane.getChildren().setAll(getPane("../../inventory/view/inventoryView.fxml"));
     }
 
-    
-    
+
+    @FXML
+    void new_order(ActionEvent event) {
+     
+    	this.mainPane.getChildren().setAll(getPane("../../payment/view/PaymentView.fxml"));
+    }
+
 
 	
       

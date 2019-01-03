@@ -5,36 +5,45 @@ import java.sql.Date;
 import java.util.List;
 
 public class Order {
-	private BigDecimal id;
-	private String code; 
-	private Date   date;
-	private String time; 
+	private BigDecimal order_id;
+	private String order_no; 
+	private BigDecimal order_attd_id;
+	private Date   order_date;
+	private String order_time; 
 	private List<Purchase> listOfPurchasedItems;
 	private BigDecimal totalPriceOfOrder;
 	
-	public BigDecimal getId() {
-		return id;
+     
+	
+	public BigDecimal getOrder_id() {
+		return order_id;
 	}
-	public void setId(BigDecimal id) {
-		this.id = id;
+	public void setOrder_id(BigDecimal order_id) {
+		this.order_id = order_id;
 	}
-	public Date getDate() {
-		return date;
+	public String getOrder_no() {
+		return order_no;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setOrder_no(String order_no) {
+		this.order_no = order_no;
 	}
-	public String getTime() {
-		return time;
+	public BigDecimal getOrder_attd_id() {
+		return order_attd_id;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setOrder_attd_id(BigDecimal order_attd_id) {
+		this.order_attd_id = order_attd_id;
 	}
-	public String getCode() {
-		return code;
+	public Date getOrder_date() {
+		return order_date;
 	}
-	public void setCode(String no) {
-		this.code = no;
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+	public String getOrder_time() {
+		return order_time;
+	}
+	public void setOrder_time(String order_time) {
+		this.order_time = order_time;
 	}
 	public List<Purchase> getListOfPurchasedItems() {
 		return listOfPurchasedItems;
