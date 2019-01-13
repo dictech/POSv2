@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -104,6 +105,7 @@ public class CreateAttendantCtrl implements Initializable{
 	    ObservableList<String> position = FXCollections.observableArrayList("Attendant","Cleaner","Manager");
 	     this.gender.setItems(gender);
 	     this.pos.setItems(position);
+	     this.doe.setValue(LocalDate.now());
 	    
 	}
 	
@@ -157,7 +159,14 @@ public class CreateAttendantCtrl implements Initializable{
     	       alert.showAndWait();
 	
     	       }
-    	     else if(password.getText().equals(Repeat_password.getText())) {
+    	        else if(this.attendant_image.getImage().equals(null)) {
+    	    	   Alert alert = new Alert(AlertType.ERROR);
+    	    	   alert.setContentText("Please provide a photo of yourself ");
+    	    	   alert.setHeaderText(null);
+    	    	   alert.setTitle("Image Error");
+    	    	   alert.show();
+    	       }
+    	        else if(password.getText().equals(Repeat_password.getText())) {
     	    	       
     	    	     Attendant attendant = new Attendant();
     	    	      attendant.setId(attendant.getId());

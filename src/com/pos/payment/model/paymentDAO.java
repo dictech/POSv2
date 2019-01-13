@@ -18,7 +18,7 @@ public class paymentDAO {
 	
 	public static boolean createPayment(Payment payment) {
 		
-		String sql = "INSERT INTO payment VALUES(?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO payment VALUES(?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 		    PreparedStatement stmt = Database.getConnectedPreparedStatement(sql);
@@ -30,8 +30,9 @@ public class paymentDAO {
 		    stmt.setInt(5,payment.getAmtPaid());
 		    stmt.setInt(6,payment.getBalance());
 		    stmt.setString(7,payment.getType());
-		    stmt.setDate(8,payment.getDate());
-		    stmt.setString(9,payment.getTime());
+		    stmt.setString(8, payment.getDescription());
+		    stmt.setDate(9,payment.getDate());
+		    stmt.setString(10,payment.getTime());
 		    
 		    executionStatus = stmt.executeUpdate();
 		    
@@ -68,8 +69,9 @@ public class paymentDAO {
 				payment.setAmtPaid(records.getInt(5));
 				payment.setBalance(records.getInt(6));
 				payment.setType(records.getString(7));
-				payment.setDate(records.getDate(8));
-				payment.setTime(records.getString(9));
+				payment.setDescription(records.getString(8));
+				payment.setDate(records.getDate(9));
+				payment.setTime(records.getString(10));
 				listOfPayments.add(payment);
 			}
 			
@@ -98,8 +100,9 @@ public class paymentDAO {
 				payment.setAmtPaid(record.getInt(5));
 				payment.setBalance(record.getInt(6));
 				payment.setType(record.getString(7));
-				payment.setDate(record.getDate(8));
-				payment.setTime(record.getString(9));
+				payment.setDescription(record.getString(8));
+				payment.setDate(record.getDate(9));
+				payment.setTime(record.getString(10));
 			}
 			
            System.out.print("Amount Paid:" + payment.getAmtPaid());
@@ -113,15 +116,16 @@ public class paymentDAO {
 	
 	public static boolean updatePayment(Payment payment) {
 		String sql = "UPDATE payment "
-				   + "SET    pay_attdt_id = ?,"
-				   + "       pay_order_id = ?,"
-				   + "       pay_price    = ?,"
-				   + "       pay_amt_price= ?,"
-				   + "       pay_balance  = ?,"
-				   + "       pay_type     = ?,"
-				   + "       pay_date     = ?,"
-				   + "       pay_time     = ? "
-				   + "WHERE  pay_id       = ?";
+				   + "SET    pay_attdt_id = ?,  "
+				   + "       pay_order_id = ?,  "
+				   + "       pay_price    = ?,  "
+				   + "       pay_amt_price= ?,  "
+				   + "       pay_balance  = ?,  "
+				   + "       pay_type     = ?,  "
+				   + "       pay_description =?,"
+				   + "       pay_date     = ?,  "
+				   + "       pay_time     = ?   "
+				   + "WHERE  pay_id       = ?   ";
 		
 		try {
 			PreparedStatement stmt =  Database.getConnectedPreparedStatement(sql);
@@ -131,9 +135,10 @@ public class paymentDAO {
 			stmt.setInt(4, payment.getAmtPaid());
 			stmt.setInt(5, payment.getBalance());
 			stmt.setString(6, payment.getType());
-			stmt.setDate(7, payment.getDate());
-			stmt.setString(8, payment.getTime());
-			stmt.setBigDecimal(9, payment.getId());
+			stmt.setString(7, payment.getDescription());
+			stmt.setDate(8, payment.getDate());
+			stmt.setString(9, payment.getTime());
+			stmt.setBigDecimal(10, payment.getId());
 			executionStatus = stmt.executeUpdate();
 			
 			stmt.close();

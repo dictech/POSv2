@@ -128,10 +128,12 @@ DROP TABLE IF EXISTS `order`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_attd_id` int(11) NOT NULL,
   `order_date` date NOT NULL,
   `order_time` time NOT NULL,
   `order_no` varchar(45) NOT NULL,
   `order_price` int(11) NOT NULL,
+  
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -262,3 +264,4 @@ CREATE TABLE `shop` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-09-30 14:35:12
+

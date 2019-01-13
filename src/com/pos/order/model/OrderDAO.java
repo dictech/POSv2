@@ -18,11 +18,12 @@ public class OrderDAO {
 			
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
 			stmt.setBigDecimal(1, order.getOrder_id());
-			stmt.setDate(2, order.getOrder_date());
-			stmt.setString(3,order.getOrder_time());
-			stmt.setString(4,order.getOrder_no());
-			stmt.setBigDecimal(5, order.getTotalPriceOfOrder());
-			stmt.setBigDecimal(6, order.getOrder_attd_id());
+			stmt.setBigDecimal(2, order.getOrder_attd_id());
+			stmt.setDate(3, order.getOrder_date());
+			stmt.setString(4,order.getOrder_time());
+			stmt.setString(5,order.getOrder_no());
+			stmt.setBigDecimal(6, order.getTotalPriceOfOrder());
+			
 			stmt.execute();
 			
 		}catch(Exception e) {
@@ -40,12 +41,12 @@ public class OrderDAO {
 			
 			while(records.next()) {
 				Order order =  new Order();
-				order.setOrder_attd_id(records.getBigDecimal(1));
-				order.setOrder_date(records.getDate(2));
-				order.setOrder_time(records.getString(3));
-				order.setOrder_no(records.getString(4));;
-				order.setTotalPriceOfOrder(records.getBigDecimal(5));
-				order.setOrder_attd_id(records.getBigDecimal(6));
+				order.setOrder_id(records.getBigDecimal(1));
+				order.setOrder_attd_id(records.getBigDecimal(2));
+				order.setOrder_date(records.getDate(3));
+				order.setOrder_time(records.getString(4));
+				order.setOrder_no(records.getString(5));;
+				order.setTotalPriceOfOrder(records.getBigDecimal(6));
 				listOfOrders.add(order);
 			}
 			
@@ -69,11 +70,12 @@ public class OrderDAO {
 			
 			if(record.next()) {
 				order.setOrder_id(record.getBigDecimal(1));
-				order.setOrder_date(record.getDate(2));
-				order.setOrder_time(record.getString(3));
-				order.setOrder_no(record.getString(4));
-				order.setTotalPriceOfOrder(record.getBigDecimal(5));
-				order.setOrder_attd_id(record.getBigDecimal(6));
+				order.setOrder_attd_id(record.getBigDecimal(2));
+				order.setOrder_date(record.getDate(3));
+				order.setOrder_time(record.getString(4));
+				order.setOrder_no(record.getString(5));
+				order.setTotalPriceOfOrder(record.getBigDecimal(6));
+
 			}else {
 				System.out.println("No data is associated with this ID!");
 			}
@@ -86,11 +88,11 @@ public class OrderDAO {
 	}
 	public static void updateOrder(Order order) {
 		String sql = "UPDATE order "
-				   + "SET    order_date = ?,"
+				   + "SET    order_attdt_id= ? "
+				   + "       order_date = ?,"
 				   + "       order_time = ?,"
 				   + "       order_no = ?,"
 				   + "       order_total_cost= ? "
-				   + "       order_attdt_id= ? "
 				   + "WHERE  id = ?";
 		
 		try {
@@ -98,12 +100,12 @@ public class OrderDAO {
 			Connection cxtn =  Database.getDatabaseConnection();
 			PreparedStatement stmt =  cxtn.prepareStatement(sql);
 			
-			stmt.setDate(1, order.getOrder_date());
-			stmt.setString(2, order.getOrder_time());
-			stmt.setString(3,order.getOrder_no());
-			stmt.setBigDecimal(4, order.getTotalPriceOfOrder());
-			stmt.setBigDecimal(5,order.getOrder_attd_id());
-			stmt.setBigDecimal(5,order.getOrder_id());
+			stmt.setBigDecimal(1, order.getOrder_id());
+			stmt.setBigDecimal(2, order.getOrder_attd_id());
+			stmt.setDate(3, order.getOrder_date());
+			stmt.setString(4,order.getOrder_time());
+			stmt.setString(5,order.getOrder_no());
+			stmt.setBigDecimal(6, order.getTotalPriceOfOrder());
 		    stmt.executeUpdate();
 		    
 		}catch(Exception e) {

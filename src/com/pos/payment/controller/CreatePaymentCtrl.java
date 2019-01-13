@@ -63,6 +63,12 @@ public class CreatePaymentCtrl implements Initializable {
 	    private TextField t_time;
 
 	    @FXML
+	    private TextField p_time;
+
+	    @FXML
+	    private TextField p_date;
+	    
+	    @FXML
 	    private TextField balanceOf_pm;
 
 	    @FXML
@@ -77,30 +83,33 @@ public class CreatePaymentCtrl implements Initializable {
 	    @FXML
 	    private Button check_order_btn;
 
+	    @FXML
+	    private TextField description;
+	    
 	    private Attendant attd;
 	    
-	    private SystemAccount sysact;
+	    private Order order;
 	    
-	    private LoginCtrl lc;
 	        	
 	    		private final DateTimeFormatter ftmt = DateTimeFormatter.ofPattern("d MMM uuuu");
 	    		private final LocalDateTime now = LocalDateTime.now();
 	    		private final String date = now.format(ftmt);
 	    		private final String currentTime =  LocalTime.now().toString();
 	        
+	            
+	            
 
 		
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			
 			ObservableList<String> pType = FXCollections.observableArrayList();
-			pType.addAll("Credit","Debit");
+			pType.addAll("Debit","Credit");
 			this.payment_type.setItems(pType);
-			this.t_date.setText(this.date);
-			this.t_date.setEditable(false);
-			this.t_time.setText(this.currentTime);
-			this.t_time.setEditable(false);
-			this.balanceOf_pm.setEditable(false);
+			this.p_date.setText(this.date);
+			this.p_time.setText(this.currentTime);
+			this.balanceOf_pm.setDisable(true);
+			this.balanceOf_pm.setText(" ");
 			
 			
 			try {
@@ -138,10 +147,10 @@ public class CreatePaymentCtrl implements Initializable {
 	    	  List<BigDecimal> listOforderIds = OrderDAO.getAllOrderIds();
 	    	  
 	    	  if(listOforderIds.contains(orderId)) {
-	    	  Order o = OrderDAO.getOrder(orderId);
-	    	  this.price.setText(o.getTotalPriceOfOrder().toPlainString());
-	    	  this.attendant_id.setText(o.getOrder_attd_id().toPlainString());
-	    	  this.order_id.setText(o.getOrder_no());
+	    	  this.order = OrderDAO.getOrder(orderId);
+	    	  this.price.setText(this.order.getTotalPriceOfOrder().toPlainString());
+	    	  this.attendant_id.setText(this.order.getOrder_attd_id().toPlainString());
+	    	  this.order_id.setText(this.order.getOrder_no());
 	    	  
 	    	  } else {
 	    		  
@@ -157,36 +166,108 @@ public class CreatePaymentCtrl implements Initializable {
 	    }
 		
 		
+	    private void createPaymentInstatnce(Payment payment, double totalAmount) {
+	    	
+	    	payment.setRecipient(this.attd);
+	    	payment.setOrder(this.order);
+	    	payment.setAmtPaid(Integer.parseInt(this.amount_paid.getText()));
+	    	payment.setBalance((int)totalAmount);
+	    	payment.setPrice(Integer.parseInt(this.price.getText()));
+	    	payment.setType(this.payment_type.getValue());
+	    	payment.setDescription(this.description.getText());
+	    	payment.setDate(Date.valueOf(LocalDate.now()));
+	    	payment.setTime(this.p_time.getText());
+	    	paymentDAO.createPayment(payment);
+	    }
 	    
 	    @FXML
 	    void processPayment(ActionEvent event) {
-//	    	this.lc = new LoginCtrl();
-//	    	this.attd = new Attendant();
-//	    	
-//	    	this.sysact = new  SystemAccount();
-//	    	sysact.setAccountID(sysact.getAccountID());
-//	    	sysact.setActAttendantID(sysact.getActAttendantID());
-//	    	sysact.setPassword(sysact.getPassword());
-//	    	sysact.setUserName(sysact.getUserName());
-//	    	SystemAccountDAO.logInSystemAccount(event, lc.getU_name(), lc.getPass());
-    	attd.setId(new BigDecimal(1));
+
+	    	this.attd = new Attendant();
+	    	this.order = new Order();
+
+    	    this.attd.setId(new BigDecimal(this.attendant_id.getText()));
+	    	this.order.setOrder_id(new BigDecimal(this.order_id.getText()));
+	    	
+	    	if(this.payment_type.getValue() !=null) {	
+	    	  String deb = "Debit", cred = "Credit";
+	    	  String list = this.payment_type.getSelectionModel().getSelectedItem();
+	    	    double productPrice = Integer.parseInt(this.price.getText());
+	            double moneyPaid = Integer.parseInt(this.amount_paid.getText());
+	    	  
+	        if(list.matches(cred)) {
+	    		  double balance = productPrice - moneyPaid;
+	    		  
+	    		   if(balance > 0) {
+	    			      		  
+                     this.description.setText("Partial Payment");	  
+    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
+    		    	 Payment payment = new Payment();
+    		    	 this.createPaymentInstatnce(payment, balance);
+    		    	 
+	    		          }else if(balance <= 0 ) {
+	    		        	  
+	    	                     this.description.setText("Completed Payment");	  
+	    	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
+	    	    		    	 Payment payment = new Payment();
+	    	    		    	 this.createPaymentInstatnce(payment, balance); 
+	    		          }
+	    		          else if(moneyPaid > productPrice) {
+	    		        	  
+	    	                     this.description.setText("outstanding "+balance);	  
+	    	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
+	    	    		    	 Payment payment = new Payment();
+	    	    		    	 this.createPaymentInstatnce(payment, balance);
+	    		          }
+	    		  
+	    		  }
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  
+	    	       else if
+	    	             (list.matches(deb)) {
+	    	    	 
+	    	    	 double totalAmount = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.amount_paid.getText());
+	    	    	 
+	    	    	 if(totalAmount <= 0) {
+			      		  
+			    		   Alert alert = new Alert(AlertType.ERROR);
+			    		   alert.setContentText("this type of payment is not an half payment ");
+			    		   alert.setHeaderText(null);
+			    		   alert.setTitle("Invalid Payment Selection");
+			    		   alert.show();  
+
+		    		  }else 
+		    		        {
+		    			    this.balanceOf_pm.setText(new BigDecimal(totalAmount).toPlainString());
+		    		    	Payment payment = new Payment();
+		    		    	this.createPaymentInstatnce(payment, totalAmount);
+		    		    	
+	                             }
+	    	    	 
+	    	    	 
+	    	    	 
+	    	    	 
+	    	     }else if
+	    	             (list.matches(deb)) {
+	    	    	 
+	    	     int totalAmount = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.amount_paid.getText());
+	    	     }
+	    	    
+	    		
 	    	
 	    	
-	    	
-	    	int balanceOwed = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.amount_paid.getText());
-	    	this.balanceOf_pm.setText(new BigDecimal(balanceOwed).toPlainString());
-	    	
-	    	Payment payment = new Payment();
-	    	payment.setId(payment.getId());
-	    	payment.setRecipient(attd);
-	    	payment.setOrder(payment.getOrder());
-	    	payment.setAmtPaid(Integer.parseInt(this.amount_paid.getText()));
-	    	payment.setBalance(balanceOwed);
-	    	payment.setPrice(Integer.parseInt(this.price.getText()));
-	    	payment.setType(this.payment_type.getValue());
-	    	payment.setDate(Date.valueOf(LocalDate.now()));
-	    	payment.setTime(this.currentTime);
-	    	paymentDAO.createPayment(payment);
+
+	    		}
+	    		else {
+	    		Alert alert = new Alert(AlertType.ERROR);
+	    		alert.setContentText("Please Select a Payment type : FULL PAYMENT/HALF PAYMENT/REFUND");
+	    		alert.setHeaderText(null);
+	    		alert.setTitle(null);
+	    		alert.show();
+	    	}
 	    	
 	    	
 	    }

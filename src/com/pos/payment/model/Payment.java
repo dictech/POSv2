@@ -14,6 +14,7 @@ public class Payment {
 	private int    amtPaid;
 	private int    balance;
 	private String type;
+	private String description;
 	private Date   date; 
 	private String time;
 	
@@ -71,4 +72,11 @@ public class Payment {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }

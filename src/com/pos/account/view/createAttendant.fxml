@@ -120,7 +120,7 @@
                   <Font name="Lucida Sans Unicode" size="12.0" />
                </font>
             </Label>
-            <DatePicker fx:id="doe" layoutX="309.0" layoutY="183.0" prefHeight="27.0" prefWidth="89.0" />
+            <DatePicker fx:id="doe" disable="true" editable="false" layoutX="309.0" layoutY="183.0" opacity="0.94" prefHeight="27.0" prefWidth="89.0" />
             <Button fx:id="registerBtn" layoutX="157.0" layoutY="461.0" mnemonicParsing="false" onAction="#registerAttendant" prefHeight="38.0" prefWidth="103.0" text="Register">
                <font>
                   <Font name="Lucida Sans Unicode" size="12.0" />
@@ -166,7 +166,7 @@
                   <Image url="@../../../../../Assets/images/user-login-icon-14.png" />
                </image>
             </ImageView>
-            <Button fx:id="btn_upload" layoutX="560.0" layoutY="128.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #020529; -fx-border-color: gray;" text="upload photo" textFill="#ebe1e1">
+            <Button fx:id="btn_upload" layoutX="560.0" layoutY="128.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #020529; -fx-border-color: gray;" text="Browse" textFill="#ebe1e1">
                <font>
                   <Font name="Lucida Sans Demibold" size="11.0" />
                </font>

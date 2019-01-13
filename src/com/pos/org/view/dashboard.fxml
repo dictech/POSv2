@@ -53,7 +53,7 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="118.0" prefWidth="193.0" style="-fx-background-color: #020529;">
                            <children>
-                              <Hyperlink onAction="#new_order" prefHeight="25.0" prefWidth="124.0" text="New Order" textAlignment="RIGHT">
+                              <Hyperlink onAction="#new_order" prefHeight="25.0" prefWidth="124.0" text="Check Order" textAlignment="RIGHT">
                                  <graphic>
                                     <FontAwesomeIconView fill="WHITE" glyphName="CIRCLE_THIN" size="10" stroke="#87766f" strokeWidth="2.0" wrappingWidth="15.0" />
                                  </graphic>

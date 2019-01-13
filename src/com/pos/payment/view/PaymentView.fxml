@@ -13,12 +13,7 @@
    <children>
       <TabPane layoutX="182.0" layoutY="37.0" prefHeight="594.0" prefWidth="794.0" style="-fx-background-color: #000;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="Create Order">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-          <Tab text="Create Payment">
+          <Tab text=" Payment">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="794.0" style="-fx-background-color: #000;">
                      <children>
@@ -84,22 +79,22 @@
                                     <Font name="Lucida Sans Demibold" size="13.0" />
                                  </font>
                               </Button>
-                              <Text fill="WHITE" layoutX="231.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Transaction :">
+                              <Text fill="WHITE" layoutX="333.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="230.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Of Transaction :">
+                              <Text fill="WHITE" layoutX="332.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="t_time" editable="false" layoutX="383.0" layoutY="77.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: gray;">
+                              <TextField fx:id="t_time" disable="true" editable="false" layoutX="383.0" layoutY="77.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: gray;">
                                  <font>
                                     <Font name="Lucida Sans Regular" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="t_date" editable="false" layoutX="383.0" layoutY="108.0" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gray;">
+                              <TextField fx:id="t_date" disable="true" editable="false" layoutX="383.0" layoutY="108.0" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: gray;">
                                  <font>
                                     <Font name="Lucida Sans Regular" size="13.0" />
                                  </font>
@@ -109,6 +104,27 @@
                                     <Font name="Lucida Sans Demibold" size="19.0" />
                                  </font>
                               </Text>
+                              <TextField fx:id="p_time" disable="true" editable="false" layoutX="394.0" layoutY="313.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: gray;">
+                                 <font>
+                                    <Font name="Lucida Sans Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="p_date" disable="true" editable="false" layoutX="394.0" layoutY="254.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: gray;">
+                                 <font>
+                                    <Font name="Lucida Sans Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Text fill="WHITE" layoutX="441.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="440.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time :">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="description" layoutX="332.0" layoutY="1.0" prefHeight="18.0" prefWidth="166.0" promptText="#" />
                            </children>
                         </AnchorPane>
                         <Button fx:id="check_order_btn" layoutX="673.0" layoutY="65.0" mnemonicParsing="false" onAction="#getId_row" prefHeight="30.0" prefWidth="94.0" text="Check Order">
