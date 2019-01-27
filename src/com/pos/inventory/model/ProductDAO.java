@@ -5,9 +5,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.pos.database.Database;
+import com.pos.order.model.Purchase;
+
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ProductDAO {
 	public static void createProduct(Product product) {
@@ -147,4 +154,49 @@ public class ProductDAO {
 		
 		Database.deleteFromTable(sql, product.getId());
 	};
+	
+	
+	public static HashMap<String,TableColumn<Product, ?>> getProductTableCols() {
+		  
+		   HashMap<String,TableColumn<Product, ?>> mapOfTableColumns = new HashMap<String,TableColumn<Product, ?>>();
+		
+		   TableColumn<Product, String> nameCol               =   new  TableColumn<Product, String>();
+		   TableColumn<Product, ProductCategory> categoryCol  =   new  TableColumn<Product, ProductCategory>();
+		   TableColumn<Product, String> descCol               =   new  TableColumn<Product, String>();
+		   TableColumn<Product, BigDecimal> costCol           =   new  TableColumn<Product, BigDecimal>();
+		   TableColumn<Product, BigDecimal> priceCol          =   new  TableColumn<Product, BigDecimal>();
+		  
+		   @SuppressWarnings("rawtypes")
+		   TableColumn qtyCol =  new TableColumn("Quantity");
+		   
+		   nameCol.setText("Item");
+		   categoryCol.setText("Category");
+		   descCol.setText("Description");
+		   costCol.setText("Cost");
+		   priceCol.setText("Price");
+	
+		   
+		   nameCol.setPrefWidth(150);
+		   categoryCol.setPrefWidth(250);
+		   descCol.setPrefWidth(80);
+		   costCol.setPrefWidth(80);
+		   priceCol.setPrefWidth(80);
+
+	    
+		    nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		    categoryCol.setCellValueFactory(new PropertyValueFactory<Product, ProductCategory>("category"));
+		    descCol.setCellValueFactory(new PropertyValueFactory<Product, String>("desc"));
+		    costCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("Cost"));
+		    priceCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("Price"));
+	    	
+			
+			mapOfTableColumns.put("nameCol",nameCol);
+			mapOfTableColumns.put("categoryCol",categoryCol);
+			mapOfTableColumns.put("descCol",descCol);
+			mapOfTableColumns.put("costCol",costCol);
+			mapOfTableColumns.put("priceCol",priceCol);
+			    	
+	    	return mapOfTableColumns;
+
+	    }
 }
