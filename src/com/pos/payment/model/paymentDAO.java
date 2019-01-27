@@ -85,7 +85,8 @@ public class paymentDAO {
 	
 	public static Payment getPayment(BigDecimal id) {
 		 Payment payment =  new Payment();
-		 String sql = "select * from payment where id = ?";
+		 String sql = " select * from posv2.payment"
+		 		    + "  where pay_id = ?";
 		 
 		 try {
 			PreparedStatement stmt = Database.getConnectedPreparedStatement(sql);
@@ -105,7 +106,6 @@ public class paymentDAO {
 				payment.setTime(record.getString(10));
 			}
 			
-           System.out.print("Amount Paid:" + payment.getAmtPaid());
            
 		 }catch(Exception e) {
 			 e.printStackTrace();
@@ -119,13 +119,13 @@ public class paymentDAO {
 				   + "SET    pay_attdt_id = ?,  "
 				   + "       pay_order_id = ?,  "
 				   + "       pay_price    = ?,  "
-				   + "       pay_amt_price= ?,  "
+				   + "       pay_amt_paid= ?,  "
 				   + "       pay_balance  = ?,  "
 				   + "       pay_type     = ?,  "
 				   + "       pay_description =?,"
 				   + "       pay_date     = ?,  "
 				   + "       pay_time     = ?   "
-				   + "WHERE  pay_id       = ?   ";
+				   + "WHERE  pay_order_id       = ?   ";
 		
 		try {
 			PreparedStatement stmt =  Database.getConnectedPreparedStatement(sql);
@@ -138,7 +138,7 @@ public class paymentDAO {
 			stmt.setString(7, payment.getDescription());
 			stmt.setDate(8, payment.getDate());
 			stmt.setString(9, payment.getTime());
-			stmt.setBigDecimal(10, payment.getId());
+			stmt.setBigDecimal(10, payment.getOrder().getOrder_id());
 			executionStatus = stmt.executeUpdate();
 			
 			stmt.close();

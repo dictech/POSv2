@@ -11,11 +11,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
-
-import com.pos.account.controller.LoginCtrl;
 import com.pos.account.model.Attendant;
-import com.pos.account.model.SystemAccount;
-import com.pos.account.model.SystemAccountDAO;
 import com.pos.order.model.Order;
 import com.pos.order.model.OrderDAO;
 import com.pos.payment.model.Payment;
@@ -23,7 +19,7 @@ import com.pos.payment.model.paymentDAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -32,11 +28,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 
 
-public class CreatePaymentCtrl implements Initializable {
+
+public class CreatePaymentCtrl implements Initializable{
 
 
 
@@ -57,16 +52,17 @@ public class CreatePaymentCtrl implements Initializable {
 	    private TextField search_order_box;
 
 	    @FXML
-	    private TextField t_date;
+	    private TextField order_date;
 
 	    @FXML
-	    private TextField t_time;
+	    private TextField order_time;
 
 	    @FXML
-	    private TextField p_time;
+	    private TextField payment_time;
 
 	    @FXML
-	    private TextField p_date;
+	    private TextField payment_date;
+
 	    
 	    @FXML
 	    private TextField balanceOf_pm;
@@ -90,28 +86,37 @@ public class CreatePaymentCtrl implements Initializable {
 	    
 	    private Order order;
 	    
-	        	
+	    private Payment payment;    
+	    
 	    		private final DateTimeFormatter ftmt = DateTimeFormatter.ofPattern("d MMM uuuu");
 	    		private final LocalDateTime now = LocalDateTime.now();
 	    		private final String date = now.format(ftmt);
 	    		private final String currentTime =  LocalTime.now().toString();
-	        
-	            
-	            
+	            private final String debit = "Debit";
+	            private final String credit = "Credit";
+	            private BigDecimal wasPaid;
 
-		
+	    		
+		public BigDecimal getWasPaid() {
+					return wasPaid;
+				}
+
+     	public void setWasPaid(BigDecimal wasPaid) {
+					this.wasPaid = wasPaid;
+				}
+
+
+
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			
 			ObservableList<String> pType = FXCollections.observableArrayList();
-			pType.addAll("Debit","Credit");
+			pType.addAll(debit,credit);
+			this.payment_type.setValue(" Select Payment Type");
 			this.payment_type.setItems(pType);
-			this.p_date.setText(this.date);
-			this.p_time.setText(this.currentTime);
 			this.balanceOf_pm.setDisable(true);
 			this.balanceOf_pm.setText(" ");
-			
-			
+			this.payment_type.setDisable(true);
 			try {
 				
 			List<BigDecimal> orderIds = OrderDAO.getAllOrderIds();
@@ -127,6 +132,7 @@ public class CreatePaymentCtrl implements Initializable {
 	    @FXML
 	    void getId_row(ActionEvent event)throws Exception {
 	    	
+	    	           
 	    	       if(search_order_box.getText().isEmpty()) {
 	    		   
 	    		   Alert alert = new Alert(AlertType.ERROR);
@@ -142,18 +148,22 @@ public class CreatePaymentCtrl implements Initializable {
 	    		   
 	    	   }else{
 	    		    
-	    		   
+	    	    
 	    	  BigDecimal orderId = new BigDecimal(this.search_order_box.getText());
 	    	  List<BigDecimal> listOforderIds = OrderDAO.getAllOrderIds();
 	    	  
 	    	  if(listOforderIds.contains(orderId)) {
 	    	  this.order = OrderDAO.getOrder(orderId);
-	    	  this.price.setText(this.order.getTotalPriceOfOrder().toPlainString());
 	    	  this.attendant_id.setText(this.order.getOrder_attd_id().toPlainString());
 	    	  this.order_id.setText(this.order.getOrder_no());
+	    	  this.order_date.setText(this.order.getOrder_date().toString());
+	    	  this.order_time.setText(this.order.getOrder_time());
+	    	  this.price.setText(this.order.getTotalPriceOfOrder().toPlainString());
+	    	  this.payment_type.setDisable(false);
 	    	  
 	    	  } else {
 	    		  
+	    		  this.payment_type.setDisable(true);
 	    		   Alert alert = new Alert(AlertType.ERROR);
 	    		   alert.setContentText("No Data is associated with this ID!");
 	    		   alert.setHeaderText(null);
@@ -165,8 +175,28 @@ public class CreatePaymentCtrl implements Initializable {
 	    	}
 	    }
 		
-		
-	    private void createPaymentInstatnce(Payment payment, double totalAmount) {
+
+	    @FXML
+	    void callPaymentMethod(ActionEvent event) {
+	    			this.payment_type.getSelectionModel().getSelectedItem();
+	    			
+	    			if(this.payment_type.getValue().matches(debit) || this.payment_type.getValue().matches(credit)) {
+	    				
+	    				  this.payment = new Payment(); 
+	    				  BigDecimal paymentIds = new BigDecimal(this.order_id.getText());
+	    				  this.payment = paymentDAO.getPayment(paymentIds);
+	    				  this.price.setText(new BigDecimal(payment.getPrice()).toPlainString());
+	    				  this.description.setText("Was a "+payment.getDescription());
+	    				  this.amount_paid.setText(new BigDecimal(payment.getAmtPaid()).toPlainString());
+	    				  this.balanceOf_pm.setText(new BigDecimal(payment.getBalance()).toPlainString());
+	    				  this.setWasPaid(new BigDecimal(payment.getAmtPaid()));
+	    				  this.amount_paid.clear();
+	    				
+	    			}
+	    			
+	    		}
+
+	    public void createPaymentInstatnce(Payment payment, double totalAmount) {
 	    	
 	    	payment.setRecipient(this.attd);
 	    	payment.setOrder(this.order);
@@ -176,12 +206,12 @@ public class CreatePaymentCtrl implements Initializable {
 	    	payment.setType(this.payment_type.getValue());
 	    	payment.setDescription(this.description.getText());
 	    	payment.setDate(Date.valueOf(LocalDate.now()));
-	    	payment.setTime(this.p_time.getText());
+	    	payment.setTime(this.payment_time.getText());
 	    	paymentDAO.createPayment(payment);
 	    }
 	    
 	    @FXML
-	    void processPayment(ActionEvent event) {
+	    public void processPayment(ActionEvent event) {
 
 	    	this.attd = new Attendant();
 	    	this.order = new Order();
@@ -189,85 +219,84 @@ public class CreatePaymentCtrl implements Initializable {
     	    this.attd.setId(new BigDecimal(this.attendant_id.getText()));
 	    	this.order.setOrder_id(new BigDecimal(this.order_id.getText()));
 	    	
-	    	if(this.payment_type.getValue() !=null) {	
-	    	  String deb = "Debit", cred = "Credit";
-	    	  String list = this.payment_type.getSelectionModel().getSelectedItem();
+	    	if(this.payment_type.getValue() !=null) {
+	    		
+	    		
+	    	  String paymentType = this.payment_type.getSelectionModel().getSelectedItem();
+	    	  
 	    	    double productPrice = Integer.parseInt(this.price.getText());
 	            double moneyPaid = Integer.parseInt(this.amount_paid.getText());
-	    	  
-	        if(list.matches(cred)) {
-	    		  double balance = productPrice - moneyPaid;
-	    		  
-	    		   if(balance > 0) {
+				this.payment_date.setText(this.date);
+				this.payment_time.setText(this.currentTime);
+				
+				  
+				  int addDebit = this.getWasPaid().intValue() + Integer.parseInt(this.amount_paid.getText()); //3000
+				  double balanceOfPm = Integer.parseInt(this.balanceOf_pm.getText());//1500
+				  double amount = Integer.parseInt(this.amount_paid.getText());//1500
+                double calPayment =  amount - balanceOfPm;
+				
+	        if(paymentType.matches(credit)) {
+	        	
+	           
+	    		 double balance = productPrice - moneyPaid;  
+	    		  if(this.amount_paid.equals(" ")) {
+	    			  Alert alert = new Alert(AlertType.ERROR);
+	    			  alert.setTitle("Invalid Input");
+	    			  alert.setContentText("Please Enter A valid Amount paid for this Order!");
+	    			  alert.setHeaderText(null);
+	    			  alert.show();
+	    		  }
+	    		  else if(balance > 0) {
 	    			      		  
                      this.description.setText("Partial Payment");	  
     			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
     		    	 Payment payment = new Payment();
     		    	 this.createPaymentInstatnce(payment, balance);
     		    	 
-	    		          }else if(balance <= 0 ) {
+	    		          }else if(balance == 0 ) {
 	    		        	  
 	    	                     this.description.setText("Completed Payment");	  
 	    	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
-	    	    		    	 Payment payment = new Payment();
+	    	    		    	  this.payment = new Payment();
 	    	    		    	 this.createPaymentInstatnce(payment, balance); 
 	    		          }
+                   
+	    		       else if(calPayment == 0) {
+                    	
+                         this.balanceOf_pm.setText(new BigDecimal(calPayment).toPlainString());	
+                         this.setWasPaid(new BigDecimal(addDebit));
+                         this.description.setText("Completed Payment");
+                         this.payment = new Payment();
+	    		    	 this.createPaymentInstatnce(payment, calPayment);
+                      }
+	    		  
 	    		          else if(moneyPaid > productPrice) {
 	    		        	  
-	    	                     this.description.setText("outstanding "+balance);	  
+	    	                     this.description.setText("Outstanding Bal: "+balance);	  
 	    	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
-	    	    		    	 Payment payment = new Payment();
+	    	    		    	  this.payment = new Payment();
 	    	    		    	 this.createPaymentInstatnce(payment, balance);
 	    		          }
 	    		  
+	    		 
+	        
+	              }else {
+	    			  
+	    			  if(paymentType.matches(debit)) {
+	    				  
+
+	    				  
+	    				  
+	    			  }
+	    			  
 	    		  }
-	    	  
-	    	  
-	    	  
-	    	  
-	    	  
-	    	       else if
-	    	             (list.matches(deb)) {
-	    	    	 
-	    	    	 double totalAmount = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.amount_paid.getText());
-	    	    	 
-	    	    	 if(totalAmount <= 0) {
-			      		  
-			    		   Alert alert = new Alert(AlertType.ERROR);
-			    		   alert.setContentText("this type of payment is not an half payment ");
-			    		   alert.setHeaderText(null);
-			    		   alert.setTitle("Invalid Payment Selection");
-			    		   alert.show();  
-
-		    		  }else 
-		    		        {
-		    			    this.balanceOf_pm.setText(new BigDecimal(totalAmount).toPlainString());
-		    		    	Payment payment = new Payment();
-		    		    	this.createPaymentInstatnce(payment, totalAmount);
-		    		    	
-	                             }
-	    	    	 
-	    	    	 
-	    	    	 
-	    	    	 
-	    	     }else if
-	    	             (list.matches(deb)) {
-	    	    	 
-	    	     int totalAmount = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.amount_paid.getText());
-	    	     }
-	    	    
-	    		
-	    	
 	    	
 
+	    		}else {
+	    			
+	    			
 	    		}
-	    		else {
-	    		Alert alert = new Alert(AlertType.ERROR);
-	    		alert.setContentText("Please Select a Payment type : FULL PAYMENT/HALF PAYMENT/REFUND");
-	    		alert.setHeaderText(null);
-	    		alert.setTitle(null);
-	    		alert.show();
-	    	}
+	    	
 	    	
 	    	
 	    }
@@ -277,6 +306,10 @@ public class CreatePaymentCtrl implements Initializable {
 	    void cancelPayment(ActionEvent event) {
 
 	    }
+
+
+
+	
 
 
 	    
