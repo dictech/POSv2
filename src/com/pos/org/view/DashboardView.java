@@ -26,7 +26,5 @@ public class DashboardView extends Application {
 		window.sizeToScene();
 		window.show(); 
 	}
-	
-
 
 }

@@ -5,15 +5,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import com.pos.database.Database;
+import com.pos.order.model.Purchase;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class ProductInventoryDAO {
 	
+		
 	public static void createInventory(ProductInventory inventory) {
 		String sql = "INSERT INTO inventory VALUES(?,?,?,?,?,?,?,?,?)";
 		
@@ -146,7 +159,7 @@ public class ProductInventoryDAO {
 
 
 
-	public static ObservableList<ProductInventory> getInventoryByProduct(String productName) {
+	public static List<ProductInventory> getInventoryByProduct(String productName) {
 		String sql = "SELECT * FROM inventory WHERE inv_desc like ?";
 		List<ProductInventory> listOfInventories = new ArrayList<ProductInventory>();
 		
@@ -181,7 +194,72 @@ public class ProductInventoryDAO {
 			e.printStackTrace();
 		}
 		
-		return FXCollections.observableArrayList(listOfInventories);
+		return listOfInventories;
 	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public static HashMap<String,TableColumn<ProductInventory, ?>> getProductInventoryCol() {
+				  
+		   HashMap<String,TableColumn<ProductInventory, ?>> mapOfTableColumns = new HashMap<String,TableColumn<ProductInventory, ?>>();
+		
+		   TableColumn<ProductInventory, String> inventoryitemCol      =   new  TableColumn<ProductInventory, String>();
+		   TableColumn<ProductInventory, String> productDescCol        =   new  TableColumn<ProductInventory, String>();
+		   TableColumn<ProductInventory, BigDecimal> noOfUnitsCol      =   new  TableColumn<ProductInventory, BigDecimal>();
+		   TableColumn<ProductInventory, BigDecimal> qtyPerUnitCol     =   new  TableColumn<ProductInventory, BigDecimal>();
+		   TableColumn<ProductInventory, BigDecimal> totalNoOfItemsCol =   new  TableColumn<ProductInventory, BigDecimal>();
+		   TableColumn<ProductInventory, BigDecimal> totalOrderedCol   =   new  TableColumn<ProductInventory, BigDecimal>();
+		   TableColumn<ProductInventory, BigDecimal> reOrderLvlCol     =   new  TableColumn<ProductInventory, BigDecimal>();
+		   TableColumn<ProductInventory, CheckBox> selectedItem        =   new  TableColumn<ProductInventory, CheckBox>(); 
+		   @SuppressWarnings("rawtypes")
+		   TableColumn qtyCol =  new TableColumn("Quantity");
+		   
+		   inventoryitemCol.setText("Item");
+		   productDescCol.setText("Description");
+		   noOfUnitsCol.setText("Units");
+		   qtyPerUnitCol.setText("Qty");
+		   totalNoOfItemsCol.setText("Total No.");
+		   totalOrderedCol.setText("Total Sold");
+		   reOrderLvlCol.setText("Re-Order");
+		   selectedItem.setText("zSelected");
+		   
+		   inventoryitemCol.setPrefWidth(150);
+		   productDescCol.setPrefWidth(250);
+		   noOfUnitsCol.setPrefWidth(80);
+		   qtyPerUnitCol.setPrefWidth(80);
+		   totalNoOfItemsCol.setPrefWidth(80);
+		   totalOrderedCol.setPrefWidth(80);
+		   reOrderLvlCol.setPrefWidth(80);
 
+	    
+	    	inventoryitemCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, String>("proName"));
+	    	productDescCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, String>("proDesc"));
+	    	noOfUnitsCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, BigDecimal>("noOfUnits"));
+	    	qtyPerUnitCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, BigDecimal>("qtyPerUnit"));
+	    	totalNoOfItemsCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, BigDecimal>("totalQty"));
+	    	totalOrderedCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, BigDecimal>("noOfOrdered"));
+	    	reOrderLvlCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, BigDecimal>("reorderLvl"));
+	    	selectedItem.setCellValueFactory(new PropertyValueFactory<ProductInventory,CheckBox>("selectedItem"));
+	    	qtyCol.setCellValueFactory(new PropertyValueFactory<Purchase,TextField>("qty"));
+			
+			mapOfTableColumns.put("inventoryitemCol",inventoryitemCol);
+			mapOfTableColumns.put("productDescCol",productDescCol);
+			mapOfTableColumns.put("noOfUnitsCol",noOfUnitsCol);
+			mapOfTableColumns.put("qtyPerUnitCol",qtyPerUnitCol);
+			mapOfTableColumns.put("totalNoOfItemsCol",totalNoOfItemsCol);
+			mapOfTableColumns.put("totalOrderedCol",totalOrderedCol);
+			mapOfTableColumns.put("reOrderLvlCol",reOrderLvlCol);
+			mapOfTableColumns.put("zselectedItem",selectedItem);
+			mapOfTableColumns.put("qtyCol",qtyCol);
+			
+			
+	    		    	
+	    	return mapOfTableColumns;
+
+	    }
+	
+	
+	
+	
 }

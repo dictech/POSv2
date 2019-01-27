@@ -7,9 +7,9 @@ import java.sql.PreparedStatement;
 
 public class Database {
 
-	static String dbUrl = "jdbc:mysql://localhost:3306/POSv2";
+	static String dbUrl = "jdbc:mysql://posv2.cpeqsrsfj6ju.us-east-2.rds.amazonaws.com:3306/POSv2";
 	static String dbUsername = "root";
-	static String dbPassword = "esthermylove";
+	static String dbPassword = "Manchester81#";
 
 	static Connection conn = null;
 	static PreparedStatement stmt;

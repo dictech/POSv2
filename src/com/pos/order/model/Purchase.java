@@ -4,15 +4,36 @@ import java.math.BigDecimal;
 
 import com.pos.inventory.model.Product;
 
+import javafx.scene.control.TextField;
+
 public class Purchase {
 	private BigDecimal id;
+	private String orderId;
 	private Product product;
-	private int qty;
-	private int totalPriceOfPurchase;
+	private BigDecimal qty;
 	
 	
-	public BigDecimal getId() {
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	private BigDecimal totalPriceOfPurchase;
+	private TextField qtyTextField;
+
+	
+
+ BigDecimal getId() {
 		return id;
+	}
+	public TextField getQtyTextField() {
+		return qtyTextField;
+	}
+	
+	public void setQtyTextField(TextField qtyTextField) {
+		this.qtyTextField = qtyTextField;
 	}
 	public void setId(BigDecimal id) {
 		this.id = id;
@@ -26,20 +47,25 @@ public class Purchase {
 	}
 	
 	
-	public int getQty() {
+	public BigDecimal getQty() {
 		return qty;
 	}
-	public void setQty(int qty) {
+	public void setQty(BigDecimal qty) {
 		this.qty = qty;
 	}
 	
-	public int getTotalPriceOfPurchase() {
+	public BigDecimal getTotalPriceOfPurchase() {
 		return totalPriceOfPurchase;
 	}
 	
-	public void setTotalPriceOfPurchase(int totalPriceOfPurchase) {
+	public void setTotalPriceOfPurchase(BigDecimal totalPriceOfPurchase) {
 		this.totalPriceOfPurchase = totalPriceOfPurchase;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getProduct().getName();
+	}
 	
 }

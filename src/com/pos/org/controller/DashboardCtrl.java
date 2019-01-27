@@ -109,8 +109,12 @@ public class DashboardCtrl implements Initializable {
      
     	this.mainPane.getChildren().setAll(getPane("../../payment/view/PaymentView.fxml"));
     }
+    
+    @FXML
+    void createOrderTransaction(ActionEvent event) {
+     
+    	this.mainPane.getChildren().setAll(getPane("../../order/view/CreateOrderView.fxml"));
+    }
 
-
-	
-      
+     
 }

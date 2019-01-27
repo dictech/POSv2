@@ -1,6 +1,7 @@
 package com.pos.inventory.controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.pos.inventory.model.Product;
 import com.pos.inventory.model.ProductInventory;
@@ -53,7 +54,7 @@ public class viewInventoryCtrl {
 
     @FXML
     void searchInventory(ActionEvent event) {
-    	ObservableList<ProductInventory> inventoryList = ProductInventoryDAO.getInventoryByProduct(productTxtBox.getText());
+    	List<ProductInventory> inventoryList = ProductInventoryDAO.getInventoryByProduct(productTxtBox.getText());
     	inventoryEnquiryTable.setItems(inventoryList);
     	inventoryEnquiryTable.getColumns().clear();
         

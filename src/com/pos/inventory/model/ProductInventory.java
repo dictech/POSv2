@@ -1,6 +1,9 @@
 package com.pos.inventory.model;
 
+import java.awt.Checkbox;
 import java.math.BigDecimal;
+
+import javafx.scene.control.CheckBox;
 
 public class ProductInventory {
 	
@@ -14,9 +17,19 @@ public class ProductInventory {
 	private BigDecimal totalQty;
 	private BigDecimal noOfOrdered;
 	private BigDecimal reorderLvl;
+	private CheckBox  selectedItem;
 	
 	
 	
+	public ProductInventory() {
+		this.selectedItem = new CheckBox();
+	}
+	public CheckBox getSelectedItem() {
+		return selectedItem;
+	}
+	public void setSelectedItem(CheckBox selectedItem) {
+		this.selectedItem = selectedItem;
+	}
 	public BigDecimal getId() {
 		return id;
 	}
