@@ -1,5 +1,6 @@
 package com.pos.database;
 
+import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.cache.CacheBuilder;
@@ -34,6 +35,9 @@ public class AttendantCache {
 	}
 
 	public static Attendant getAttendantById(String attendantId) {
+		Attendant att =  new Attendant();
+		att.setId(new BigDecimal(123456));
+		attendant = att;
 		return attendant;
 	}
 

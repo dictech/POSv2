@@ -21,8 +21,16 @@ public class Attendant {
 	 private  Date   doe; 
 	 private Image image;
 	 
+	 private String cacheId = "USER";
 	 
-	 public Date getDoe() {
+	 
+	 public String getCacheId() {
+		return cacheId;
+	}
+	public void setCacheId(String cacheId) {
+		this.cacheId = cacheId;
+	}
+	public Date getDoe() {
 		return doe;
 	}
 	private String position;

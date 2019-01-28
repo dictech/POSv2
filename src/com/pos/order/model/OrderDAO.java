@@ -10,8 +10,9 @@ import java.util.List;
 import com.pos.database.Database;
 
 public class OrderDAO {
-	public static void createOrder(Order order) {
+	public static int createOrder(Order order) {
 		String sql =   "INSERT INTO order VALUES(?,?,?,?,?,?)";
+		int pk = 0;
 		Connection cxtn = Database.getDatabaseConnection();
 		
 		try {
@@ -26,10 +27,13 @@ public class OrderDAO {
 			
 			stmt.execute();
 			
+			pk = stmt.RETURN_GENERATED_KEYS;
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
+		return pk;
 	}
 	public static List<Order> getAllOrders() {
 		List<Order> listOfOrders =  new ArrayList<Order>();

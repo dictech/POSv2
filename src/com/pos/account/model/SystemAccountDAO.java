@@ -14,6 +14,7 @@ import java.util.Random;
 import java.sql.Date;
 
 import com.pos.account.controller.LoginCtrl;
+import com.pos.database.AttendantCache;
 import com.pos.database.Database;
 
 import javafx.event.ActionEvent;
@@ -157,6 +158,9 @@ public class SystemAccountDAO {
 		    	    	   
 		    	    	     AttendanceDAO.checkAttendance(attendant.getId(),
 		    	    		 Date.valueOf(LocalDate.now()), attendant.getfName(), attendant.getSurname());
+		    	    	     
+		    	    	     AttendantCache.setAttendant(attendant);
+		    	    	     AttendantCache.getCache().get(attendant.getCacheId());
     	                        }
 		    	      else {
 		    	    	  
