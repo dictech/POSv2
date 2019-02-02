@@ -74,13 +74,15 @@ public class LoginCtrl implements Initializable {
 	    		
 	                  Alert alert = new Alert(AlertType.WARNING);
 	                  alert.setContentText("please Enter the required fields !");
-	                  alert.showAndWait();}
+	                  alert.showAndWait();
+	          }
 	    	
 	    	
 	    	else {
         	    	SystemAccountDAO.logInSystemAccount(event,userName.getText(), password.getText());
 	    	         this.setU_name(userName.getText());
 	    	         this.setPass(password.getText());
+
 	    	}
 	    	
 	    	

@@ -16,6 +16,7 @@ import java.sql.Date;
 import com.pos.account.controller.LoginCtrl;
 import com.pos.database.AttendantCache;
 import com.pos.database.Database;
+import com.pos.org.view.DashboardView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SystemAccountDAO {
@@ -161,7 +163,12 @@ public class SystemAccountDAO {
 		    	    	     
 		    	    	     AttendantCache.setAttendant(attendant);
 		    	    	     AttendantCache.getCache().get(attendant.getCacheId());
-    	                        }
+		    	    	     		    	    	   	 
+		    	    	   	DashboardView dv =  new DashboardView();
+		    	    	   	dv.startDashBoard();
+		    	    	   	
+    	                }
+		    	      
 		    	      else {
 		    	    	  
 		    	    	      Alert alert = new Alert(AlertType.ERROR);

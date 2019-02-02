@@ -6,23 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class DashboardView extends Application {
-    
-	
-	public static void main(String args[]) {
-		launch(args);
-	}
-	
+public class DashboardView {
+
 	Stage window;
 	
-	@Override
-	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
-		window = arg0;
+	public void startDashBoard() throws Exception {		
 		
 		Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
 		Scene scene =  new Scene(root,1280,800);
+		
+		window = new Stage();
 		window.setScene(scene);
+		window.setFullScreen(true);
 		window.sizeToScene();
 		window.show(); 
 	}

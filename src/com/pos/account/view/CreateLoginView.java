@@ -19,6 +19,8 @@ public class CreateLoginView extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 		Scene scene = new Scene(root,700,320);
 		stage.setScene(scene);
+		stage.setFullScreen(true);
+
 		stage.show();
 	}
 	
