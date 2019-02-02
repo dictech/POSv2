@@ -55,7 +55,7 @@ public class viewInventoryCtrl {
     @FXML
     void searchInventory(ActionEvent event) {
     	List<ProductInventory> inventoryList = ProductInventoryDAO.getInventoryByProduct(productTxtBox.getText());
-    	inventoryEnquiryTable.setItems(inventoryList);
+//    	inventoryEnquiryTable.setItems(inventoryList);
     	inventoryEnquiryTable.getColumns().clear();
         
     	inventoryitemCol.setCellValueFactory(new PropertyValueFactory<ProductInventory, String>("proName"));

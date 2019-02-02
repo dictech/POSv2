@@ -152,7 +152,7 @@ public class OrderTransactionCtrl {
     }
     
     void calculateTotalCost() {
-    	//List<Purchase> purchase = purchaseListTbl.getSelectionModel().getSelectedItems();
+    	List<Purchase> purchase = purchaseListTbl.getSelectionModel().getSelectedItems();
     	
     	List<Purchase>listOfPurchase = new ArrayList(PurchaseCache.getCache().asMap().values());
     	int totalPrice = listOfPurchase.stream().mapToInt(i->i.getTotalPriceOfPurchase().intValue()).sum();    	

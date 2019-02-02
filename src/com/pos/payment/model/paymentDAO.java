@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class paymentDAO {
 		String sql = "INSERT INTO payment VALUES(?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
-		    PreparedStatement stmt = Database.getConnectedPreparedStatement(sql);
+			Connection cnt = Database.getDatabaseConnection();
+		    PreparedStatement stmt = cnt.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		    
 		    stmt.setBigDecimal(1, payment.getId());
 		    stmt.setBigDecimal(2,payment.getRecipient().getId());
@@ -33,14 +35,13 @@ public class paymentDAO {
 		    stmt.setString(8, payment.getDescription());
 		    stmt.setDate(9,payment.getDate());
 		    stmt.setString(10,payment.getTime());
+		    stmt.executeUpdate();
+		    ResultSet record = stmt.getGeneratedKeys();
+		    if(record.next()) {
+		    	stmt.setBigDecimal(1, record.getBigDecimal(1));
+		    }
 		    
-		    executionStatus = stmt.executeUpdate();
-		    
-		    if(executionStatus > 0){
-		        status =  true;
-		      }else{
-		        status = false;
-		        }
+
 		    
 		    Database.closeDatabaseConnection();
 		    
@@ -125,7 +126,7 @@ public class paymentDAO {
 				   + "       pay_description =?,"
 				   + "       pay_date     = ?,  "
 				   + "       pay_time     = ?   "
-				   + "WHERE  pay_order_id       = ?   ";
+				   + "WHERE  pay_id       = ?   ";
 		
 		try {
 			PreparedStatement stmt =  Database.getConnectedPreparedStatement(sql);

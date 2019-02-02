@@ -125,6 +125,7 @@
                                  </font>
                               </Text>
                               <TextField fx:id="description" layoutX="332.0" layoutY="1.0" prefHeight="18.0" prefWidth="166.0" promptText="#" />
+                              <TextField fx:id="lastPaid" disable="true" editable="false" layoutX="415.0" layoutY="354.0" opacity="0.93" prefHeight="33.0" prefWidth="97.0" promptText="0.00" text="0" />
                            </children>
                         </AnchorPane>
                         <Button fx:id="check_order_btn" layoutX="673.0" layoutY="65.0" mnemonicParsing="false" onAction="#getId_row" prefHeight="30.0" prefWidth="94.0" text="Check Order">

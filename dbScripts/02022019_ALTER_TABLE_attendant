@@ -1,0 +1,2 @@
+ALTER TABLE `posv2`.`attendant` 
+CHANGE COLUMN `attdt_imag` `attdt_image` LONGBLOB NULL DEFAULT NULL ;
