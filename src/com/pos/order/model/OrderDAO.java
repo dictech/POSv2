@@ -11,21 +11,24 @@ import com.pos.database.Database;
 
 public class OrderDAO {
 	public static int createOrder(Order order) {
-		String sql =   "INSERT INTO order VALUES(?,?,?,?,?,?)";
+		String sql =   " INSERT INTO POSv2.order (order_id,order_date,order_time,order_no,order_price,order_attdt_id) "
+				+ "   VALUES (?,?,?,?,?,?) ";
 		int pk = 0;
-		Connection cxtn = Database.getDatabaseConnection();
+		//Connection cxtn = Database.getDatabaseConnection();
+
 		
 		try {
-			
-			PreparedStatement stmt = cxtn.prepareStatement(sql);
+		    PreparedStatement stmt = Database.getConnectedPreparedStatement(sql);
+
+			//PreparedStatement stmt = cxtn.prepareStatement(sql);
 			stmt.setBigDecimal(1, order.getOrder_id());
-			stmt.setBigDecimal(2, order.getOrder_attd_id());
-			stmt.setDate(3, order.getOrder_date());
-			stmt.setString(4,order.getOrder_time());
-			stmt.setString(5,order.getOrder_no());
-			stmt.setBigDecimal(6, order.getTotalPriceOfOrder());
+			stmt.setBigDecimal(6, order.getOrder_attd_id());
+			stmt.setDate(2, order.getOrder_date());
+			stmt.setString(3,order.getOrder_time());
+			stmt.setString(4,order.getOrder_no());
+			stmt.setBigDecimal(5, order.getTotalPriceOfOrder());
 			
-			stmt.execute();
+			stmt.executeUpdate();
 			
 			pk = stmt.RETURN_GENERATED_KEYS;
 			
