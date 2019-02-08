@@ -172,7 +172,7 @@ public class CreatePaymentCtrl implements Initializable{
 
 	    @FXML
 	    void callPaymentMethod(ActionEvent event) {
-	    			this.payment_type.getSelectionModel().getSelectedItem();
+	    			this.payment_type.getSelectionModel().getSelectedItem(); 
 	    			
 	    			if(this.payment_type.getValue().matches(debit) || this.payment_type.getValue().matches(credit)) {
 	    				

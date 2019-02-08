@@ -17,7 +17,6 @@ public class DashboardView extends Application {
 	
 	@Override
 	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
 		window = arg0;
 		
 		Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
