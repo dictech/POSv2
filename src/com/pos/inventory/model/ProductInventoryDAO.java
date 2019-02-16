@@ -160,14 +160,14 @@ public class ProductInventoryDAO {
 
 
 	public static List<ProductInventory> getInventoryByProduct(String productName) {
-		String sql = "SELECT * FROM inventory WHERE inv_desc like ?";
+		String sql = "SELECT * FROM inventory WHERE UPPER(inv_desc) like ?";
 		List<ProductInventory> listOfInventories = new ArrayList<ProductInventory>();
 		
 		try {
 			Connection cxtn = Database.getDatabaseConnection();
 			PreparedStatement stmt =  cxtn.prepareStatement(sql);
 			
-			stmt.setString(1, "%" + productName + "%");
+			stmt.setString(1, "%" + productName.toUpperCase() + "%");
 			ResultSet row = stmt.executeQuery();
 			
 			while(row.next()) {

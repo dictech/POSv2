@@ -14,6 +14,7 @@ import com.pos.order.model.Purchase;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ProductDAO {
@@ -165,6 +166,10 @@ public class ProductDAO {
 		   TableColumn<Product, String> descCol               =   new  TableColumn<Product, String>();
 		   TableColumn<Product, BigDecimal> costCol           =   new  TableColumn<Product, BigDecimal>();
 		   TableColumn<Product, BigDecimal> priceCol          =   new  TableColumn<Product, BigDecimal>();
+		   //TableColumn<Product, Boolean> checkbox             =   new  TableColumn<Product, Boolean>();
+		   //TableColumn<Product, String> qtyOfProductCol       =   new  TableColumn<Product, String>();
+
+
 		  
 		   @SuppressWarnings("rawtypes")
 		   TableColumn qtyCol =  new TableColumn("Quantity");
@@ -174,6 +179,9 @@ public class ProductDAO {
 		   descCol.setText("Description");
 		   costCol.setText("Cost");
 		   priceCol.setText("Price");
+		   //checkbox.setText("Select");
+		   //qtyOfProductCol.setText("Quantity");
+
 	
 		   
 		   nameCol.setPrefWidth(150);
@@ -181,6 +189,8 @@ public class ProductDAO {
 		   descCol.setPrefWidth(80);
 		   costCol.setPrefWidth(80);
 		   priceCol.setPrefWidth(80);
+		   //checkbox.setPrefWidth(50);
+		   //qtyOfProductCol.setPrefWidth(80);
 
 	    
 		    nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
@@ -188,14 +198,19 @@ public class ProductDAO {
 		    descCol.setCellValueFactory(new PropertyValueFactory<Product, String>("desc"));
 		    costCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("Cost"));
 		    priceCol.setCellValueFactory(new PropertyValueFactory<Product, BigDecimal>("Price"));
-	    	
+		    
+		    //checkbox.setCellValueFactory(new PropertyValueFactory<Product, Boolean>("isSelected"));
+		    //qtyOfProductCol.setCellValueFactory(new PropertyValueFactory<Product, String>("qty"));
+		    	    	
 			
 			mapOfTableColumns.put("nameCol",nameCol);
 			mapOfTableColumns.put("categoryCol",categoryCol);
 			mapOfTableColumns.put("descCol",descCol);
 			mapOfTableColumns.put("costCol",costCol);
 			mapOfTableColumns.put("priceCol",priceCol);
-			    	
+		   // mapOfTableColumns.put("checkbox",checkbox);
+            //mapOfTableColumns.put("qtyOfProductCol",qtyOfProductCol);
+
 	    	return mapOfTableColumns;
 
 	    }

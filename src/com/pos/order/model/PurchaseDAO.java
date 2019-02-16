@@ -18,6 +18,7 @@ import com.pos.inventory.model.Product;
 import com.pos.inventory.model.ProductDAO;
 import com.pos.inventory.model.ProductInventory;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -123,29 +124,30 @@ public class PurchaseDAO {
 		   TableColumn<Purchase, Product>    productCol  =   new  TableColumn<Purchase, Product>();
 		   TableColumn<Purchase, BigDecimal> qtyPurchasedCol   =   new  TableColumn<Purchase, BigDecimal>();
 		   TableColumn<Purchase, BigDecimal> totalPriceCol     =   new  TableColumn<Purchase, BigDecimal>();
-		   TableColumn<Purchase, CheckBox> selectedProductCol     =   new  TableColumn<Purchase, CheckBox>();
+		   TableColumn<Purchase, Button> deleteButtonCol     =   new  TableColumn<Purchase, Button>();
 		   
 		   productCol.setText("Item");
 		   qtyPurchasedCol.setText("Qty");
 		   totalPriceCol.setText("Total");
-		   selectedProductCol.setText("");
+		   deleteButtonCol.setText("");
 		   
 		   productCol.setPrefWidth(150);
-		   qtyPurchasedCol.setPrefWidth(80);
+		   qtyPurchasedCol.setPrefWidth(50);
 		   totalPriceCol.setPrefWidth(80);
+		   deleteButtonCol.setPrefWidth(45);
 		   
 
 	    
 		   productCol.setCellValueFactory(new PropertyValueFactory<Purchase, Product>("product"));
 		   qtyPurchasedCol.setCellValueFactory(new PropertyValueFactory<Purchase, BigDecimal>("qty"));
 		   totalPriceCol.setCellValueFactory(new PropertyValueFactory<Purchase, BigDecimal>("totalPriceOfPurchase"));
-		   selectedProductCol.setCellValueFactory(new PropertyValueFactory<Purchase,CheckBox>("selectedItem"));
+		   deleteButtonCol.setCellValueFactory(new PropertyValueFactory<Purchase,Button>("delButton"));
 
 			
 		   mapOfPurchaseTableCols.put("productCol",productCol);
 		   mapOfPurchaseTableCols.put("qtyPurchasedCol",qtyPurchasedCol);
 		   mapOfPurchaseTableCols.put("totalPriceCol",totalPriceCol);
-		   mapOfPurchaseTableCols.put("selectedProductCol",selectedProductCol);
+		   mapOfPurchaseTableCols.put("deleteButtonCol",deleteButtonCol);
 	
 	    	return mapOfPurchaseTableCols;
 

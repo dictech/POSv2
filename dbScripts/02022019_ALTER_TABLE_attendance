@@ -1,0 +1,3 @@
+ALTER TABLE `POSv2`.`attendance` 
+ADD COLUMN `attdnc_attdnt_firstName` VARCHAR(45) NULL AFTER `attdnc_date`,
+ADD COLUMN `attdnc_attdnt_lastName` VARCHAR(45) NULL AFTER `attdnc_attdnt_firstName`;

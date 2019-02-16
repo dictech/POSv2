@@ -2,8 +2,11 @@ package com.pos.order.model;
 
 import java.math.BigDecimal;
 
+import com.pos.database.PurchaseCache;
 import com.pos.inventory.model.Product;
+import com.pos.order.controller.OrderTransactionCtrl;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class Purchase {
@@ -12,7 +15,26 @@ public class Purchase {
 	private Product product;
 	private BigDecimal qty;
 	
+	private Button delButton;
 	
+	public Purchase() {
+		delButton =  new Button("X");
+		delButton.setOnAction(e->{
+			OrderTransactionCtrl.clearExistingSelectedPurchaseFromCache();
+		});
+	}
+	
+	
+	public Button getDelButton() {
+		return delButton;
+	}
+
+
+	public void setDelButton(Button delButton) {
+		this.delButton = delButton;
+	}
+
+
 	public String getOrderId() {
 		return orderId;
 	}
