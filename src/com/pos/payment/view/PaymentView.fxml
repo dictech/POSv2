@@ -28,7 +28,7 @@
                         </Text>
                         <AnchorPane layoutX="11.0" layoutY="6.0" prefHeight="553.0" prefWidth="532.0" style="-fx-background-color: #000; -fx-border-radius: 12; -fx-background-radius: 12;">
                            <children>
-                              <TextField fx:id="price" editable="false" layoutX="201.0" layoutY="250.0" prefHeight="37.0" prefWidth="166.0" promptText="#" />
+                              <TextField fx:id="price" editable="false" layoutX="201.0" layoutY="250.0" prefHeight="37.0" prefWidth="166.0" text="0" />
                               <TextField fx:id="amount_paid" layoutX="199.0" layoutY="300.0" prefHeight="33.0" prefWidth="168.0" promptText="#" />
                               <Text fill="WHITE" layoutX="116.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost :">
                                  <font>
@@ -40,7 +40,7 @@
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="balanceOf_pm" layoutX="201.0" layoutY="390.0" prefHeight="32.0" prefWidth="166.0" promptText="#" />
+                              <TextField fx:id="balanceOf_pm" layoutX="201.0" layoutY="390.0" prefHeight="32.0" prefWidth="166.0" text="0" />
                               <Text fill="WHITE" layoutX="77.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Of Payment :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
@@ -59,7 +59,7 @@
                               </Text>
                               <TextField fx:id="order_id" disable="true" editable="false" layoutX="95.0" layoutY="113.0" opacity="0.93" prefHeight="33.0" prefWidth="97.0" promptText="0.00" text="0" />
                               <TextField fx:id="attendant_id" disable="true" editable="false" layoutX="95.0" layoutY="74.0" opacity="0.95" prefHeight="33.0" prefWidth="96.0" promptText="0.00" text="0" />
-                              <Text fill="WHITE" layoutX="23.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID :">
+                              <Text fill="WHITE" layoutX="23.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order No :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
@@ -124,8 +124,17 @@
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="description" layoutX="332.0" layoutY="1.0" prefHeight="18.0" prefWidth="166.0" promptText="#" />
-                              <TextField fx:id="lastPaid" disable="true" editable="false" layoutX="415.0" layoutY="354.0" opacity="0.93" prefHeight="33.0" prefWidth="97.0" promptText="0.00" text="0" />
+                              <TextField fx:id="lastPaid" disable="true" editable="false" layoutX="415.0" layoutY="370.0" opacity="0.93" prefHeight="33.0" prefWidth="97.0" promptText="0.00" text="0" />
+                              <Text fx:id="description" fill="#15e188" layoutX="209.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="319.13671875">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pay_id" fill="#e09b0d" layoutX="406.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="106.13671875">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="19.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <Button fx:id="check_order_btn" layoutX="673.0" layoutY="65.0" mnemonicParsing="false" onAction="#getId_row" prefHeight="30.0" prefWidth="94.0" text="Check Order">

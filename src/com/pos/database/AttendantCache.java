@@ -35,9 +35,9 @@ public class AttendantCache {
 	}
 
 	public static Attendant getAttendantById(String attendantId) {
-		Attendant att =  new Attendant();
-		att.setId(new BigDecimal(123456));
-		attendant = att;
+//		Attendant att =  new Attendant();
+//		att.setId(new BigDecimal(12));
+//		attendant = att;
 		return attendant;
 	}
 

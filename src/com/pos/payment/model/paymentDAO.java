@@ -39,6 +39,7 @@ public class paymentDAO {
 		    ResultSet record = stmt.getGeneratedKeys();
 		    if(record.next()) {
 		    	stmt.setBigDecimal(1, record.getBigDecimal(1));
+		    	payment.setId( record.getBigDecimal(1));
 		    }
 		    
 
@@ -160,4 +161,53 @@ public class paymentDAO {
 		String sql = "DELETE FROM payment where id = ?";
 		Database.deleteFromTable(sql, id);
 	}
+	
+	public static ArrayList<BigDecimal> getAllpayOrderIds()throws Exception {
+		
+		ArrayList<BigDecimal> payOrderIds = new ArrayList<BigDecimal>();
+		 String sql = " SELECT pay_order_id FROM posv2.payment ;";
+		 
+		Connection cxtn =  Database.getDatabaseConnection();
+		ResultSet records =  cxtn.createStatement().executeQuery(sql);
+		
+		while(records.next()) {
+			 
+			payOrderIds.add(records.getBigDecimal(1));
+		}
+		return payOrderIds;	
+	}
+	
+	
+	public static Payment getMaxPayment(BigDecimal pay_orderID) throws Exception{
+		
+		Payment payment = new Payment();
+	
+		 String sql = " select max(pay_id)pay_id,pay_attdt_id, "
+		 		+ " pay_order_id, pay_price, pay_amt_paid, pay_balance, "
+		 		+ " pay_type, pay_description, pay_date, pay_time " + 
+		 		" from   posv2.payment " + 
+		 		" where  pay_order_id = ? ";
+		 
+		  PreparedStatement stmt = Database.getConnectedPreparedStatement(sql);
+			stmt.setBigDecimal(1, pay_orderID);
+			 ResultSet record = stmt.executeQuery();
+			 if(record.next()) {	
+				 
+					payment.setId(record.getBigDecimal(1));
+					payment.setRecipient(AttendantDAO.getAttendant(record.getBigDecimal(2)));
+					payment.setOrder(OrderDAO.getOrder(record.getBigDecimal(3)));
+					payment.setPrice(record.getInt(4));
+					payment.setAmtPaid(record.getInt(5));
+					payment.setBalance(record.getInt(6));
+					payment.setType(record.getString(7));
+					payment.setDescription(record.getString(8));
+					payment.setDate(record.getDate(9));
+					payment.setTime(record.getString(10));
+			}
+			return payment;
+			
+			}
+	            
+	
+			
 }

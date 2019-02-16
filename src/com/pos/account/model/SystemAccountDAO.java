@@ -14,8 +14,10 @@ import java.util.Random;
 import java.sql.Date;
 
 import com.pos.account.controller.LoginCtrl;
+import com.pos.account.view.CreateLoginView;
 import com.pos.database.AttendantCache;
 import com.pos.database.Database;
+import com.pos.org.view.DashboardView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SystemAccountDAO {
@@ -34,7 +37,20 @@ public class SystemAccountDAO {
 	   
 	   
 
+     private static String validationstatus;
+     
 
+
+
+	public static String getValidationstatus() {
+		return validationstatus;
+	}
+
+
+
+	public static void setValidationstatus(String validationstatus) {
+		SystemAccountDAO.validationstatus = validationstatus;
+	}
 
 
 
@@ -130,7 +146,8 @@ public class SystemAccountDAO {
 		              
 	   }
 
-	   
+
+
 	   public static void logInSystemAccount(ActionEvent event, String userName,  String password) {
 		               
 		   
@@ -161,12 +178,18 @@ public class SystemAccountDAO {
 		    	    	     
 		    	    	     AttendantCache.setAttendant(attendant);
 		    	    	     AttendantCache.getCache().get(attendant.getCacheId());
-    	                        }
+		    	    	     		    	    	   	 
+		    	    	   	DashboardView dv =  new DashboardView();
+		    	    	   	dv.startDashBoard();
+		    	    	   	setValidationstatus(null);
+		    	                                       
+		    	    	      	
+    	                }
+		    	      
 		    	      else {
 		    	    	  
-		    	    	      Alert alert = new Alert(AlertType.ERROR);
-		    	    	      alert.setContentText("Invalid user name or password !");
-		    	    	      alert.showAndWait();
+		    	    	  setValidationstatus("Incorrect username or password !");
+                              
 		    	      }
 		    	      
 		    	      prepareStatement.close();

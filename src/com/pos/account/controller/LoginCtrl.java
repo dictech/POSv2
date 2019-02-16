@@ -2,9 +2,7 @@ package com.pos.account.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.pos.account.model.SystemAccountDAO;
-import com.pos.org.controller.DashboardCtrl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,29 +11,34 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LoginCtrl implements Initializable {
 	
-	   @FXML
-	    private TextField userName;
+	
+	
 
+        @FXML
+        private PasswordField password;
+
+        @FXML
+        private TextField userName;
+	    
 	    @FXML
-	    private TextField password;
+	    private Text validation;
 
 	    @FXML
 	    private Button btnLogIn;
-
-	     private  String u_name;
-	     
-	     private String pass;
 	    
+	    private  String u_name;
 	     
-
+	    private String pass;
+	     
 	    public String getU_name() {
 			return u_name;
 		}
@@ -53,8 +56,7 @@ public class LoginCtrl implements Initializable {
 			this.pass = pass;
 		}
 
-		
-		
+
 		@FXML
 	    void createAccount(ActionEvent event) {
 
@@ -63,8 +65,10 @@ public class LoginCtrl implements Initializable {
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// Connect to Database
+			
 		}
 	
+		
 		
 	    @FXML
 	    void loginAccount(ActionEvent event) throws Exception {
@@ -72,31 +76,26 @@ public class LoginCtrl implements Initializable {
 	    	 
 	    	if(userName.getText().isEmpty() || password.getText().isEmpty()) {
 	    		
-	                  Alert alert = new Alert(AlertType.WARNING);
-	                  alert.setContentText("please Enter the required fields !");
-	                  alert.showAndWait();}
+                        this.validation.setText(" Please Enter Username and Password !");
+	          }
 	    	
 	    	
 	    	else {
         	    	SystemAccountDAO.logInSystemAccount(event,userName.getText(), password.getText());
-	    	         this.setU_name(userName.getText());
-	    	         this.setPass(password.getText());
+        	    	this.validation.setText(SystemAccountDAO.getValidationstatus());
+	    	        this.setU_name(userName.getText());
+	    	        this.setPass(password.getText());
+	    	         
+                    
 	    	}
-	    	
-	    	
-	  
+
 	    	        }
 	    
+	             
+	          public void exitLoginScreen() throws Exception{
+
+	        	      
+	             }
 	    
-//	                        public void homePage(ActionEvent event) throws Exception {
-//	                    	 
-//	                    	Parent root = FXMLLoader.load(getClass().getResource("../../org/view/dashboard.fxml"));
-//	             	    	Scene scene =  new Scene(root,1280,800);
-//	             	    	Stage stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
-//	             	    	stage.setScene(scene);
-//	             	    	stage.show();}
-	    
-	                        
-	                        
-                       }
+       }
 

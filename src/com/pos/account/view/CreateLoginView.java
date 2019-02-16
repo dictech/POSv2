@@ -17,8 +17,11 @@ public class CreateLoginView extends Application {
 	public void start(Stage stage) throws Exception {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-		Scene scene = new Scene(root,700,320);
+		Scene scene = new Scene(root,1366,700);
 		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setTitle("Check Point");
+		stage.setFullScreen(true);
 		stage.show();
 	}
 	

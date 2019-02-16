@@ -1,0 +1,2 @@
+ALTER TABLE `POSv2`.`payment` 
+ADD COLUMN `pay_description` VARCHAR(45) NOT NULL AFTER `pay_type`;
