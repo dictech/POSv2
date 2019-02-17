@@ -57,10 +57,6 @@ public class LoginCtrl implements Initializable {
 		}
 
 
-		@FXML
-	    void createAccount(ActionEvent event) {
-
-	    }
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
@@ -68,15 +64,38 @@ public class LoginCtrl implements Initializable {
 			
 		}
 	
+		   void callValidate() {
+			   
+
+		   }
+		
 		
 		
 	    @FXML
 	    void loginAccount(ActionEvent event) throws Exception {
 	    	
-	    	 
+	    	
 	    	if(userName.getText().isEmpty() || password.getText().isEmpty()) {
 	    		
-                        this.validation.setText(" Please Enter Username and Password !");
+	    		this.validation.setText(" Please Enter Username and Password !");
+                        
+                        Thread time = new Thread() {
+
+							@Override
+							public void run() {
+								try {
+									sleep(6000);
+									validation.setText(null);
+									  
+								} catch (InterruptedException e) {
+									
+									e.printStackTrace();
+								}
+								super.run();
+							}
+        	
+                        };
+                        time.start();
 	          }
 	    	
 	    	

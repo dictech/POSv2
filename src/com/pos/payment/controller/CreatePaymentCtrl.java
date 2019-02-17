@@ -196,15 +196,19 @@ public class CreatePaymentCtrl implements Initializable{
 	    void callPaymentMethod(ActionEvent event) {
 	    			this.payment_type.getSelectionModel().getSelectedItem(); 
 	    			
-	     if(this.payment_type.getValue().matches(credit) || this.payment_type.getValue().matches(debit)) {
+	     if(this.payment_type.getValue().matches(credit)) {
+	    	
+	    	 this.description.setText(null);
+	
+	     }else if(this.payment_type.getValue().matches(debit)){
 	    				
-	    	this.description.setText(null);
-	    				
-
-	    				
+	    				this.balanceOf_pm.setText(this.lastPaid.getText());
+	    				 this.description.setText(null);
 	    			}
 	    			
-	    		}
+	     }
+	    
+	    
 
 	    public void createPaymentInstatnce(Payment payment,double balance,double totalAmountPaid) {
 	    	this.order = new Order();
@@ -221,8 +225,8 @@ public class CreatePaymentCtrl implements Initializable{
 	    	payment.setTime(this.payment_time.getText());
 	    	paymentDAO.createPayment(payment);
 	    	
-	    	 BigDecimal d = payment.getId(); 
-	    	this.pay_id.setText(d.toPlainString());
+	    	 BigDecimal id = payment.getId(); 
+	    	this.pay_id.setText(id.toPlainString());
 	    }
 	    
 	    @FXML
@@ -303,13 +307,31 @@ public class CreatePaymentCtrl implements Initializable{
 		    			
 		    				 
 		    				  
-             int subtractPayment = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.amount_paid.getText());
-             int refundPayment = subtractPayment;
-             
-                                
-		    				     Payment payment = new Payment();
+             int refundPayment = Integer.parseInt(this.amount_paid.getText()) - Integer.parseInt(this.lastPaid.getText());
+             int giveBalance = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.lastPaid.getText());
+                 
+                 
+                                if(refundPayment == 0) {
+                                  this.balanceOf_pm.setText(new BigDecimal(refundPayment).toPlainString());
+                                  this.lastPaid.setText(new BigDecimal(refundPayment).toPlainString());
+                                  this.description.setText(" refunded payment");
+		    				      Payment payment = new Payment();
 		    				      this.createPaymentInstatnce(payment, refundPayment, refundPayment);
+		    				      
+                                
+                                }
+                                
+                                else if(giveBalance > 0) {
+                                	
+                                	this.balanceOf_pm.setText(new BigDecimal(giveBalance).toPlainString());
+                                    this.description.setText(null);
+  		    				      Payment payment = new Payment();
+  		    				      this.createPaymentInstatnce(payment, giveBalance, giveBalance);
+                                }
+                                
 		    			  }
+		    			 
+		    			  
 		    			  
 		    		  }
 		    	
