@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.RandomStringUtils;
+//import org.apache.commons.lang3.RandomStringUtils;
 
 import com.pos.account.model.Attendant;
 import com.pos.database.AttendantCache;
@@ -81,7 +81,9 @@ public class OrderTransactionCtrl {
     	Attendant attendant = AttendantCache.getCache().get("USER");
     	
     	Order order =  new Order();
-    	order.setOrder_no("POS-" + RandomStringUtils.randomAlphabetic(5));
+    	//order.setOrder_no("POS-" + RandomStringUtils.randomAlphabetic(5));
+    	order.setOrder_no("POS-");
+
     	order.setOrder_attd_id(attendant.getId());
     	order.setOrder_date(Date.valueOf(LocalDate.now()));
     	order.setOrder_time(Time.valueOf(LocalTime.now()).toString());

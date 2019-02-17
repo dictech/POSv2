@@ -1,0 +1,21 @@
+ability to add org logo.
+change shop owner to shop manager in shop table.
+change attandant drop down to manager on shop screen.
+ability to refresh the shop table on shop screen.
+ability to exit login screen after login in.
+ability to set attandant image value to null in create Attendant screen.
+fix missing feilds in attandant enquiry and edit attenadnt screen.
+ability to refresh Category table in category screen.
+ability to refresh product table in product screen.
+ability to show the total number of items automaticaly on inventory screen.
+fix inability to create inventory
+  - java.sql.SQLException: Column count doesn't match value count at row 1,
+  - at com.pos.inventory.model.ProductInventoryDAO.createInventory(ProductInventoryDAO.java:46)
+  - at com.pos.inventory.controller.InventoryCtrl.createInventory(InventoryCtrl.java:238)
+
+ability to refresh table at inventory screen.
+apache library
+
+fix balance of payment field on payment screen during debit action.
+fix debit payment functionality.
+ability to reduce inventory count after each purchase.

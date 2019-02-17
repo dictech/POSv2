@@ -11,7 +11,7 @@ import com.pos.database.Database;
 
 public class OrderDAO {
 	public static int createOrder(Order order) {
-		String sql =   " INSERT INTO POSv2.order (order_id,order_date,order_time,order_no,order_price,order_attdt_id) "
+		String sql =   " INSERT INTO POSv2.order (order_id,order_date,order_time,order_no,order_price,order_attd_id) "
 				+ "   VALUES (?,?,?,?,?,?) ";
 				
 		int pk =0;
