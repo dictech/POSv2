@@ -13,7 +13,11 @@ public class OrderDAO {
 	public static int createOrder(Order order) {
 		String sql =   " INSERT INTO POSv2.order (order_id,order_date,order_time,order_no,order_price,order_attdt_id) "
 				+ "   VALUES (?,?,?,?,?,?) ";
-		int pk = 0;
+				
+		int pk =0;
+		
+		ResultSet rs = null;
+		//Connection cxtn = Database.getDatabaseConnection();
 
 		
 		try {
@@ -27,8 +31,10 @@ public class OrderDAO {
 			
 			stmt.executeUpdate();
 			
-			pk = stmt.RETURN_GENERATED_KEYS;
-			
+		    rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
+		    rs.first();
+		    pk = rs.getInt(1);
+						
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

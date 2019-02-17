@@ -1,6 +1,7 @@
 package com.pos.order.controller;
 
 import java.math.BigDecimal;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -9,9 +10,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 import com.pos.account.model.Attendant;
 import com.pos.database.AttendantCache;
@@ -30,9 +36,13 @@ import com.pos.payment.model.paymentDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class OrderTransactionCtrl {
@@ -54,20 +64,24 @@ public class OrderTransactionCtrl {
 
     @FXML
     private TextField balanceOfPurchase;
-
-    @FXML
-    void addItemToCart(ActionEvent event) {
-
-    }
+    
+    
+    Map<String,TableColumn<Purchase, ?>> mapOfTableCol;
+    
+    static Purchase purchase;
+    
+    Product selectedProduct;
+    
+	BigDecimal quantity;
+	
 
     @FXML
     void dispatchPurchase(ActionEvent event) throws ExecutionException {
     	
     	Attendant attendant = AttendantCache.getCache().get("USER");
     	
-    	
     	Order order =  new Order();
-    	order.setOrder_no("yt5789");
+    	order.setOrder_no("POS-" + RandomStringUtils.randomAlphabetic(5));
     	order.setOrder_attd_id(attendant.getId());
     	order.setOrder_date(Date.valueOf(LocalDate.now()));
     	order.setOrder_time(Time.valueOf(LocalTime.now()).toString());
@@ -90,7 +104,14 @@ public class OrderTransactionCtrl {
     	payment.setTime(Time.valueOf(LocalTime.now()).toString());
     	payment.setDate(Date.valueOf(LocalDate.now()));
     	paymentDAO.createPayment(payment);
-
+    	
+    	
+    	prodSearchResultTbl.getItems().clear();
+    	purchaseListTbl.getItems().clear();
+    	this.totalCostOfPurchase.clear();
+    	this.balanceOfPurchase.clear();
+    	this.amtPaidForPurchase.clear();
+    	this.clearAllProductFromCache();
     }
 
     @FXML
@@ -114,45 +135,63 @@ public class OrderTransactionCtrl {
      	prodSearchResultTbl.getColumns().clear();
     	prodSearchResultTbl.setItems(FXCollections.observableArrayList(listOfProducts));
    	    prodSearchResultTbl.getColumns().addAll(mapOfTableCol.values());
-   	    
     }
     
     
     @FXML
-    void addSelectedProductToCache(MouseEvent event) throws Exception {
-    	 	 
-      	Product selectedProduct =  prodSearchResultTbl.getSelectionModel().getSelectedItem();
+    public void addSelectedProductToCache(MouseEvent event) throws Exception {
+    	
+    	this.getSelectedProduct();
       	
-      	Purchase purchase =  new Purchase();
-      	purchase.setProduct(selectedProduct);
-      	purchase.setQty(new BigDecimal(100));
-      	purchase.setTotalPriceOfPurchase(selectedProduct.getCost().multiply(new BigDecimal(100)));
+      	purchase =  new Purchase();
+      	purchase.setProduct(this.selectedProduct);
       	
-      	//PurchaseDAO.cachePurchase(purchase);
-      	
-      	PurchaseCache.setPurchase(purchase);
-      	PurchaseCache.getCache().get(purchase.getProduct().getName());
-      	
-      	
-      	this.displayCachedPurchases();
-      		
+      	if(this.getQuantityOfProduct()) {
+	      	purchase.setQty(this.quantity);
+	      	purchase.setTotalPriceOfPurchase(this.selectedProduct.getCost().multiply(purchase.getQty()));
+	      	
+	      	this.clearExistingSelectedProductFromCache();
+	      	this.addToCache();
+	      	this.displayCachedPurchases();
+	      	
+	      	this.productName.clear();
+      	}      		
     }
     
-    
-    void displayCachedPurchases() {
+   
+	void displayCachedPurchases() {
     	
       	ConcurrentMap<String,Purchase> cachedPurchases = PurchaseCache.getCache().asMap();
-      	Map<String,TableColumn<Purchase, ?>> mapOfTableCol = PurchaseDAO.getPurchaseCols();
+      	mapOfTableCol = PurchaseDAO.getPurchaseCols();
       	
     	purchaseListTbl.getColumns().clear();
+
      	purchaseListTbl.setItems(FXCollections.observableArrayList(cachedPurchases.values()));
+     	
      	purchaseListTbl.getColumns().addAll(mapOfTableCol.values());
      	
      	this.calculateTotalCost();
     }
+	 
+	
+	public boolean getQuantityOfProduct(){
+		
+		
+		TextInputDialog dialog =  new TextInputDialog();
+		dialog.setContentText("How many was requested ?");
+		
+		Optional<String> result = dialog.showAndWait();
+		if(result.isPresent()) {
+			this.quantity = new BigDecimal(result.get());
+		}
+		
+		return result.isPresent();
+	}
+	    
+	    
+	   
     
     void calculateTotalCost() {
-    	List<Purchase> purchase = purchaseListTbl.getSelectionModel().getSelectedItems();
     	
     	List<Purchase>listOfPurchase = new ArrayList(PurchaseCache.getCache().asMap().values());
     	int totalPrice = listOfPurchase.stream().mapToInt(i->i.getTotalPriceOfPurchase().intValue()).sum();    	
@@ -166,6 +205,70 @@ public class OrderTransactionCtrl {
     	BigDecimal balance =  totalCost.subtract(new BigDecimal(this.amtPaidForPurchase.getText()));
     	this.balanceOfPurchase.setText(balance.toString());
     }
+    
+    
+    
+//    @FXML
+//    public void addSelectedProductToCache2(ActionEvent event) {
+//    	
+//    	
+//    	List<Product> listOfSelectedProducts = prodSearchResultTbl.getSelectionModel()
+//		    													  .getSelectedItems()
+//		    													  .stream()
+//		    													  .filter(p -> p.getIsSelected().isSelected() == true)
+//			                                                      .collect(Collectors.toList());
+//    	
+//    	listOfSelectedProducts.forEach(product -> {
+//          	Purchase purchase =  new Purchase();
+//          	purchase.setProduct(product);
+//         	purchase.setQty(new BigDecimal(100));
+//          	purchase.setTotalPriceOfPurchase(product.getCost().multiply(new BigDecimal(100)));
+//          	PurchaseCache.setPurchase(purchase);
+//          	try {
+//				PurchaseCache.getCache().get(purchase.getProduct().getName());
+//			} catch (ExecutionException e) {
+//				e.printStackTrace();
+//			}
+//    	});
+//      	      	
+//      	
+//      	
+//      	displayCachedPurchases();
+//      	
+//      	productName.clear();
+//      		
+//    }
+    
+    
+    public void getSelectedProduct() {
+      	this.selectedProduct =  prodSearchResultTbl.getSelectionModel().getSelectedItem();
+	}
+    
+    
+    @FXML
+    public void setSelectedPurchase(MouseEvent event) {
+      	purchase =  purchaseListTbl.getSelectionModel().getSelectedItem();
+      	System.out.println("purchase = " + purchase.getProduct().getName());
+    }
+    
+    public void clearExistingSelectedProductFromCache() {
+		PurchaseCache.getCache().invalidate(this.selectedProduct.getName());
+	}
+    
+    public static void  clearExistingSelectedPurchaseFromCache() {
+		PurchaseCache.getCache().invalidate(purchase.getProduct().getName());
+//		purchaseListTbl.getColumns().get(0).setVisible(false);
+//		purchaseListTbl.getColumns().get(0).setVisible(true);
+	}
+    
+    public void addToCache() throws ExecutionException {
+    	PurchaseCache.setPurchase(purchase);
+      	PurchaseCache.getCache().get(purchase.getProduct().getName());      	
+	}
+    
+    public void clearAllProductFromCache() throws ExecutionException {
+      	PurchaseCache.getCache().invalidateAll();    	
+	}
 
 }
 
