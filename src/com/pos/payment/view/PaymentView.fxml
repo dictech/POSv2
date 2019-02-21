@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -28,30 +30,30 @@
                         </Text>
                         <AnchorPane layoutX="11.0" layoutY="6.0" prefHeight="553.0" prefWidth="532.0" style="-fx-background-color: #000; -fx-border-radius: 12; -fx-background-radius: 12;">
                            <children>
-                              <TextField fx:id="price" editable="false" layoutX="201.0" layoutY="250.0" prefHeight="37.0" prefWidth="166.0" text="0" />
-                              <TextField fx:id="amount_paid" layoutX="199.0" layoutY="300.0" prefHeight="33.0" prefWidth="168.0" promptText="#" />
+                              <TextField editable="false" layoutX="200.0" layoutY="250.0" prefHeight="37.0" prefWidth="168.0" />
+                              <TextField editable="false" layoutX="199.0" layoutY="300.0" prefHeight="37.0" prefWidth="168.0" />
                               <Text fill="WHITE" layoutX="116.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="104.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount Paid :">
+                              <Text fx:id="amp" fill="WHITE" layoutX="104.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount Paid :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="balanceOf_pm" layoutX="201.0" layoutY="390.0" prefHeight="32.0" prefWidth="166.0" text="0" />
+                              <TextField editable="false" layoutX="201.0" layoutY="390.0" prefHeight="37.0" prefWidth="168.0" />
                               <Text fill="WHITE" layoutX="77.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Of Payment :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="61.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance Of Payment :">
+                              <Text fx:id="bpm" fill="WHITE" layoutX="61.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance Of Payment :">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="12.0" />
                                  </font>
                               </Text>
-                              <ComboBox fx:id="payment_type" layoutX="201.0" layoutY="345.0" onAction="#callPaymentMethod" prefHeight="33.0" prefWidth="167.0" promptText="--  Select Type  --" style="-fx-background-color: #fff;" />
+                              <ComboBox fx:id="payment_type" layoutX="201.0" layoutY="345.0" onAction="#callPaymentMethod" prefHeight="37.0" prefWidth="168.0" promptText="--  Select Type  --" style="-fx-background-color: #fff;" />
                               <Text fill="#e09b0d" layoutX="14.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Info" textAlignment="CENTER" wrappingWidth="144.13671875">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="19.0" />
@@ -135,6 +137,24 @@
                                     <Font name="Lucida Sans Demibold" size="19.0" />
                                  </font>
                               </Text>
+                              <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="205.0" layoutY="259.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../Assets/images/kisspng-nigerian-naira-currency-symbol-yen-sign-peru-vector-5ad85ac055b0d4.848371961524128448351%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="price" editable="false" layoutX="227.0" layoutY="250.0" prefHeight="37.0" prefWidth="141.0" text="0" />
+                              <TextField fx:id="amount_paid" layoutX="226.0" layoutY="300.0" prefHeight="37.0" prefWidth="141.0" />
+                              <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="205.0" layoutY="309.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../Assets/images/kisspng-nigerian-naira-currency-symbol-yen-sign-peru-vector-5ad85ac055b0d4.848371961524128448351%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="balanceOf_pm" editable="false" layoutX="228.0" layoutY="390.0" prefHeight="37.0" prefWidth="141.0" text="0" />
+                              <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="206.0" layoutY="399.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../Assets/images/kisspng-nigerian-naira-currency-symbol-yen-sign-peru-vector-5ad85ac055b0d4.848371961524128448351%20(1).png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <Button fx:id="check_order_btn" layoutX="673.0" layoutY="65.0" mnemonicParsing="false" onAction="#getId_row" prefHeight="30.0" prefWidth="94.0" text="Check Order">

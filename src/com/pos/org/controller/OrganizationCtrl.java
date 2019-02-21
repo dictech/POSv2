@@ -1,5 +1,7 @@
 package com.pos.org.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
@@ -15,16 +17,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class OrganizationCtrl implements Initializable{
 
@@ -34,6 +41,15 @@ public class OrganizationCtrl implements Initializable{
     @FXML
     private TextField orgName;
 
+    @FXML
+    private ImageView org_logo_image;
+    
+    @FXML
+    private Button org_logo_btn;
+    
+    @FXML
+    private Text orglogo_text;
+    
     @FXML
     private TextArea orgLocation;
 
@@ -88,6 +104,8 @@ public class OrganizationCtrl implements Initializable{
     private TextField orgShopId;
     
     private Shop shop;
+    
+    private File file;
 
     
     
@@ -120,6 +138,24 @@ public class OrganizationCtrl implements Initializable{
     	
     }
      
+
+    @FXML
+    void uploadOrgImage(ActionEvent event) throws Exception{
+
+    	  FileChooser fc = new FileChooser();
+    	  fc.getExtensionFilters().addAll(new ExtensionFilter("image file","*.png","*.jpg","*.gif"));
+    	  this.file = fc.showOpenDialog(null);
+    	  
+    	  if(file !=null) {
+    		  this.orglogo_text.setVisible(false);
+        	  this.org_logo_image.setImage(new Image(new FileInputStream(file.getPath())));  
+    		  
+    	  }
+    	  
+
+    	
+    }
+    
 
     @FXML
     void createOrganization(ActionEvent event) {
@@ -194,6 +230,7 @@ public class OrganizationCtrl implements Initializable{
       
     }
 
+    
 
 }
 

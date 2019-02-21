@@ -82,7 +82,7 @@ public class OrderTransactionCtrl {
     	
     	Order order =  new Order();
     	//order.setOrder_no("POS-" + RandomStringUtils.randomAlphabetic(5));
-    	order.setOrder_no("POS-");
+    	order.setOrder_no("5");
 
     	order.setOrder_attd_id(attendant.getId());
     	order.setOrder_date(Date.valueOf(LocalDate.now()));

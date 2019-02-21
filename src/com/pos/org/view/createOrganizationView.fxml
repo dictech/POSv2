@@ -11,10 +11,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.org.controller.OrganizationCtrl">
    <children>
@@ -24,7 +27,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="729.0">
                      <children>
-                        <VBox layoutY="-1.0" prefHeight="373.0" prefWidth="1194.0">
+                        <VBox layoutY="-1.0" prefHeight="440.0" prefWidth="1194.0">
                            <children>
                               <HBox>
                                  <children>
@@ -58,7 +61,7 @@
                                  </padding>
                               </HBox>
                               <Separator prefHeight="3.0" prefWidth="581.0" />
-                              <HBox prefHeight="35.0" prefWidth="590.0">
+                              <HBox maxWidth="500.0" prefHeight="35.0" prefWidth="590.0">
                                  <children>
                                     <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Organization Name:">
                                        <font>
@@ -74,7 +77,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox layoutX="20.0" layoutY="51.0" prefHeight="65.0" prefWidth="590.0">
+                              <HBox layoutX="20.0" layoutY="51.0" maxWidth="290.0" prefHeight="65.0" prefWidth="290.0">
                                  <children>
                                     <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="location:">
                                        <font>
@@ -90,7 +93,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox layoutX="20.0" layoutY="86.0" prefHeight="35.0" prefWidth="590.0">
+                              <HBox layoutX="20.0" layoutY="86.0" maxWidth="210.0" prefHeight="35.0" prefWidth="210.0">
                                  <children>
                                     <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Phone no.">
                                        <font>
@@ -106,7 +109,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox layoutX="20.0" layoutY="121.0" prefHeight="35.0" prefWidth="590.0">
+                              <HBox layoutX="20.0" layoutY="121.0" maxWidth="290.0" prefHeight="35.0" prefWidth="590.0">
                                  <children>
                                     <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="E-mail:">
                                        <font>
@@ -122,27 +125,29 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox layoutX="20.0" layoutY="186.0" prefHeight="35.0" prefWidth="590.0">
+                              <Pane maxHeight="300.0" maxWidth="350.0" prefHeight="225.0" prefWidth="206.0" style="-fx-background-color: #e1e1e1;">
+                                 <VBox.margin>
+                                    <Insets left="340.0" />
+                                 </VBox.margin>
                                  <children>
-                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="ID:" visible="false">
+                                    <ImageView fx:id="org_logo_image" fitHeight="220.0" fitWidth="345.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" />
+                                    <Text fx:id="orglogo_text" layoutX="92.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Organization logo here" textAlignment="CENTER" wrappingWidth="172.13671875">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="Lucida Sans Demibold" size="12.0" />
                                        </font>
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <TextField fx:id="orgId" prefHeight="25.0" prefWidth="86.0" visible="false" />
+                                    </Text>
                                  </children>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </HBox>
+                              </Pane>
                            </children>
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding>
                         </VBox>
+                        <Button fx:id="org_logo_btn" alignment="CENTER" layoutX="467.0" layoutY="450.0" maxHeight="210.0" maxWidth="210.0" mnemonicParsing="false" onAction="#uploadOrgImage" prefHeight="40.0" prefWidth="110.0" text="Browse" textAlignment="JUSTIFY">
+                           <font>
+                              <Font name="Lucida Sans Demibold" size="12.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>

@@ -51,6 +51,8 @@ public class CreatePaymentCtrl implements Initializable{
 	    @FXML
 	    private TextField amount_paid;
 
+	    @FXML
+	    private Text amp;
 
 	    @FXML
 	    private TextField search_order_box;
@@ -67,6 +69,8 @@ public class CreatePaymentCtrl implements Initializable{
 	    @FXML
 	    private TextField payment_date;
 
+	    @FXML
+	    private Text bpm;
 	    
 	    @FXML
 	    private TextField balanceOf_pm;
@@ -99,8 +103,11 @@ public class CreatePaymentCtrl implements Initializable{
 	    		private final LocalDateTime now = LocalDateTime.now();
 	    		private final String date = now.format(ftmt);
 	    		private final String currentTime =  LocalTime.now().toString();
-	            private final String debit = "Debit";
-	            private final String credit = "Credit";
+	            private final String debit = "D";
+	            private final String credit = "C";
+	            private final String completed = "Completed Payment";
+	            private final String partial = "Partial Payment";
+	            private final String toMuchRef = "Dear attendant you can't Refund\n more than existing payments";
 
 
 
@@ -165,9 +172,9 @@ public class CreatePaymentCtrl implements Initializable{
 			  
 			  if(allPayments.contains(new BigDecimal(this.search_order_box.getText()))) {
 			  this.payment = paymentDAO.getPayment(maxPay.getId());  
-			  this.description.setText("Was a "+payment.getDescription());
+			  this.description.setText(payment.getDescription());
 			  this.amount_paid.setText(new BigDecimal(payment.getAmtPaid()).toPlainString());
-			  this.balanceOf_pm.setText(new BigDecimal(payment.getBalance()).toPlainString());
+			  this.balanceOf_pm.setText(this.lastPaid.getText());
 			  this.lastPaid.setText(this.amount_paid.getText());
 			  this.amount_paid.setText(null);
 			  }
@@ -191,24 +198,23 @@ public class CreatePaymentCtrl implements Initializable{
 	    	}
 	    }
 		
-
 	    @FXML
 	    void callPaymentMethod(ActionEvent event) {
 	    			this.payment_type.getSelectionModel().getSelectedItem(); 
 	    			
 	     if(this.payment_type.getValue().matches(credit)) {
 	    	
+	    	 this.amp.setText("Amount paid:");
+	    	 this.bpm.setText("Balance of payment:");
 	    	 this.description.setText(null);
 	
 	     }else if(this.payment_type.getValue().matches(debit)){
-	    				
-	    				this.balanceOf_pm.setText(this.lastPaid.getText());
+	    	 this.amp.setText("Give out:");
+	    				this.bpm.setText("Refundable :");
 	    				 this.description.setText(null);
 	    			}
 	    			
 	     }
-	    
-	    
 
 	    public void createPaymentInstatnce(Payment payment,double balance,double totalAmountPaid) {
 	    	this.order = new Order();
@@ -269,14 +275,14 @@ public class CreatePaymentCtrl implements Initializable{
 		    		  }
 		    		  else if(balance > 0) {
 		    			      		  
-	                     this.description.setText("Partial Payment");	  
+	                     this.description.setText(this.partial);	  
 	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
 	    		    	 Payment payment = new Payment();
 	    		    	 this.createPaymentInstatnce(payment, balance,addDebit);
 	    		    	 
 		    		          }else if(balance == 0 ) {
 		    		        	  
-		    	                     this.description.setText("Completed Payment");	  
+		    	                     this.description.setText(this.completed);	  
 		    	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
 		    	    		    	  this.payment = new Payment();
 		    	    		    	 this.createPaymentInstatnce(payment,balance,addDebit); 
@@ -286,17 +292,18 @@ public class CreatePaymentCtrl implements Initializable{
 	                    	
 	                         this.balanceOf_pm.setText(new BigDecimal(calPayment).toPlainString());	
 	                         this.lastPaid.setText(this.amount_paid.getText());;
-	                         this.description.setText("Completed Payment");
+	                         this.description.setText(this.completed);
 	                         this.payment = new Payment();
 		    		    	 this.createPaymentInstatnce(payment, calPayment,addDebit);
 	                      }
 		    		  
 		    		          else if(moneyPaid > productPrice) {
-		    		        	  
-		    	                     this.description.setText("oweing customer: "+balance);	  
-		    	    			     this.balanceOf_pm.setText(new BigDecimal(balance).toPlainString());
+		    		        	     double bp = productPrice - moneyPaid;
+		    	                     this.description.setText("oweing customer:"+bp);	  
+		    	    			     this.balanceOf_pm.setText(new BigDecimal(bp).toPlainString());
 		    	    		    	 this.payment = new Payment();
-		    	    		    	 this.createPaymentInstatnce(payment, balance,addDebit);
+		    	    		    	 this.createPaymentInstatnce(payment,-bp,addDebit);
+		    	    		    	 this.balanceOf_pm.setText(new BigDecimal(-bp).toPlainString());
 		    		          }
 		    		  
 		    		 
@@ -307,31 +314,47 @@ public class CreatePaymentCtrl implements Initializable{
 		    			
 		    				 
 		    				  
-             int refundPayment = Integer.parseInt(this.amount_paid.getText()) - Integer.parseInt(this.lastPaid.getText());
-             int giveBalance = Integer.parseInt(this.price.getText()) - Integer.parseInt(this.lastPaid.getText());
-                 
-                 
-                                if(refundPayment == 0) {
-                                  this.balanceOf_pm.setText(new BigDecimal(refundPayment).toPlainString());
-                                  this.lastPaid.setText(new BigDecimal(refundPayment).toPlainString());
-                                  this.description.setText(" refunded payment");
+             int giveBalance = Integer.parseInt(this.lastPaid.getText()) - Integer.parseInt(this.amount_paid.getText());
+    
+                 System.out.println(giveBalance);
+                                if(giveBalance == Integer.parseInt(this.price.getText())) {
+                                  this.balanceOf_pm.setText(new BigDecimal(0).toPlainString());
+                                  this.lastPaid.setText(new BigDecimal(giveBalance).toPlainString());
+                                  this.description.setText(this.completed);
 		    				      Payment payment = new Payment();
-		    				      this.createPaymentInstatnce(payment, refundPayment, refundPayment);
+		    				      this.createPaymentInstatnce(payment, 0, giveBalance);
 		    				      
                                 
                                 }
                                 
-                                else if(giveBalance > 0) {
+                                else if(giveBalance == 0) {
                                 	
                                 	this.balanceOf_pm.setText(new BigDecimal(giveBalance).toPlainString());
-                                    this.description.setText(null);
+                                    this.description.setText("Full refund");
+                                    this.lastPaid.setText(new BigDecimal(giveBalance).toPlainString());
   		    				      Payment payment = new Payment();
   		    				      this.createPaymentInstatnce(payment, giveBalance, giveBalance);
                                 }
                                 
+                                else if(giveBalance > 0) {
+                                  	
+                                  	  this.balanceOf_pm.setText(new BigDecimal(giveBalance).toPlainString());
+                                      this.description.setText(this.partial);
+                                      this.lastPaid.setText(new BigDecimal(giveBalance).toPlainString());
+        	    				      Payment payment = new Payment();
+        	    				      this.createPaymentInstatnce(payment, giveBalance, giveBalance);
+                                  }
+                                   
+                                else if(Integer.parseInt(this.amount_paid.getText()) > Integer.parseInt(this.balanceOf_pm.getText())) {
+                                  	
+                                  	  this.balanceOf_pm.setText(new BigDecimal(giveBalance).toPlainString());
+                                      this.description.setText(this.toMuchRef+this.balanceOf_pm.getText());
+                                      this.lastPaid.setText(new BigDecimal(giveBalance).toPlainString());
+        	    				     
+                                  }
+        		    			      
 		    			  }
-		    			 
-		    			  
+
 		    			  
 		    		  }
 		    	

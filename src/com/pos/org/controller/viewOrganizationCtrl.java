@@ -11,8 +11,10 @@ import com.pos.org.model.ShopDAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,11 +30,8 @@ public class viewOrganizationCtrl implements Initializable {
     private AnchorPane orgDtlsPane;
 
     @FXML
-    private ImageView orgLogo;
-
-    @FXML
     private Label orgName;
-
+    
     @FXML
     private Label orgAddr;
 
@@ -85,6 +84,8 @@ public class viewOrganizationCtrl implements Initializable {
 		shopsTable.getColumns().addAll(shopName,shopBranch,shopLocation,shopManager,shopRCNo);
 	}
     
+	
+
     
 }
 
