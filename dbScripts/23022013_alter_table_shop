@@ -1,0 +1,3 @@
+ALTER TABLE `POSv2`.`shop` 
+CHANGE COLUMN `shop_owner` `shop_mgr` VARCHAR(45) NULL DEFAULT NULL ;
+

@@ -258,6 +258,64 @@ public class ProductInventoryDAO {
 	    	return mapOfTableColumns;
 
 	    }
+
+
+
+	public static void updateInventoryPerPurchase(Purchase purchase) {
+		
+		String sqlQuery = "UPDATE inventory "
+						+ "SET inv_total_ordered = inv_total_ordered + ? "
+						+ "WHERE inv_desc = ?";
+				
+		try {
+			Connection cxtn = Database.getDatabaseConnection();
+			PreparedStatement stmt = cxtn.prepareStatement(sqlQuery);
+			
+			stmt.setBigDecimal(1, purchase.getQty());
+			stmt.setString(2, purchase.getProduct().getName());
+						
+			stmt.executeUpdate();
+			stmt.close();
+			cxtn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static List<ProductInventory> getItemsToBeRestocked() {
+		
+		List<ProductInventory> listOfInventories = new ArrayList<ProductInventory>();
+		
+		String sqlQuery = "SELECT * " + 
+				          "FROM inventory " + 
+				          "where inv_reorder_lvl >= (inv_total_qty - inv_total_ordered)";
+		
+		try {
+			Connection cxtn = Database.getDatabaseConnection();
+			ResultSet rows = cxtn.createStatement().executeQuery(sqlQuery);
+			
+			while(rows.next()) {
+				ProductInventory inventory =  new ProductInventory();
+				inventory.setId(rows.getBigDecimal(1));
+				inventory.setProduct(ProductDAO.getProduct(rows.getBigDecimal(2)));
+				inventory.setProDesc(rows.getString(3));
+				inventory.setNoOfUnits(rows.getBigDecimal(4));
+				inventory.setQtyPerUnit(rows.getBigDecimal(5));
+				inventory.setTotalQty(rows.getBigDecimal(6));
+				inventory.setNoOfOrdered(rows.getBigDecimal(7));
+				inventory.setReorderLvl(rows.getBigDecimal(8));
+				inventory.setProName(ProductDAO.getProduct(rows.getBigDecimal(2)).getName());
+				listOfInventories.add(inventory);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listOfInventories;
+	}
 	
 	
 	

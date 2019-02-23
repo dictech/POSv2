@@ -393,7 +393,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="itemNoOfUnits" prefHeight="25.0" prefWidth="44.0" />
+                                    <TextField fx:id="itemNoOfUnits" onInputMethodTextChanged="#calcNoOfItems" prefHeight="25.0" prefWidth="44.0" />
                                  </children>
                                  <padding>
                                     <Insets top="10.0" />
@@ -409,7 +409,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="itemQtyPerUnit" prefHeight="25.0" prefWidth="95.0" />
+                                    <TextField fx:id="itemQtyPerUnit" onInputMethodTextChanged="#calcNoOfItems" prefHeight="25.0" prefWidth="95.0" />
                                  </children>
                                  <padding>
                                     <Insets top="10.0" />
@@ -427,7 +427,7 @@
                                                 <Insets right="10.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <TextField fx:id="itemTotal" prefHeight="25.0" prefWidth="94.0" />
+                                          <TextField fx:id="itemTotal" disable="true" prefHeight="25.0" prefWidth="94.0" />
                                        </children>
                                        <padding>
                                           <Insets top="10.0" />

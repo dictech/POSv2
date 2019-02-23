@@ -224,7 +224,7 @@
                               </HBox>
                               <HBox layoutX="20.0" layoutY="86.0" prefHeight="35.0" prefWidth="590.0">
                                  <children>
-                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Branch">
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Branch:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -256,7 +256,7 @@
                               </HBox>
                               <HBox layoutX="20.0" layoutY="221.0" prefHeight="35.0" prefWidth="590.0">
                                  <children>
-                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Attendant">
+                                    <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="124.0" text="Manager:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

@@ -33,7 +33,7 @@ public class ProductCategoryDAO {
 	
 	public static List<ProductCategory> getAllCategory() {
 	    List<ProductCategory> listOfCategories = new ArrayList<ProductCategory>();
- 		String sql = "SELECT * FROM product_category ";
+ 		String sql = "SELECT * FROM product_category order by cat_id desc ";
 		
 		try {
 			Connection cxtn =  Database.getDatabaseConnection();

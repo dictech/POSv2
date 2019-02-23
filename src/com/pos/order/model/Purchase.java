@@ -20,7 +20,7 @@ public class Purchase {
 	public Purchase() {
 		delButton =  new Button("X");
 		delButton.setOnAction(e->{
-			OrderTransactionCtrl.clearExistingSelectedPurchaseFromCache();
+			new OrderTransactionCtrl().clearExistingSelectedPurchaseFromCache();
 		});
 	}
 	
