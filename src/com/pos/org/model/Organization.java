@@ -3,13 +3,15 @@ package com.pos.org.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javafx.scene.image.Image;
+
 public class Organization{
 	private BigDecimal org_id;
 	private String     org_name;
 	private String     org_addrs;
 	private String     org_phone;
 	private String     org_email;
-	private String     org_logo;
+	private Image     org_logo;
 	private List<Shop> org_shops;
 	
 	
@@ -44,10 +46,10 @@ public class Organization{
 	public void setOrg_email(String org_email) {
 		this.org_email = org_email;
 	}
-	public String getOrg_logo() {
+	public Image getOrg_logo() {
 		return org_logo;
 	}
-	public void setOrg_logo(String org_logo) {
+	public void setOrg_logo(Image org_logo) {
 		this.org_logo = org_logo;
 	}
 	

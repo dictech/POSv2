@@ -1,0 +1,2 @@
+ALTER TABLE `posv2`.`organization` 
+CHANGE COLUMN `org_logo` `org_logo` LONGBLOB NULL DEFAULT NULL ;

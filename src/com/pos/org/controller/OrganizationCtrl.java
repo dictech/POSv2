@@ -2,6 +2,7 @@ package com.pos.org.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
@@ -105,12 +106,23 @@ public class OrganizationCtrl implements Initializable{
     
     private Shop shop;
     
-    private File file;
+//    private String link;
+//    
+//    
+//    public String getLink() {
+//		return link;
+//	}
+//
+//
+//	public void setLink(String link) {
+//		this.link = link;
+//	}
 
-    
-    
-    @Override
+
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+ 
+    	 
     	List<Organization> listOfOrganizations = OrganizationDAO.getOrg();
     	
     	if(listOfOrganizations.size() > 0) {
@@ -121,6 +133,8 @@ public class OrganizationCtrl implements Initializable{
 	    	this.orgLocation.setText(org.getOrg_addrs());
 	    	this.orgPhoneNo.setText(org.getOrg_phone());
 	    	this.orgEmail.setText(org.getOrg_email());
+	    	this.org_logo_image.setImage(org.getOrg_logo());
+	    	this.orglogo_text.setText(null);
 	    	}
     	
     	ObservableList<Shop> listOfShops = FXCollections.observableArrayList(ShopDAO.getAllShops());
@@ -140,15 +154,15 @@ public class OrganizationCtrl implements Initializable{
      
 
     @FXML
-    void uploadOrgImage(ActionEvent event) throws Exception{
-
-    	  FileChooser fc = new FileChooser();
-    	  fc.getExtensionFilters().addAll(new ExtensionFilter("image file","*.png","*.jpg","*.gif"));
-    	  this.file = fc.showOpenDialog(null);
-    	  
+    void uploadOrgImage(ActionEvent event) throws Exception{ 
+         FileChooser fc = new FileChooser();
+         File file  = fc.showOpenDialog(null);
+        		fc.getExtensionFilters().addAll(new ExtensionFilter("image file","*.png","*.jpg","*.gif")); 
+        		
     	  if(file !=null) {
     		  this.orglogo_text.setVisible(false);
         	  this.org_logo_image.setImage(new Image(new FileInputStream(file.getPath())));  
+        	  OrganizationDAO.setLogoUri(file.getPath());
     		  
     	  }
     	  
@@ -159,11 +173,13 @@ public class OrganizationCtrl implements Initializable{
 
     @FXML
     void createOrganization(ActionEvent event) {
+   
     	Organization org = new Organization();
     	org.setOrg_name(this.orgName.getText());
     	org.setOrg_addrs(this.orgLocation.getText());
     	org.setOrg_phone(this.orgPhoneNo.getText());
     	org.setOrg_email(this.orgEmail.getText());
+    	org.setOrg_logo(this.org_logo_image.getImage());
     	OrganizationDAO.createOrg(org);
     }
 
@@ -199,6 +215,7 @@ public class OrganizationCtrl implements Initializable{
     	org.setOrg_addrs(this.orgLocation.getText());
     	org.setOrg_email(this.orgEmail.getText());
     	org.setOrg_phone(this.orgPhoneNo.getText());
+    	org.setOrg_logo(this.org_logo_image.getImage());
     	OrganizationDAO.updateOrg(org);
     	
     }

@@ -2,11 +2,8 @@ package com.pos.account.model;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pos.account.controller.EditAttendantCtrl;
 import com.pos.database.Database;
 
 import javafx.scene.image.Image;
@@ -26,22 +22,20 @@ import javafx.scene.image.Image;
 
 public class AttendantDAO {
 
-private static String imageUri;
+private static String AttendantmageUri;
 	
 	
-public static String getImageUri() {
-		return imageUri;
-	}
+public static String getAttendantmageUri() {
+	return AttendantmageUri;
+}
 
-public static void setImageUri(String imageUri) {
-		AttendantDAO.imageUri = imageUri;
-	}
+public static void setAttendantmageUri(String attendantmageUri) {
+	AttendantmageUri = attendantmageUri;
+}
 
-	
-	
 public static void createNewAttendant(Attendant attendant) throws Exception{
 	 
-		  File file = new File(getImageUri());
+		  File file = new File(getAttendantmageUri());
 		  FileInputStream fis = new FileInputStream(file); 
 
 		Connection dbConnection =  Database.getDatabaseConnection();
@@ -160,14 +154,17 @@ public static void createNewAttendant(Attendant attendant) throws Exception{
     		+ "     attdt_phone_no=?,"
     		+ "     attdt_email=?,"
     		+ "     attdt_dt_emp=?,"    
-    		+ "     attdt_position=?"
+    		+ "     attdt_position=?, "
+    		+ "     attdt_image = ? "
     		+ " WHERE attdt_id=?";
 	     try {
 	    	 
 
 	     Connection myConnect = Database.getDatabaseConnection();
 	     PreparedStatement prepareStatement = myConnect.prepareStatement(sql);
-	    
+		  File file = new File(getAttendantmageUri());
+		  FileInputStream fis = new FileInputStream(file); 
+		  
 	    prepareStatement.setString(1, attendant.getfName());
 	    prepareStatement.setString(2, attendant.getmName());
 	    prepareStatement.setString(3, attendant.getSurname());
@@ -178,7 +175,8 @@ public static void createNewAttendant(Attendant attendant) throws Exception{
 	    prepareStatement.setString(8, attendant.getEmail());
 	    prepareStatement.setDate(9,   attendant.getDoe());
 	    prepareStatement.setString(10, attendant.getPosition());
-	    prepareStatement.setBigDecimal(11, attendant.getId());
+	    prepareStatement.setBinaryStream(11, (InputStream)fis,(int)file.length());
+	    prepareStatement.setBigDecimal(12, attendant.getId());
 	    prepareStatement.executeUpdate();
 	    prepareStatement.close();
 	    myConnect.close();

@@ -27,6 +27,7 @@ public void startDashBoard() throws Exception {
 	window = new Stage();
 	window.setScene(scene);
 	window.setFullScreen(true);
+	window.setFullScreenExitHint("");
 	window.show(); 
 }
 

@@ -1,5 +1,8 @@
 package com.pos.org.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,21 +11,34 @@ import java.util.List;
 
 import com.pos.database.Database;
 
+import javafx.scene.image.Image;
+
 public class OrganizationDAO {
 	
+	private static String logoUri;
+	
+	public static String getLogoUri() {
+		return logoUri;
+	}
+
+	public static void setLogoUri(String logoUri) {
+		OrganizationDAO.logoUri = logoUri;
+	}
+
 	
 	public static void createOrg(Organization org){
 		String sql = "insert into organization values(?,?,?,?,?,?)";
 		try {
 			Connection cxtn=  Database.getDatabaseConnection();
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
-			
+			   File file = new File(getLogoUri());
+			   FileInputStream fis = new FileInputStream(file);
 			stmt.setBigDecimal(1, org.getOrg_id());
 			stmt.setString(2, org.getOrg_name());
 			stmt.setString(3, org.getOrg_addrs());
 			stmt.setString(4, org.getOrg_phone());
 			stmt.setString(5, org.getOrg_email());
-			stmt.setString(6, org.getOrg_logo());
+			stmt.setBinaryStream(6, (InputStream)fis,(int)file.length());
 			stmt.execute();	
 			stmt.close();
 			cxtn.close();
@@ -48,7 +64,7 @@ public class OrganizationDAO {
 				org.setOrg_addrs(row.getString(3));
 				org.setOrg_phone(row.getString(4));
 				org.setOrg_email(row.getString(5));
-				org.setOrg_logo(row.getString(6));
+                org.setOrg_logo(new Image(row.getBinaryStream(6)));
 				listOfOrgs.add(org); 
 			}
 		}catch(Exception e) {
@@ -71,7 +87,8 @@ public class OrganizationDAO {
 				   + "SET    org_name  = ?,"
 				   + "       org_addrs = ?,"
 				   + "       org_phone = ?,"
-				   + "       org_email = ? "
+				   + "       org_email = ?, "
+				   + "       org_logo  = ? "
 				   + "WHERE  org_id    = ?";
 		
 		try {
@@ -79,13 +96,14 @@ public class OrganizationDAO {
 
 			Connection cxtn = Database.getDatabaseConnection();
 			PreparedStatement stmt = cxtn.prepareStatement(sql);
-			
+			 File file = new File(getLogoUri());
+			 FileInputStream fis = new FileInputStream(file);
 			stmt.setString(1,org.getOrg_name());
 			stmt.setString(2,org.getOrg_addrs());
 			stmt.setString(3,org.getOrg_phone());
 			stmt.setString(4,org.getOrg_email());
-			//stmt.setString(5,org.getOrg_logo());
-			stmt.setBigDecimal(5, org.getOrg_id());
+			stmt.setBinaryStream(5, (InputStream)fis,(int)file.length());
+			stmt.setBigDecimal(6, org.getOrg_id());
 			stmt.executeUpdate();
 			stmt.close();
 			cxtn.close();

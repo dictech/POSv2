@@ -46,7 +46,7 @@ public class DashboardCtrl implements Initializable {
     @FXML
     void createNewAttendant(ActionEvent event)throws Exception {
 
-    	AnchorPane attendantList = FXMLLoader.load(getClass().getResource("../../account/view/createAttendant.fxml"));
+    	AnchorPane attendantList = FXMLLoader.load(getClass().getResource("../../account/view/Attendant.fxml"));
    	    this.mainPane.getChildren().setAll(attendantList);
     }
 
