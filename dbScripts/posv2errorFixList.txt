@@ -1,21 +1,21 @@
 ability to add org logo. -- Andy
-change shop owner to shop manager in shop table. --Ogo
-change attandant drop down to manager on shop screen. --Ogo
-ability to refresh the shop table on shop screen. -- Ogo
+change shop owner to shop manager in shop table. --Ogo       --Done
+change attandant drop down to manager on shop screen. --Ogo  --Done`
+ability to refresh the shop table on shop screen. -- Ogo -- Done
 ability to exit login screen after login in. -- Andy
 ability to set attandant image value to null in create Attendant screen. -- Andy
 fix missing feilds in attandant enquiry and edit attenadnt screen. -- Andy
-ability to refresh Category table in category screen. -- Ogo
-ability to refresh product table in product screen. -- Ogo
-ability to show the total number of items automaticaly on inventory screen. -- Ogo
-fix inability to create inventory -- Ogo
+ability to refresh Category table in category screen. -- Ogo --Done
+ability to refresh product table in product screen. -- Ogo --Done
+ability to show the total number of items automaticaly on inventory screen. -- Ogo --Done
+fix inability to create inventory -- Ogo  --Done
   - java.sql.SQLException: Column count doesn't match value count at row 1,
   - at com.pos.inventory.model.ProductInventoryDAO.createInventory(ProductInventoryDAO.java:46)
   - at com.pos.inventory.controller.InventoryCtrl.createInventory(InventoryCtrl.java:238)
 
-ability to refresh table at inventory screen. --Ogo
+ability to refresh table at inventory screen. --Ogo --Done
 apache library -- Ogo
 
 fix balance of payment field on payment screen during debit action. -- Andy
 fix debit payment functionality. --Andy
-ability to reduce inventory count after each purchase. --Ogo
+ability to reduce inventory count after each purchase. --Ogo  -- Done

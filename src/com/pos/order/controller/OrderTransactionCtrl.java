@@ -17,6 +17,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 //import org.apache.commons.lang3.RandomStringUtils;
 
 import com.pos.account.model.Attendant;
@@ -81,7 +83,7 @@ public class OrderTransactionCtrl {
     	Attendant attendant = AttendantCache.getCache().get("USER");
     	
     	Order order =  new Order();
-    	//order.setOrder_no("POS-" + RandomStringUtils.randomAlphabetic(5));
+    	order.setOrder_no("POS-" + RandomStringUtils.randomAlphabetic(5));
     	order.setOrder_no("5");
 
     	order.setOrder_attd_id(attendant.getId());
@@ -106,6 +108,8 @@ public class OrderTransactionCtrl {
     	payment.setTime(Time.valueOf(LocalTime.now()).toString());
     	payment.setDate(Date.valueOf(LocalDate.now()));
     	paymentDAO.createPayment(payment);
+    	
+    	updateInventoryByPurchase(purchaseListTbl.getItems());
     	
     	
     	prodSearchResultTbl.getItems().clear();
@@ -175,6 +179,10 @@ public class OrderTransactionCtrl {
      	this.calculateTotalCost();
     }
 	 
+	
+	void clearTable(){
+	    purchaseListTbl.getColumns().clear();
+	}
 	
 	public boolean getQuantityOfProduct(){
 		
@@ -253,12 +261,15 @@ public class OrderTransactionCtrl {
       	System.out.println("purchase = " + purchase.getProduct().getName());
     }
     
+    
     public void clearExistingSelectedProductFromCache() {
 		PurchaseCache.getCache().invalidate(this.selectedProduct.getName());
 	}
     
-    public static void  clearExistingSelectedPurchaseFromCache() {
+    @FXML
+    public void  clearExistingSelectedPurchaseFromCache() {
 		PurchaseCache.getCache().invalidate(purchase.getProduct().getName());
+		clearTable();
 //		purchaseListTbl.getColumns().get(0).setVisible(false);
 //		purchaseListTbl.getColumns().get(0).setVisible(true);
 	}
@@ -271,6 +282,13 @@ public class OrderTransactionCtrl {
     public void clearAllProductFromCache() throws ExecutionException {
       	PurchaseCache.getCache().invalidateAll();    	
 	}
+    
+    public void updateInventoryByPurchase(List<Purchase> listOfPurchases) {
+    	
+    	listOfPurchases.forEach(purchase -> {
+        	ProductInventoryDAO.updateInventoryPerPurchase(purchase);
+    	});
+    }
 
 }
 

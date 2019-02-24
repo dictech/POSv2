@@ -4,8 +4,10 @@ package com.pos.inventory.controller;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.pos.database.Database;
 import com.pos.inventory.model.Product;
 import com.pos.inventory.model.ProductCategory;
 import com.pos.inventory.model.ProductCategoryDAO;
@@ -26,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class InventoryCtrl implements Initializable {
@@ -221,6 +224,8 @@ public class InventoryCtrl implements Initializable {
     	category.setDesc(productCategoryDesc.getText());
     	
     	ProductCategoryDAO.createCategory(category);
+    	
+    	Database.refreshTable(productCategoryTable,ProductCategoryDAO.getAllCategory());
     }
 
     @FXML
@@ -236,6 +241,9 @@ public class InventoryCtrl implements Initializable {
     	inventory.setProDesc(inventoryDesc.getText());
     	
     	ProductInventoryDAO.createInventory(inventory);
+    	
+    	Database.refreshTable(productInventoryTable,ProductInventoryDAO.getAllInventories());
+
     }
     
 
@@ -250,6 +258,9 @@ public class InventoryCtrl implements Initializable {
     	product.setPrice(new BigDecimal(productPrice.getText()));
     	
     	ProductDAO.createProduct(product);
+    	
+    	Database.refreshTable(productTable,ProductDAO.getAllProducts());
+
 
     	
     }
@@ -257,16 +268,21 @@ public class InventoryCtrl implements Initializable {
     @FXML
     void deleteInventory(ActionEvent event) {
     	ProductInventoryDAO.deleteInventory(this.productInventory);
+    	Database.refreshTable(productInventoryTable,ProductInventoryDAO.getAllInventories());
+
     }
 
     @FXML
     void deleteProduct(ActionEvent event) {
     	ProductDAO.deleteProduct(this.product);
+    	Database.refreshTable(productTable,ProductDAO.getAllProducts());
+
     }
 
     @FXML
     void deleteProductCategory(ActionEvent event) {
     	ProductCategoryDAO.deleteCategory(this.category);
+    	Database.refreshTable(productCategoryTable,ProductCategoryDAO.getAllCategory());
     }
 
     @FXML
@@ -315,7 +331,8 @@ public class InventoryCtrl implements Initializable {
         	productInventory.setProDesc(inventoryDesc.getText());
         	
         	ProductInventoryDAO.updateInventory(productInventory);
-        	
+        	Database.refreshTable(productInventoryTable,ProductInventoryDAO.getAllInventories());
+
     }
 
     @FXML
@@ -327,6 +344,9 @@ public class InventoryCtrl implements Initializable {
     	this.product.setCost(new BigDecimal(productCost.getText()));
     	this.product.setPrice(new BigDecimal(productPrice.getText()));
     	ProductDAO.updateProduct(product);
+    	
+    	Database.refreshTable(productTable,ProductDAO.getAllProducts());
+
     }
 
     @FXML
@@ -335,6 +355,19 @@ public class InventoryCtrl implements Initializable {
     	this.category.setName(productCategoryName.getText());
     	this.category.setDesc(productCategoryDesc.getText());
     	ProductCategoryDAO.updateCategory(this.category);
+    	
+    	Database.refreshTable(productCategoryTable,ProductCategoryDAO.getAllCategory());
+
     }
+    
+    @FXML
+    void calcNoOfItems(KeyEvent event) {
+    	
+    	BigDecimal noOfUnits= new BigDecimal(itemNoOfUnits.getText());
+    	BigDecimal qtyPerUnits= new BigDecimal(itemQtyPerUnit.getText());
+    	this.itemTotal.setText(noOfUnits.multiply(qtyPerUnits).toString());
+
+    }
+
 
 }

@@ -1,0 +1,2 @@
+ALTER TABLE `POSv2`.`inventory` 
+ADD COLUMN `inv_pro_name` VARCHAR(45) NULL AFTER `inv_reorder_lvl`;

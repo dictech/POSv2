@@ -6,8 +6,11 @@ import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.pos.database.Database;
+import com.pos.inventory.model.ProductCategoryDAO;
 import com.pos.org.model.Organization;
 import com.pos.org.model.OrganizationDAO;
 import com.pos.org.model.Shop;
@@ -192,19 +195,26 @@ public class OrganizationCtrl implements Initializable{
     	shop.setShopRCNo(orgShopRCNo.getText());
     	//shop.setShopAttendant(orgShopAttendant.get);
     	ShopDAO.createShop(shop);
-    	this.shopTable.refresh();;
+    	this.shopTable.refresh();
+    	
+    	Database.refreshTable(this.shopTable,ShopDAO.getAllShops());
+
     }
 
     @FXML
     void deleteOrganization(ActionEvent event) {
     	Organization org = OrganizationDAO.getOrg().get(0);
     	OrganizationDAO.deleteOrg(org);
+    	Database.refreshTable(this.shopTable,ShopDAO.getAllShops());
     }
 
+    
     @FXML
     void deleteShop(ActionEvent event) {
     	ShopDAO.deleteShop(this.shop);
+    	Database.refreshTable(this.shopTable,ShopDAO.getAllShops());
     }
+    
 
     @FXML
     void updateOrganization(ActionEvent event) {    	
@@ -217,6 +227,7 @@ public class OrganizationCtrl implements Initializable{
     	org.setOrg_phone(this.orgPhoneNo.getText());
     	org.setOrg_logo(this.org_logo_image.getImage());
     	OrganizationDAO.updateOrg(org);
+    	
     	
     }
     
@@ -231,6 +242,9 @@ public class OrganizationCtrl implements Initializable{
         this.shop.setShopRCNo(orgShopRCNo.getText());
         
         ShopDAO.updateShop(shop);
+        
+    	Database.refreshTable(this.shopTable,ShopDAO.getAllShops());
+
     }
     
     
@@ -246,8 +260,6 @@ public class OrganizationCtrl implements Initializable{
       orgShopRCNo.setText(this.shopTable.getSelectionModel().getSelectedItem().getShopRCNo());
       
     }
-
     
-
 }
 
