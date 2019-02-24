@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -175,7 +176,7 @@ public static void createNewAttendant(Attendant attendant) throws Exception{
 	    prepareStatement.setString(8, attendant.getEmail());
 	    prepareStatement.setDate(9,   attendant.getDoe());
 	    prepareStatement.setString(10, attendant.getPosition());
-	    prepareStatement.setBinaryStream(11, (InputStream)fis,(int)file.length());
+	    prepareStatement.setBinaryStream(11, fis);
 	    prepareStatement.setBigDecimal(12, attendant.getId());
 	    prepareStatement.executeUpdate();
 	    prepareStatement.close();

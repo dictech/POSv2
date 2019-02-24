@@ -104,12 +104,16 @@ public class LoginCtrl implements Initializable {
         
 		}
 		
-		
+		public void closeLogin() {
+			
+			Stage stage = (Stage) btnLogIn.getScene().getWindow();
+		     stage.close();
+		}
 
 	    @FXML
 	    void loginAccount(ActionEvent event) throws Exception {
 	    	
-
+          
 	    	
 	    	if(userName.getText().isEmpty() || password.getText().isEmpty()) {
 	    		
@@ -126,12 +130,21 @@ public class LoginCtrl implements Initializable {
 	    	        this.setU_name(userName.getText());
 	    	        this.setPass(password.getText());
 	    	        this.sleepValidationText(this.validation);
-   
+	    	         String v = this.validation.getText();
+	    	        
+	    	          if(v.contains("Verified")) {
+	    	        	Parent root = FXMLLoader.load(getClass().getResource("../../account/view/login.fxml"));
+		    	        Stage loginScreen = new Stage();
+		    	        Scene scene = new Scene(root);
+		    	        loginScreen.setScene(scene);
+		    	        closeLogin();}
+                                         
 	    	}
 
 	    	        }
 	    
 
+	                
 	       
 	    
        }

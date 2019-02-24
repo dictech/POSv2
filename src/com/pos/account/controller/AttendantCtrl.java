@@ -2,6 +2,7 @@ package com.pos.account.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Blob;
@@ -157,9 +158,25 @@ public class AttendantCtrl implements Initializable{
 	     this.gender.setItems(gender);
 	     this.pos.setItems(position);
 	     this.doe.setValue(LocalDate.now());
+	    	
+	            
+				try {
+					selectedFile = new File("C:/Users/esthermylove/Documents/dev/POS/POSv2/Assets/images/green.jpg");
+		    		Image img = new Image(new FileInputStream(selectedFile.getPath()));
+		    		this.attendant_image.setImage(img);
+		    		this.btn_upload.setText("change image");
+		    		this.image_uri.setText(selectedFile.getAbsolutePath());
+		    		
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}	
+
+	    	
+	    	
 	     
 	     
 			
+	     // initialize editAttendant section
 			ObservableList<Attendant>staff = FXCollections.observableArrayList(AttendantDAO.getAllAttendants());
 			this.attendant_table.setItems(staff);
 			this.attendant_table.getColumns().clear();
@@ -186,6 +203,9 @@ public class AttendantCtrl implements Initializable{
 			
 	    
 	}
+	
+	
+
 	
     @FXML
         void insertImage (ActionEvent event) throws Exception{
@@ -218,6 +238,9 @@ public class AttendantCtrl implements Initializable{
           
     }
 
+    
+  
+    
     
     @FXML
      void registerAttendant(ActionEvent event) throws Exception {
@@ -259,7 +282,7 @@ public class AttendantCtrl implements Initializable{
     	    	      attendant.setPhoneNo(this.phoneNo.getText());
     	    	      attendant.setPosition(this.pos.getValue());
     	    	      attendant.setImage(this.attendant_image.getImage()); 
-//    	    	      AttendantDAO.setImageUri(this.image_uri.getText());
+    	    	      AttendantDAO.setAttendantmageUri(this.image_uri.getText());
     	    	      AttendantDAO.createNewAttendant(attendant);
     	    	       
     	    	      
@@ -288,7 +311,6 @@ public class AttendantCtrl implements Initializable{
     	          }
     
     }
-
 
              
         // edit attendant section.
@@ -383,19 +405,6 @@ public class AttendantCtrl implements Initializable{
 		       this.profile_image.setImage(this.attendant_table.getSelectionModel().getSelectedItem().getImage());
 		       this.save_change_btn.setVisible(true);
 		       
-	            Attendant attd = new Attendant();
-	            attd.setId(new BigDecimal(this.id.getText()));
-	            attd.setfName(this.change_fname.getText());
-		    	attd.setmName(this.change_mname.getText());
-		    	attd.setSurname(this.change_lname.getText());
-		    	attd.setAddress(this.addr.getText());
-		    	attd.setDob(Date.valueOf(this.change_dob.getText()));
-		    	attd.setDoe(Date.valueOf(this.change_doe.getText()));
-		        attd.setEmail(this.email.getText());
-		        attd.setGender(this.change_gender.getText());
-		        attd.setPhoneNo(this.change_mobile.getText());
-		        attd.setPosition(this.change_position.getText());
-		        attd.setImage(this.profile_image.getImage());
 		
 	    }
     
@@ -416,22 +425,11 @@ public class AttendantCtrl implements Initializable{
 	    		       	   }
 	    }
 
-	      void getImage() throws Exception{
-	    	  
-	    	  FileChooser fc = new FileChooser();  
-	    	   fc.getExtensionFilters().addAll(new ExtensionFilter("Image","*.png","*.jpg","*.gif"));
-	    	   File file = fc.getInitialDirectory();
-	    	   
-	    	   if(file != null) {
-	    		     
-	    		   this.profile_image.setImage(new Image(new FileInputStream(file.getPath())));
-	    		   AttendantDAO.setAttendantmageUri(file.getPath());
-	    		       	   }
-	      }
+
 
 	    @FXML
 	    void saveChanges(ActionEvent event)throws Exception {
-	    	getImage();
+	    	
             Attendant attd = new Attendant();
             attd.setId(new BigDecimal(this.id.getText()));
             attd.setfName(this.change_fname.getText());

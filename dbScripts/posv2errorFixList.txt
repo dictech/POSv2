@@ -1,8 +1,8 @@
-ability to add org logo. -- Andy
+ability to add org logo. -- done
 change shop owner to shop manager in shop table. --Ogo       --Done
 change attandant drop down to manager on shop screen. --Ogo  --Done`
 ability to refresh the shop table on shop screen. -- Ogo -- Done
-ability to exit login screen after login in. -- Andy
+ability to exit login screen after login in. -- done
 ability to set attandant image value to null in create Attendant screen. -- Andy
 fix missing feilds in attandant enquiry and edit attenadnt screen. -- Andy
 ability to refresh Category table in category screen. -- Ogo --Done
@@ -16,6 +16,6 @@ fix inability to create inventory -- Ogo  --Done
 ability to refresh table at inventory screen. --Ogo --Done
 apache library -- Ogo
 
-fix balance of payment field on payment screen during debit action. -- Andy
-fix debit payment functionality. --Andy
+fix balance of payment field on payment screen during debit action. -- done
+fix debit payment functionality. -- done
 ability to reduce inventory count after each purchase. --Ogo  -- Done

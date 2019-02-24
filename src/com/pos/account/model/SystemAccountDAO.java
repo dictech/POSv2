@@ -181,7 +181,7 @@ public class SystemAccountDAO {
 		    	    	     		    	    	   	 
 		    	    	   	DashboardView dv =  new DashboardView();
 		    	    	   	dv.startDashBoard();
-		    	    	   	setValidationstatus(null);
+		    	    	   	setValidationstatus("Verified!");
 		    	                                       
 		    	    	      	
     	                }
