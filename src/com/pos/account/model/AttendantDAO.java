@@ -155,16 +155,13 @@ public static void createNewAttendant(Attendant attendant) throws Exception{
     		+ "     attdt_phone_no=?,"
     		+ "     attdt_email=?,"
     		+ "     attdt_dt_emp=?,"    
-    		+ "     attdt_position=?, "
-    		+ "     attdt_image = ? "
+    		+ "     attdt_position=? "
     		+ " WHERE attdt_id=?";
 	     try {
 	    	 
 
 	     Connection myConnect = Database.getDatabaseConnection();
 	     PreparedStatement prepareStatement = myConnect.prepareStatement(sql);
-		  File file = new File(getAttendantmageUri());
-		  FileInputStream fis = new FileInputStream(file); 
 		  
 	    prepareStatement.setString(1, attendant.getfName());
 	    prepareStatement.setString(2, attendant.getmName());
@@ -176,8 +173,7 @@ public static void createNewAttendant(Attendant attendant) throws Exception{
 	    prepareStatement.setString(8, attendant.getEmail());
 	    prepareStatement.setDate(9,   attendant.getDoe());
 	    prepareStatement.setString(10, attendant.getPosition());
-	    prepareStatement.setBinaryStream(11, fis);
-	    prepareStatement.setBigDecimal(12, attendant.getId());
+	    prepareStatement.setBigDecimal(11, attendant.getId());
 	    prepareStatement.executeUpdate();
 	    prepareStatement.close();
 	    myConnect.close();

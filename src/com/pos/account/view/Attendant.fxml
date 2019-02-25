@@ -16,165 +16,171 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.AttendantCtrl">
+<AnchorPane prefHeight="800.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.account.controller.AttendantCtrl">
    <children>
-      <TabPane fx:id="attendant_regHolder" layoutX="1.0" layoutY="36.0" prefHeight="761.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="attendant_regHolder" layoutX="1.0" layoutY="36.0" prefHeight="761.0" prefWidth="1085.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Register  Attendant">
                <content>
                   <Pane fx:id="confirmation" prefHeight="585.0" prefWidth="1079.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="503.0" layoutY="606.0" prefHeight="52.0" prefWidth="339.0" text="Sucessful !" textFill="#3dc3e4">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="426.0" prefHeight="76.0" prefWidth="317.0" text="Sucessful !" textFill="#3dc3e4">
                            <font>
                               <Font name="Arial Bold Italic" size="37.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="434.0" fitWidth="422.0" layoutX="453.0" layoutY="131.0" pickOnBounds="true">
+                        <ImageView fitHeight="339.0" fitWidth="353.0" layoutX="328.0" layoutY="81.0" pickOnBounds="true">
                            <image>
                               <Image url="@../../../../../Assets/images/sucess.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="910.0" layoutY="692.0" prefHeight="26.0" prefWidth="149.0" text="please login to continue" textFill="#020529">
-                           <font>
-                              <Font name="Georgia Bold Italic" size="12.0" />
-                           </font>
-                        </Label>
                         <Pane fx:id="attd_form_holder" layoutX="-2.0" layoutY="1.0" prefHeight="730.0" prefWidth="1280.0" style="-fx-background-color: #020529;">
                            <children>
-                              <TextField fx:id="fname" layoutX="331.0" layoutY="121.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="fname" layoutX="119.0" layoutY="140.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="407.0" layoutY="102.0" text="First Name" textFill="WHITE">
+                              <Label layoutX="186.0" layoutY="122.0" text="First Name" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="sname" layoutX="600.0" layoutY="120.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="sname" layoutX="388.0" layoutY="140.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="650.0" layoutY="101.0" text="Surname Name" textFill="WHITE">
+                              <Label layoutX="438.0" layoutY="121.0" text="Surname Name" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="mname" layoutX="331.0" layoutY="187.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="mname" layoutX="119.0" layoutY="207.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="395.0" layoutY="167.0" text="Other Name" textFill="WHITE">
+                              <Label layoutX="183.0" layoutY="187.0" text="Other Name" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="gender" layoutX="463.0" layoutY="254.0" prefHeight="27.0" prefWidth="111.0" visibleRowCount="2" />
-                              <Label layoutX="496.0" layoutY="235.0" text="Gender" textFill="WHITE">
+                              <ComboBox fx:id="gender" layoutX="251.0" layoutY="274.0" prefHeight="27.0" prefWidth="111.0" visibleRowCount="2" />
+                              <Label layoutX="284.0" layoutY="255.0" text="Gender" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="730.0" layoutY="237.0" text="Date of Birth" textFill="WHITE" />
-                              <DatePicker fx:id="dob" layoutX="719.0" layoutY="254.0" prefHeight="27.0" prefWidth="89.0" />
-                              <TextArea fx:id="addr" layoutX="329.0" layoutY="317.0" prefHeight="37.0" prefWidth="207.0">
+                              <Label layoutX="518.0" layoutY="257.0" text="Date of Birth" textFill="WHITE" />
+                              <DatePicker fx:id="dob" layoutX="507.0" layoutY="274.0" prefHeight="27.0" prefWidth="89.0" />
+                              <TextArea fx:id="addr" layoutX="117.0" layoutY="337.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextArea>
-                              <Label layoutX="409.0" layoutY="299.0" prefHeight="21.0" prefWidth="68.0" text="Address" textFill="WHITE">
+                              <Label layoutX="197.0" layoutY="319.0" prefHeight="21.0" prefWidth="68.0" text="Address" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="668.0" layoutY="167.0" prefHeight="17.0" prefWidth="71.0" text="Mobile No" textFill="WHITE">
+                              <Label layoutX="456.0" layoutY="187.0" prefHeight="17.0" prefWidth="71.0" text="Mobile No" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="phoneNo" layoutX="603.0" layoutY="188.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="phoneNo" layoutX="391.0" layoutY="208.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="669.0" layoutY="299.0" prefHeight="17.0" prefWidth="71.0" text="Email" textFill="WHITE">
+                              <Label layoutX="457.0" layoutY="319.0" prefHeight="17.0" prefWidth="71.0" text="Email" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="email" layoutX="597.0" layoutY="317.0" prefHeight="45.0" prefWidth="214.0">
+                              <TextField fx:id="email" layoutX="385.0" layoutY="337.0" prefHeight="45.0" prefWidth="214.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="380.0" layoutY="235.0" prefHeight="17.0" prefWidth="71.0" text="Position" textFill="WHITE">
+                              <Label layoutX="168.0" layoutY="255.0" prefHeight="17.0" prefWidth="71.0" text="Position" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="pos" layoutX="330.0" layoutY="254.0" prefHeight="27.0" prefWidth="127.0" />
-                              <Label layoutX="601.0" layoutY="235.0" text="Date Employed" textFill="WHITE">
+                              <ComboBox fx:id="pos" layoutX="118.0" layoutY="274.0" prefHeight="27.0" prefWidth="127.0" />
+                              <Label layoutX="389.0" layoutY="255.0" text="Date Employed" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="doe" editable="false" layoutX="600.0" layoutY="254.0" prefHeight="27.0" prefWidth="89.0" />
-                              <Button fx:id="registerBtn" layoutX="448.0" layoutY="532.0" mnemonicParsing="false" onAction="#registerAttendant" prefHeight="38.0" prefWidth="103.0" text="Register">
+                              <DatePicker fx:id="doe" disable="true" editable="false" layoutX="388.0" layoutY="274.0" prefHeight="27.0" prefWidth="89.0" />
+                              <Button fx:id="registerBtn" layoutX="236.0" layoutY="552.0" mnemonicParsing="false" onAction="#registerAttendant" prefHeight="38.0" prefWidth="103.0" text="Register">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="cancelBtn" layoutX="569.0" layoutY="532.0" mnemonicParsing="false" onAction="#cancelRegistration" prefHeight="38.0" prefWidth="100.0" text="Cancel">
+                              <Button fx:id="cancelBtn" layoutX="357.0" layoutY="552.0" mnemonicParsing="false" onAction="#cancelRegistration" prefHeight="38.0" prefWidth="100.0" text="Cancel">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="uName" layoutX="329.0" layoutY="397.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="uName" layoutX="117.0" layoutY="417.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="password" layoutX="605.0" layoutY="392.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="password" layoutX="393.0" layoutY="412.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="396.0" layoutY="375.0" text="User Name" textFill="WHITE">
+                              <Label layoutX="184.0" layoutY="395.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="679.0" layoutY="373.0" text="Password" textFill="WHITE">
+                              <Label layoutX="467.0" layoutY="393.0" text="Password" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="Repeat_password" layoutX="604.0" layoutY="448.0" prefHeight="37.0" prefWidth="207.0">
+                              <TextField fx:id="Repeat_password" layoutX="392.0" layoutY="468.0" prefHeight="37.0" prefWidth="207.0">
                                  <font>
                                     <Font name="Microsoft Tai Le Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="645.0" layoutY="429.0" text="Re-peat Password" textFill="WHITE">
+                              <Label layoutX="433.0" layoutY="449.0" text="Re-peat Password" textFill="WHITE">
                                  <font>
                                     <Font name="Lucida Sans Unicode" size="12.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="attendant_image" fitHeight="127.0" fitWidth="120.0" layoutX="949.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../Assets/images/user-login-icon-14.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btn_upload" layoutX="950.0" layoutY="212.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #020529; -fx-border-color: gray;" text="Browse" textFill="#ebe1e1">
+                              <ImageView fx:id="attendant_image" fitHeight="127.0" fitWidth="120.0" layoutX="827.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="btn_upload" layoutX="741.0" layoutY="277.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="19.0" prefWidth="68.0" style="-fx-background-color: #020529; -fx-border-color: gray;" text="Browse" textFill="#ebe1e1">
                                  <font>
                                     <Font name="Lucida Sans Demibold" size="11.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="image_uri" layoutX="943.0" layoutY="257.0" prefHeight="25.0" prefWidth="127.0" />
+                              <TextField fx:id="image_uri" disable="true" layoutX="819.0" layoutY="279.0" maxHeight="18.0" minHeight="18.0" prefHeight="5.0" prefWidth="136.0" />
+                              <Text fx:id="photoValidation" fill="#ff1717" layoutX="735.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" passport photo" textAlignment="CENTER" wrappingWidth="303.9999829828739">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="12.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </Pane>
+                        <HBox fx:id="header1" layoutX="109.0" layoutY="19.0" prefHeight="38.0" prefWidth="612.0" style="-fx-background-color: #020529;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="237.0" style="-fx-background-color: #020529;" text="Register An Attendant" textFill="#f8f80b">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                   </Pane>
                </content>
@@ -194,18 +200,13 @@
                         </HBox>
                         <Pane fx:id="head" layoutX="508.0" layoutY="8.0" prefHeight="143.0" prefWidth="565.0" style="-fx-background-color: #fff;">
                            <children>
-                              <AnchorPane layoutX="4.0" layoutY="5.0" opacity="0.89" prefHeight="133.0" prefWidth="162.0" style="-fx-border-color: #020529; -fx-border-width: 3;">
+                              <AnchorPane layoutX="4.0" layoutY="5.0" opacity="0.89" prefHeight="133.0" prefWidth="135.0" style="-fx-border-color: #020529; -fx-border-width: 3;">
                                  <children>
-                                    <ImageView fx:id="profile_image" fitHeight="122.0" fitWidth="150.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
+                                    <ImageView fx:id="profile_image" fitHeight="122.0" fitWidth="135.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../Assets/images/54091415-icono-de-la-barra-de-la-trama-de-usuario-para-el-diseño-de-software-el-estilo-es-el-símbolo-gradiente-ico.jpg" />
+                                          <Image url="@../../../../../Assets/images/green.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="change_photo_btn" layoutX="13.0" layoutY="102.0" mnemonicParsing="false" onAction="#change_photo" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #e09b0d;" text="change photo" textFill="#020529">
-                                       <font>
-                                          <Font name="Lucida Sans Demibold" size="12.0" />
-                                       </font>
-                                    </Button>
                                  </children>
                               </AnchorPane>
                               <ImageView fx:id="company_logo" fitHeight="41.0" fitWidth="86.0" layoutX="465.0" layoutY="14.0" pickOnBounds="true">
@@ -400,5 +401,10 @@
             </Tab>
         </tabs>
       </TabPane>
+      <Label fx:id="clt" layoutX="942.0" layoutY="36.0" onMouseClicked="#continueLogin" prefHeight="28.0" prefWidth="123.0" text="Click here to login " textFill="#020529">
+         <font>
+            <Font name="Georgia Bold Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

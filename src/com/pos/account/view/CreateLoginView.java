@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class CreateLoginView extends Application {
-
-	Stage window;
 	
 
 	public static void main(String[] args) {
@@ -27,7 +25,6 @@ public class CreateLoginView extends Application {
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.show();
 
-		this.window = stage;
 		
 	}
 	

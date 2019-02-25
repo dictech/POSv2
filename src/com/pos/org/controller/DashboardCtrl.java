@@ -11,8 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class DashboardCtrl implements Initializable {
@@ -24,7 +29,8 @@ public class DashboardCtrl implements Initializable {
     @FXML
     private AnchorPane mainPane;
 
-
+    @FXML
+    private Button btn_logout;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -32,15 +38,31 @@ public class DashboardCtrl implements Initializable {
 		
 	}
 	
-	
-    @FXML
-    void sign_in(ActionEvent event) throws Exception{
-
-			AnchorPane loginView = FXMLLoader.load(getClass().getResource("../../account/view/login.fxml"));
-			this.mainPane.getChildren().setAll(loginView);
-		    
+	  void gotoLogin() throws Exception{
+		  
 			
-    }
+			Parent root = FXMLLoader.load(getClass().getResource("../../account/view/login.fxml"));
+			Stage stage = new Stage();
+			Scene scene = new Scene(root,1366,730);
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.show();
+	  }
+	
+	   @FXML
+	    void logout(ActionEvent event) throws Exception{
+		   
+       	    Parent root = FXMLLoader.load(getClass().getResource("../../org/view/dashboard.fxml"));
+	        Stage dashboard = new Stage();
+	        Scene scene = new Scene(root);
+	        dashboard.setScene(scene);
+            dashboard = (Stage)this.btn_logout.getScene().getWindow();
+            this.gotoLogin();
+            dashboard.close();
+            
+  
+	    }
 	
     
     @FXML

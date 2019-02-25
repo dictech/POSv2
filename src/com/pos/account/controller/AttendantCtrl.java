@@ -15,12 +15,16 @@ import com.pos.account.model.Attendant;
 import com.pos.account.model.AttendantDAO;
 import com.pos.account.model.SystemAccount;
 import com.pos.account.model.SystemAccountDAO;
+import com.pos.database.Database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,8 +44,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AttendantCtrl implements Initializable{
 
@@ -98,6 +105,9 @@ public class AttendantCtrl implements Initializable{
 
     @FXML
     private TextField image_uri;
+    
+    @FXML
+    private Text photoValidation;
 
     @FXML
     private Pane confirmation;
@@ -149,6 +159,9 @@ public class AttendantCtrl implements Initializable{
     
     private File selectedFile;
     
+    @FXML
+    private Label clt;
+    
     
     
 	@Override
@@ -158,22 +171,9 @@ public class AttendantCtrl implements Initializable{
 	     this.gender.setItems(gender);
 	     this.pos.setItems(position);
 	     this.doe.setValue(LocalDate.now());
+	    	this.clt.setVisible(false);
 	    	
-	            
-				try {
-					selectedFile = new File("C:/Users/esthermylove/Documents/dev/POS/POSv2/Assets/images/green.jpg");
-		    		Image img = new Image(new FileInputStream(selectedFile.getPath()));
-		    		this.attendant_image.setImage(img);
-		    		this.btn_upload.setText("change image");
-		    		this.image_uri.setText(selectedFile.getAbsolutePath());
-		    		
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}	
-
-	    	
-	    	
-	     
+	    	this.attendant_image.setImage(null);	     
 	     
 			
 	     // initialize editAttendant section
@@ -217,7 +217,6 @@ public class AttendantCtrl implements Initializable{
     	if(selectedFile !=null) {
     		Image img = new Image(new FileInputStream(selectedFile.getPath()));	
     		this.attendant_image.setImage(img);
-    		this.btn_upload.setText("change image");
     		this.image_uri.setText(selectedFile.getPath());
     	
     	}
@@ -244,8 +243,13 @@ public class AttendantCtrl implements Initializable{
     
     @FXML
      void registerAttendant(ActionEvent event) throws Exception {
+    	       
+    	  if(this.attendant_image.getImage() == null) {
+              this.photoValidation.setText("Please provide a passport photo of you ! ");
+              LoginCtrl.sleepValidationText(this.photoValidation);
+	       }
        
-    	    if(fname.getText().isEmpty() || sname.getText().isEmpty()
+    	  else if(fname.getText().isEmpty() || sname.getText().isEmpty()
     	    	|| mname.getText().isEmpty() || phoneNo.getText().isEmpty()
     	    	|| addr.getText().isEmpty() || email.getText().isEmpty()
                 || gender.getValue() == null || dob.getValue() == null ||
@@ -260,13 +264,7 @@ public class AttendantCtrl implements Initializable{
     	       alert.showAndWait();
 	
     	       }
-    	        else if(this.attendant_image.getImage().equals(null)) {
-    	    	   Alert alert = new Alert(AlertType.ERROR);
-    	    	   alert.setContentText("Please provide a photo of yourself ");
-    	    	   alert.setHeaderText(null);
-    	    	   alert.setTitle("Image Error");
-    	    	   alert.show();
-    	       }
+    	      
     	        else if(password.getText().equals(Repeat_password.getText())) {
     	    	       
     	    	     Attendant attendant = new Attendant();
@@ -294,6 +292,7 @@ public class AttendantCtrl implements Initializable{
     	    	    	   SystemAccountDAO.createSystemAccount(act);
     	    	    	   System.out.println("Account created");
     	    	    	   this. attd_form_holder.setOpacity(0);
+    	    	    	   this.clt.setVisible(true);
     	    	    	   
     	    	    	   
     	    	    
@@ -311,8 +310,31 @@ public class AttendantCtrl implements Initializable{
     	          }
     
     }
+      void relogin() throws Exception{
+    	  
+        Stage stage = new Stage();
+  		Parent root = FXMLLoader.load(getClass().getResource("../../account/view/login.fxml"));
+  		Scene scene = new Scene(root,1366,730);
+  		stage.setScene(scene);
+  		stage.setResizable(false);
+  		stage.initStyle(StageStyle.UNDECORATED);
+  		stage.show();	  
+  		
+   	   }
 
-             
+    
+    @FXML
+    void continueLogin(MouseEvent event) throws Exception{ 
+    	   Stage stage = new Stage();
+    	   Parent root = FXMLLoader.load(getClass().getResource("../../org/view/dashboard.fxml"));
+    	   Scene scene = new Scene(root);
+    	   stage.setScene(scene);
+    	   stage = (Stage)this.clt.getScene().getWindow();
+    	   relogin();
+    	   stage.close();
+    	   
+    }
+    
         // edit attendant section.
     
     
@@ -410,22 +432,6 @@ public class AttendantCtrl implements Initializable{
     
 
 
-	    
-	    @FXML
-	    void change_photo(ActionEvent event) throws Exception{
-              
-	    	   FileChooser fc = new FileChooser();  
-	    	   fc.getExtensionFilters().addAll(new ExtensionFilter("Image","*.png","*.jpg","*.gif"));
-	    	   File file = fc.showOpenDialog(null);
-	    	  
-	    	   if(file != null) {
-	    		     
-	    		   this.profile_image.setImage(new Image(new FileInputStream(file.getPath())));
-	    		   AttendantDAO.setAttendantmageUri(file.getPath());
-	    		       	   }
-	    }
-
-
 
 	    @FXML
 	    void saveChanges(ActionEvent event)throws Exception {
@@ -435,16 +441,16 @@ public class AttendantCtrl implements Initializable{
             attd.setfName(this.change_fname.getText());
 	    	attd.setmName(this.change_mname.getText());
 	    	attd.setSurname(this.change_lname.getText());
-	    	attd.setAddress(this.addr.getText());
+	    	attd.setAddress(this.change_addr.getText());
 	    	attd.setDob(Date.valueOf(this.change_dob.getText()));
 	    	attd.setDoe(Date.valueOf(this.change_doe.getText()));
-	        attd.setEmail(this.email.getText());
+	        attd.setEmail(this.change_email.getText());
 	        attd.setGender(this.change_gender.getText());
 	        attd.setPhoneNo(this.change_mobile.getText());
 	        attd.setPosition(this.change_position.getText());
 	        attd.setImage(this.profile_image.getImage());
 	        AttendantDAO.updateAttendant(attd);
-	    
+	        Database.refreshTable(attendant_table, AttendantDAO.getAllAttendants());
 
 	    }
 	    

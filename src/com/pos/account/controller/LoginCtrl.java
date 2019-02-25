@@ -82,7 +82,7 @@ public class LoginCtrl implements Initializable {
 			
 		}
 	
-		void sleepValidationText(Text text) {
+		public static void sleepValidationText(Text text) {
 			
         Thread time = new Thread() {
 
@@ -129,7 +129,7 @@ public class LoginCtrl implements Initializable {
         	    	this.validation.setText(SystemAccountDAO.getValidationstatus());
 	    	        this.setU_name(userName.getText());
 	    	        this.setPass(password.getText());
-	    	        this.sleepValidationText(this.validation);
+	    	        this.sleepValidationText(validation);
 	    	         String v = this.validation.getText();
 	    	        
 	    	          if(v.contains("Verified")) {
