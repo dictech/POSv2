@@ -3,9 +3,13 @@ package com.pos.account.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.pos.account.model.SystemAccount;
 import com.pos.account.model.SystemAccountDAO;
 import com.pos.account.view.CreateLoginView;
+import com.pos.org.view.DashboardView;
 
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +23,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class LoginCtrl implements Initializable {
 	
@@ -41,6 +48,25 @@ public class LoginCtrl implements Initializable {
 	    
 	    @FXML
 	    private Button btn_cancel_login;
+	    
+	    @FXML
+	    private HBox loadingHolder;
+
+	    @FXML
+	    private Circle c1;
+
+	    @FXML
+	    private Circle c2;
+
+	    @FXML
+	    private Circle c3;
+	    
+
+	    @FXML
+	    private Text veri;
+	    
+	    @FXML
+	    private Text please_wait;
 	     
 	    private  String u_name;
 	     
@@ -82,16 +108,28 @@ public class LoginCtrl implements Initializable {
 			
 		}
 	
-		public static void sleepValidationText(Text text) {
+		      void callLoading() {
+			  
+			  loadingHolder.setOpacity(1);
+			  this.please_wait.setOpacity(1);
+			  LoginCtrl.rotate(c1, true, 180, 9);
+			  LoginCtrl.rotate(c2, true, 150, 12);
+			  LoginCtrl.rotate(c3, true, 110, 18);
+			  
+		  }
+		  
+		public void sleepValidationText(Text text) {
 			
         Thread time = new Thread() {
-
+            
 			@Override
 			public void run() {
 				try {
+					
 					sleep(6000);
-					text.setText(null);
-					  
+					validation.setText(text.getText());
+					loadingHolder.setOpacity(0);
+					please_wait.setOpacity(0);
 				} catch (InterruptedException e) {
 					
 					e.printStackTrace();
@@ -104,48 +142,85 @@ public class LoginCtrl implements Initializable {
         
 		}
 		
-		public void closeLogin() {
+      
+		void closeLogin() {
 			
 			Stage stage = (Stage) btnLogIn.getScene().getWindow();
-		     stage.close();
+		    stage.close();
 		}
-
+		
 	    @FXML
 	    void loginAccount(ActionEvent event) throws Exception {
 	    	
-          
+	    	this.validation.setText(null);
 	    	
 	    	if(userName.getText().isEmpty() || password.getText().isEmpty()) {
-	    		
-	    		this.validation.setText(" Please Enter Username and Password !");
-	    		
-                        this.sleepValidationText(this.validation);
+	    		check(new Text(" Please Enter Username and Password !"));
 
 	          }
 	    	
 	    	
 	    	else {
+	    		    
         	    	SystemAccountDAO.logInSystemAccount(event,userName.getText(), password.getText());
-        	    	this.validation.setText(SystemAccountDAO.getValidationstatus());
+        	    	this.veri.setText(SystemAccountDAO.getValidationstatus());
+        	    	String v = this.veri.getText();
+        	    	check(new Text(SystemAccountDAO.getValidationstatus()));
 	    	        this.setU_name(userName.getText());
 	    	        this.setPass(password.getText());
-	    	        this.sleepValidationText(validation);
-	    	         String v = this.validation.getText();
 	    	        
-	    	          if(v.contains("Verified")) {
+	    	        
+	    	        
+	    	          if(v.contains("Verified!")) {
+
 	    	        	Parent root = FXMLLoader.load(getClass().getResource("../../account/view/login.fxml"));
 		    	        Stage loginScreen = new Stage();
 		    	        Scene scene = new Scene(root);
 		    	        loginScreen.setScene(scene);
-		    	        closeLogin();}
+		    	        closeLogin();
+	    			    
+		    	        
+	    	          }
                                          
 	    	}
 
 	    	        }
 	    
+        private static void rotate(Circle c, boolean reverse, int angle, int duration) {
+        	
+        	 RotateTransition rt = new RotateTransition(Duration.seconds(duration), c);
+             rt.setAutoReverse(reverse);
+             rt.setByAngle(angle);
+             rt.setDelay(Duration.seconds(0));
+             rt.setRate(3);
+             rt.setCycleCount(18);
+             rt.play();
+        	
+        } 
+	            
+        void check (Text text) {
+        	
+	         Thread th = new Thread(){
 
-	                
-	       
+				@Override
+				public void run() {
+					try {
+						
+						sleep(700);
+						callLoading();
+						sleepValidationText(text);	
+						super.run();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+				}
+	        	 
+	        	 
+	        	 
+	         };
+	         th.start();
+        }
 	    
        }
 

@@ -236,17 +236,35 @@ public class AttendantCtrl implements Initializable{
     	  }
           
     }
+ 
+    void validationTimer(Text text){
+      Thread th = new Thread() {
 
-    
+		@Override
+		public void run() {
+			try {
+			sleep(700);
+			text.setText(null);
+			super.run();
+			}catch(InterruptedException e) {
+            	e.getMessage();
+			}
+		}
+    	  
+    	          
+      };
+      th.start();
   
-    
+    }
     
     @FXML
      void registerAttendant(ActionEvent event) throws Exception {
     	       
     	  if(this.attendant_image.getImage() == null) {
               this.photoValidation.setText("Please provide a passport photo of you ! ");
-              LoginCtrl.sleepValidationText(this.photoValidation);
+              validationTimer(photoValidation);
+              LoginCtrl lc= new LoginCtrl();
+              lc.sleepValidationText(this.photoValidation);
 	       }
        
     	  else if(fname.getText().isEmpty() || sname.getText().isEmpty()

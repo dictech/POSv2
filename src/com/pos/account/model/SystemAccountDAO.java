@@ -177,12 +177,10 @@ public class SystemAccountDAO {
 		    	    		 Date.valueOf(LocalDate.now()), attendant.getfName(), attendant.getSurname());
 		    	    	     
 		    	    	     AttendantCache.setAttendant(attendant);
-		    	    	     AttendantCache.getCache().get(attendant.getCacheId());
-		    	    	     		    	    	   	 
-		    	    	   	DashboardView dv =  new DashboardView();
-		    	    	   	dv.startDashBoard();
-		    	    	   	setValidationstatus("Verified!");
-		    	                                       
+		    	    	     AttendantCache.getCache().get(attendant.getCacheId());	
+		    	    	   	 setValidationstatus("Verified!");
+			    	         DashboardView dv =  new DashboardView();
+				    	     dv.startDashBoard();
 		    	    	      	
     	                }
 		    	      

@@ -9,9 +9,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -123,5 +126,22 @@
             <Font name="Segoe Script Bold" size="31.0" />
          </font>
       </Button>
+      <HBox fx:id="loadingHolder" layoutX="901.0" layoutY="567.0" opacity="0.0" prefHeight="53.0" prefWidth="48.0" style="-fx-background-color: #000;">
+         <children>
+            <StackPane minHeight="10.0" minWidth="10.0" prefHeight="51.0" prefWidth="51.0" style="-fx-background-color: #000;">
+               <children>
+                  <Circle fx:id="c1" fill="#07090a" radius="23.0" stroke="#102a43" strokeType="INSIDE" strokeWidth="5.0" style="-fx-stroke-dash-array: 20;" />
+                  <Circle fx:id="c2" layoutX="110.0" layoutY="60.0" radius="16.0" stroke="#edeee4" strokeType="INSIDE" strokeWidth="4.0" style="-fx-stroke-dash-array: 15;" />
+                  <Circle fx:id="c3" layoutX="110.0" layoutY="60.0" radius="9.0" stroke="#a4ae6f" strokeType="INSIDE" strokeWidth="5.0" style="-fx-stroke-dash-array: 20;" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <Text fx:id="veri" fill="#eeeaea" layoutX="321.0" layoutY="111.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="235.13671875" />
+      <Text fx:id="please_wait" fill="#f2ecec" layoutX="796.0" layoutY="598.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Wait..." textAlignment="CENTER" wrappingWidth="89.13671875">
+         <font>
+            <Font name="Lucida Sans Demibold" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
